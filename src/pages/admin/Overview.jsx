@@ -1,11 +1,42 @@
 import React from "react";
 import RosterTable from "../../components/RosterTable";
-import { Grid2 } from "@mui/material";
-
+import { Box, Button, Grid2, Typography } from "@mui/material";
+import DropMenu from "../../commonComponents/DropMenu";
+import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
+import { useNavigate } from "react-router-dom";
+import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 const Overview = () => {
+  const navigate = useNavigate();
+  const handleonBoard = () => {
+    navigate("/onboard-staff");
+  };
   return (
-    <>
-      <div>
+    <Box>
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        padding="30px 0px"
+        sx={{ borderRadius: 2 }}
+      >
+        <DropMenu
+          sx={{ fontSize: "26px", fontWeight: "600" }}
+          name={"Quick Actios"}
+          icon={":"}
+        />
+        <Button
+          variant="contained"
+          sx={{
+            background: "var(--primaryColor)",
+            fontSize: "16px",
+            fontWeight: "600",
+          }}
+          onClick={handleonBoard}
+        >
+          <PersonAddAltIcon /> &nbsp; Onboard New Staff
+        </Button>
+      </Box>
+      <Box>
         <RosterTable />
         <Grid2 container spacing={2}>
           <Grid2 size={{ xs: 6, md: 8 }}>
@@ -21,8 +52,8 @@ const Overview = () => {
             <h4>size=8</h4>
           </Grid2>
         </Grid2>
-      </div>
-    </>
+      </Box>
+    </Box>
   );
 };
 

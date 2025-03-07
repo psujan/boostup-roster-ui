@@ -1,8 +1,10 @@
 #root {
    margin: 0 auto;
-   padding: 2rem;
+   /* padding: 2rem; */
    --primaryColor:#1E7E51;
+   --secondaryColor:#F3CB5F;
    --greyColor: #666666;
+
  }
 
 h1 {
@@ -24,7 +26,7 @@ hr {
 
 /* Styling for the table */
 .roster-table {
-  /* width: 100%; */
+  width: 100%;
   /* border-collapse: collapse; */
   font-family: "Roboto", sans-serif;
 }

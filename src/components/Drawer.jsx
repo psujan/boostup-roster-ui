@@ -112,6 +112,7 @@ export default function ResponsiveDrawer({ open, setOpen }) {
         open={open}
         sx={{
           backgroundColor: "#fff",
+          boxShadow: "none",
           minHeight: "64px",
           width: open ? `calc(100% - ${drawerWidth}px)` : "100%", // Adjust width when drawer is closed
           transition: "width 0.3s ease", // Smooth transition for AppBar width
