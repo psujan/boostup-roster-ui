@@ -1,8 +1,10 @@
 import React from "react";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, IconButton, Box } from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, IconButton, Box, Typography } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import AddIcon from "@mui/icons-material/Add";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+// import AddIcon from '@mui/icons-material/Add';
+import BackButton from "../commonComponents/BackButton";
 
 const eventsData = [
   { id: 1, title: "Bar Cleaning", status: "Active", rosterPlan: "Scheduled : 4 Member" },
@@ -17,39 +19,65 @@ const eventsData = [
 const EventsTable = () => {
   return (
     <Box sx={{ padding: 3 }}>
-    
-      <h2>Events</h2>
-      <Box display="flex" justifyContent="flex-end" sx={{ mb: 2 }}>
+    <Box sx={{display:'flex', alignItems : 'center', justifyContent:'flex-start'}}>
+<BackButton />
+<Typography sx={{ ml: 1, mt: 1.5 }}>Back</Typography>
+ </Box>
+    <Box style={{display:'flex', justifyContent : 'space-between', alignItems :'center'}}>
+      <h2 style ={{fontWeight : '500'}}>Events</h2>
+  <Button
+            variant="contained"
+            sx={{
+              background: "var(--primaryColor)",
+              fontSize: "16px",
+              fontWeight: "600",
+            }}
+          >
+            <AddIcon sx={{marginRight : '10px'}}/> Add
+          </Button>
+          </Box>
+      <Box display="flex" justifyContent="flex-end" sx={{ mb: 1 }}>
       
       </Box>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell># Event Id</TableCell>
-              <TableCell>Title</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell>Roster Plan</TableCell>
-              <TableCell>Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {eventsData.map((event) => (
-              <TableRow key={event.id}>
-                <TableCell>{event.id}</TableCell>
-                <TableCell>{event.title}</TableCell>
-                <TableCell style={{ color: event.status === "Active" ? "green" : "red" }}>{event.status}</TableCell>
-                <TableCell style={{ color: event.rosterPlan.includes("Unscheduled") ? "red" : "green" }}>{event.rosterPlan}</TableCell>
-                <TableCell>
-                  <IconButton>
-                    <MoreVertIcon />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Box sx={{ padding : '50px 15px', borderRadius:'8px', backgroundColor:'white' }}>
+      
+
+<TableContainer component={Paper}>
+  <Table>
+    <TableHead>
+      <TableRow sx={{ backgroundColor: "lightgrey", height: "30px" }}> 
+        <TableCell sx={{ border: "1px solid lightgrey", padding: "15px 10px", textAlign: "center" }}># Event Id</TableCell>
+        <TableCell sx={{ border: "1px solid lightgrey", padding: "15px 10px", textAlign: "center" }}>Title</TableCell>
+        <TableCell sx={{ border: "1px solid lightgrey", padding: "15px 10px", textAlign: "center" }}>Status</TableCell>
+        <TableCell sx={{ border: "1px solid lightgrey", padding: "15px 10px", textAlign: "center" }}>Roster Plan</TableCell>
+        <TableCell sx={{ border: "1px solid lightgrey", padding: "15px 10px", textAlign: "center" }}>Actions</TableCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      {eventsData.map((event) => (
+        <TableRow key={event.id} sx={{ height: "30px" }}> 
+          <TableCell sx={{ border: "1px solid lightgrey", padding: "15px 8px", textAlign: "center" }}>{event.id}</TableCell>
+          <TableCell sx={{ border: "1px solid lightgrey", padding: "15px 8px", textAlign: "center" }}>{event.title}</TableCell>
+          <TableCell sx={{ color: event.status === "Active" ? "green" : "red", border: "1px solid lightgrey", padding: "4px 8px", textAlign: "center" }}>
+            {event.status}
+          </TableCell>
+          <TableCell sx={{ color: event.rosterPlan.includes("Unscheduled") ? "red" : "green", border: "1px solid lightgrey", padding: "4px 8px", textAlign: "center" }}>
+            {event.rosterPlan}
+          </TableCell>
+          <TableCell sx={{ border: "1px solid lightgrey", padding: "4px 8px", textAlign: "center" }}>
+            <IconButton size="small"> 
+              <MoreVertIcon fontSize="small" /> 
+            </IconButton>
+          </TableCell>
+        </TableRow>
+      ))}
+    </TableBody>
+  </Table>
+</TableContainer>
+
+
+
+      </Box>
     </Box>
   );
 };

@@ -52,9 +52,9 @@ hr {
 
 /* Red background for "Off" schedule cells */
 .off-schedule {
-  background-color: #e8aba7; /* Material-UI red */
+  background-color: #ecb6b2; /* Material-UI red */
   color: white;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 /* Alternating row colors */

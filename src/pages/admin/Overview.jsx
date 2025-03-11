@@ -5,6 +5,7 @@ import DropMenu from "../../commonComponents/DropMenu";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import { useNavigate } from "react-router-dom";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 const Overview = () => {
   const navigate = useNavigate();
   const handleonBoard = () => {
@@ -20,16 +21,17 @@ const Overview = () => {
         sx={{ borderRadius: 2 }}
       >
         <DropMenu
-          sx={{ fontSize: "26px", fontWeight: "600" }}
-          name={"Quick Actios"}
-          icon={":"}
+          sx={{ fontSize: "26px", fontWeight: "500", color : 'red'  }}
+          name="Quick Actions"
+          icon={<MoreVertIcon sx={{margin : '0 16px', padding:'2px'}}/>}
         />
         <Button
           variant="contained"
           sx={{
             background: "var(--primaryColor)",
             fontSize: "16px",
-            fontWeight: "600",
+            fontWeight: "500",
+            textTransform : 'none'
           }}
           onClick={handleonBoard}
         >
@@ -40,16 +42,16 @@ const Overview = () => {
         <RosterTable />
         <Grid2 container spacing={2}>
           <Grid2 size={{ xs: 6, md: 8 }}>
-            <h2>size=8</h2>
+            {/* <h2>size=8</h2> */}
           </Grid2>
           <Grid2 size={4}>
-            <h4>size=4</h4>
+            {/* <h4>size=4</h4> */}
           </Grid2>
           <Grid2 size={4}>
-            <h2>size=4</h2>
+            {/* <h2>size=4</h2> */}
           </Grid2>
           <Grid2 size={8}>
-            <h4>size=8</h4>
+            {/* <h4>size=8</h4> */}
           </Grid2>
         </Grid2>
       </Box>
