@@ -4,17 +4,15 @@ import {
   IconButton,
   MenuItem,
   Select,
-  
   Typography,
-
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import React from "react";
 import { Grid2 } from "@mui/material";
-import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
+import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
+import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import { Toys } from "@mui/icons-material";
 import BackButton from "../commonComponents/BackButton";
 // import BackButton from "../commonComponents/BackButton";
@@ -23,116 +21,66 @@ const RosterTable = () => {
   const rows = [
     {
       name: "David Jones",
-      schedule: [
-        "9 am - 5 pm",
-        "",
-       "",
-        "9 am - 5 pm",
-        "",
-        "",
-       
-      ],
+      schedule: ["9 am - 5 pm", "", "", "9 am - 5 pm", "", ""],
     },
     {
       name: "Luis Rood",
-      schedule: [
-        "",
-        "",
-        "",
-        "",
-        "",
-        "10 am - 6 pm",
-       
-      ],
+      schedule: ["", "", "", "", "", "10 am - 6 pm"],
     },
     {
       name: "Mike Davis",
-      schedule: [
-        "11 am - 7 pm",
-        "",
-        "11 am - 7 pm",
-        "",
-        "11 am - 7 pm",
-        "",
-      
-      ],
+      schedule: ["11 am - 7 pm", "", "11 am - 7 pm", "", "11 am - 7 pm", ""],
     },
     {
       name: "Brian Horn",
-      schedule: [
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-       
-      ],
+      schedule: ["", "", "", "", "", ""],
     },
     {
       name: "Luis Smith",
-      schedule: [
-        "",
-        "9 am - 5 pm",
-        "",
-        "",
-        "9 am - 5 pm",
-        "9 am - 5 pm",
-     
-      ],
+      schedule: ["", "9 am - 5 pm", "", "", "9 am - 5 pm", "9 am - 5 pm"],
     },
     {
       name: "Mike Johnson",
-      schedule: [
-        "",
-        "",
-        "",
-        "10 am - 6 pm",
-        "Annual Leave",
-        "Annual Leave",
-       
-      ],
+      schedule: ["", "", "", "10 am - 6 pm", "Annual Leave", "Annual Leave"],
     },
     {
       name: "Jessica Brown",
-      schedule: [
-        "8 am - 4 pm",
-        "",
-        "8 am - 4 pm",
-        "",
-        "",
-        "8 am - 4 pm",
-      
-      ],
+      schedule: ["8 am - 4 pm", "", "8 am - 4 pm", "", "", "8 am - 4 pm"],
     },
   ];
 
   return (
-  
-    
     <Grid2>
-   
-  
-   <Box sx={{display:'flex', alignItems : 'center', justifyContent:'flex-start'}}>
-<BackButton />
-<Typography sx={{ ml: 1, mt: 1.5 }}>Back</Typography>
- </Box>
-    <Box style={{display:'flex', justifyContent : 'space-between', alignItems :'center'}}>
-      <h2 style ={{fontWeight : '500'}}>Roster</h2>
-  <Button
-            variant="contained"
-            sx={{
-              background: "var(--primaryColor)",
-              fontSize: "16px",
-              fontWeight: "600",
-            }}
-          >
-            <AddIcon sx={{marginRight : '10px'}}/> Add
-           
-          </Button>
-          </Box>
- 
-   
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-start",
+        }}
+      >
+        <BackButton />
+        {/* <Typography sx={{ ml: 1, mt: 1.5 }}>Back</Typography> */}
+      </Box>
+      <Box
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <h2 style={{ fontWeight: "500" }}>Roster</h2>
+        <Button
+          variant="contained"
+          sx={{
+            background: "var(--primaryColor)",
+            fontSize: "16px",
+            fontWeight: "600",
+          }}
+        >
+          <AddIcon sx={{ marginRight: "10px" }} /> Add
+        </Button>
+      </Box>
+
       <div className="roster-container">
         <Box
           sx={{
@@ -181,8 +129,10 @@ const RosterTable = () => {
           </IconButton>
         </Box>
         <br />
-<ArrowCircleUpIcon sx={{marginLeft : '95%', transform: "rotate(90deg)", color:'green'}}/>
-        <table className="roster-table"  style={{width : '90%'}}>
+        <ArrowCircleUpIcon
+          sx={{ marginLeft: "95%", transform: "rotate(90deg)", color: "green" }}
+        />
+        <table className="roster-table" style={{ width: "90%" }}>
           <thead>
             <tr>
               <th style={{ borderRadius: "5px 0 0 0" }}>View by Employee</th>
@@ -192,21 +142,17 @@ const RosterTable = () => {
               <th>Wed</th>
               <th>Thu</th>
               <th>Fri</th>
-             
             </tr>
           </thead>
           <tbody>
             {rows.map((row, index) => (
-              <tr key={index} >
-                <td >{row.name}</td>
+              <tr key={index}>
+                <td>{row.name}</td>
                 {row.schedule.map((time, idx) => (
                   <td
-                  
                     key={idx}
-                  
                     className={time === "Annual Leave" ? "off-schedule" : ""}
                   >
-               
                     {time}
                   </td>
                 ))}
@@ -216,7 +162,6 @@ const RosterTable = () => {
         </table>
       </div>
     </Grid2>
- 
   );
 };
 

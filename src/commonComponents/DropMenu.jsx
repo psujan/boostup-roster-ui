@@ -21,9 +21,14 @@ export default function DropMenu({ name, icon, options }) {
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
-        sx={{ color: "var(--greyColor)", fontWeight: "600", fontSize: "16px", textTransform: "none" }}
+        sx={{
+          color: "var(--greyColor)",
+          fontWeight: "600",
+          fontSize: "16px",
+          lineHeight: "100%",
+        }}
       >
-        {name} {icon}
+        {name} &nbsp; {icon}
       </Button>
       <Menu
         id="basic-menu"

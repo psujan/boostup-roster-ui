@@ -19,17 +19,21 @@ const Overview = () => {
         sx={{ borderRadius: 2 }}
       >
         <DropMenu
-          sx={{ fontSize: "26px", fontWeight: "500", color: "red" }}
-          name="Quick Actions"
-          icon={<MoreVertIcon sx={{ margin: "0 16px", padding: "2px" }} />}
+          sx={{ fontSize: "46px", fontWeight: "600" }}
+          name={"Quick Actions "}
+          icon={":"}
         />
         <Button
           variant="contained"
           sx={{
             background: "var(--primaryColor)",
             fontSize: "16px",
+            fontWeight: "600",
+            borderRadius: "8px",
             fontWeight: "500",
-            textTransform: "none",
+            lineHeight: "100%",
+            padding: "10px 20px",
+            transitionProperty: "1s ease",
           }}
           onClick={handleonBoard}
         >

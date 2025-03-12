@@ -14,7 +14,7 @@ const LeaveRequest = () => {
         }}
       >
         <BackButton />
-        <Typography sx={{ ml: 1, mt: 1.5 }}>Back</Typography>
+        {/* <Typography sx={{ ml: 1, mt: 1.5 }}>Back</Typography> */}
       </Box>
       <Typography
         variant="h6"

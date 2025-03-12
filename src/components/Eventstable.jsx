@@ -21,7 +21,7 @@ const EventsTable = () => {
     <Box sx={{ padding: 3 }}>
     <Box sx={{display:'flex', alignItems : 'center', justifyContent:'flex-start'}}>
 <BackButton />
-<Typography sx={{ ml: 1, mt: 1.5 }}>Back</Typography>
+{/* <Typography sx={{ ml: 1, mt: 1.5 }}>Back</Typography> */}
  </Box>
     <Box style={{display:'flex', justifyContent : 'space-between', alignItems :'center'}}>
       <h2 style ={{fontWeight : '500'}}>Events</h2>

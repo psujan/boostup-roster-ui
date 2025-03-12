@@ -25,12 +25,26 @@ const OnBoardStaff = () => {
   };
 
   return (
-    <div>
+    <>
       <BackButton />
+      <Typography
+        sx={{
+          fontWeight: "500",
+          fontSize: "20px",
+          color: "#000",
+        }}
+      >
+        Onboard New Staff
+      </Typography>
       <br />
-      <Typography variant="h5">OnBoard New Staff</Typography>
-      <br />
-      <Box sx={{ background: "#fff", p: 2, height: "90vh" }}>
+      <Box
+        sx={{
+          background: "#fff",
+          padding: "54px 33px",
+          height: "90vh",
+          borderRadius: "8px",
+        }}
+      >
         <Box
           component="form"
           onSubmit={handleSubmit(onSubmit)} // Ensure onSubmit is passed to handleSubmit
@@ -44,10 +58,9 @@ const OnBoardStaff = () => {
         >
           <Box sx={{ width: "30%" }}>
             <Typography
-              variant="subtitle1"
               sx={{
-                fontSize: "18px",
-                fontWeight: "550",
+                fontSize: "14px",
+                fontWeight: "400",
                 mb: 1,
               }}
             >
@@ -65,10 +78,9 @@ const OnBoardStaff = () => {
 
           <Box sx={{ width: "30%" }}>
             <Typography
-              variant="subtitle1"
               sx={{
-                fontSize: "18px",
-                fontWeight: "550",
+                fontSize: "14px",
+                fontWeight: "400",
                 mb: 1,
               }}
             >
@@ -88,8 +100,8 @@ const OnBoardStaff = () => {
             <Typography
               variant="subtitle1"
               sx={{
-                fontSize: "18px",
-                fontWeight: "550",
+                fontSize: "14px",
+                fontWeight: "400",
                 mb: 1,
               }}
             >
@@ -113,9 +125,11 @@ const OnBoardStaff = () => {
             type="submit"
             variant="outlined"
             sx={{
-              fontSize: "18px",
+              fontSize: "16px",
+              fontWeight: "500",
               backgroundColor: "var(--secondaryColor)",
-              fontWeight: "550",
+              padding: "9px 58px",
+              borderRadius: "8px",
               color: "#000",
               border: "none",
               mb: 1,
@@ -126,10 +140,13 @@ const OnBoardStaff = () => {
           <Button
             variant="contained"
             sx={{
-              fontSize: "18px",
-              fontWeight: "550",
+              fontSize: "16px",
+              fontWeight: "500",
+              padding: "9px 58px",
               mb: 1,
+              borderRadius: "8px",
               background: "var(--primaryColor)",
+              border: "none",
             }}
             onClick={() => handleSubmit(onSubmit)()} // Call handleSubmit correctly
           >
@@ -137,7 +154,7 @@ const OnBoardStaff = () => {
           </Button>
         </Box>
       </Box>
-    </div>
+    </>
   );
 };
 

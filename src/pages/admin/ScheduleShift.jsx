@@ -37,10 +37,18 @@ const ScheduleShift = () => {
   return (
     <div>
       <BackButton />
+      <Typography sx={{ fontWeight: "500", fontSize: "20px" }}>
+        Schedule A Shift
+      </Typography>
       <br />
-      <Typography variant="h5">OnBoard New Staff</Typography>
-      <br />
-      <Box sx={{ background: "#fff", p: 2, height: "90vh" }}>
+      <Box
+        sx={{
+          background: "#fff",
+          padding: "54px 33px",
+          height: "90vh",
+          borderRadius: "8px",
+        }}
+      >
         <Box
           component="form"
           onSubmit={handleSubmit(onSubmit)} // Ensure onSubmit is passed to handleSubmit
@@ -54,15 +62,11 @@ const ScheduleShift = () => {
         >
           <Box sx={{ width: "30%" }}>
             <Typography
-              variant="subtitle1"
-              sx={{
-                fontSize: "18px",
-                fontWeight: "550",
-                mb: 1,
-              }}
+              sx={{ fontSize: "14px", fontWeight: "400", padding: "", mb: 1 }}
             >
               Select Staff
             </Typography>
+
             <Select
               sx={{ width: "100%" }}
               //   label="Choose Email"
@@ -83,11 +87,7 @@ const ScheduleShift = () => {
           <Box sx={{ width: "30%" }}>
             <Typography
               variant="subtitle1"
-              sx={{
-                fontSize: "18px",
-                fontWeight: "550",
-                mb: 1,
-              }}
+              sx={{ fontSize: "14px", fontWeight: "400", padding: "", mb: 1 }}
             >
               Email
             </Typography>
@@ -115,14 +115,11 @@ const ScheduleShift = () => {
           <Box sx={{ width: "30%" }}>
             <Typography
               variant="subtitle1"
-              sx={{
-                fontSize: "18px",
-                fontWeight: "550",
-                mb: 1,
-              }}
+              sx={{ fontSize: "14px", fontWeight: "400", padding: "", mb: 1 }}
             >
               Time
             </Typography>
+            Select Days
             <Select
               sx={{ width: "100%" }}
               //   label="Choose Email"

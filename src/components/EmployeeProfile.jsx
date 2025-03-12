@@ -9,16 +9,21 @@ import {
   Box,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import BackButton from "../commonComponents/BackButton";
 
 const EmployeeProfile = () => {
   return (
     <>
-      <Box style={{display: "flex",
-          justifyContent: 'flex-start',
+      <Box
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
           alignItems: "center",
-          marginTop: '20px'}}>
-        <ArrowBackIcon />
-        <Typography  >Back</Typography>
+          marginTop: "20px",
+        }}
+      >
+        <BackButton />
+        {/* <Typography  >Back</Typography> */}
       </Box>
       <Box
         style={{
@@ -27,7 +32,11 @@ const EmployeeProfile = () => {
           alignItems: "center",
         }}
       >
-        <Typography style={{fontSize : '20px', fontWeight: 'bold', margin : '30px 0px'}}>Employee</Typography>
+        <Typography
+          style={{ fontSize: "20px", fontWeight: "bold", margin: "30px 0px" }}
+        >
+          Employee
+        </Typography>
         <Button
           variant="contained"
           sx={{
@@ -73,7 +82,6 @@ const EmployeeProfile = () => {
           </Stack>
         </CardContent>
       </Card>
-      
     </>
   );
 };
