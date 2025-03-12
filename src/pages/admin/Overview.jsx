@@ -1,11 +1,9 @@
-import React from "react";
 import RosterTable from "../../components/RosterTable";
-import { Box, Button, Grid2, Typography } from "@mui/material";
+import { Box, Button, Grid2 } from "@mui/material";
 import DropMenu from "../../commonComponents/DropMenu";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import { useNavigate } from "react-router-dom";
-import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 const Overview = () => {
   const navigate = useNavigate();
   const handleonBoard = () => {
@@ -21,9 +19,9 @@ const Overview = () => {
         sx={{ borderRadius: 2 }}
       >
         <DropMenu
-          sx={{ fontSize: "26px", fontWeight: "500", color : 'red'  }}
+          sx={{ fontSize: "26px", fontWeight: "500", color: "red" }}
           name="Quick Actions"
-          icon={<MoreVertIcon sx={{margin : '0 16px', padding:'2px'}}/>}
+          icon={<MoreVertIcon sx={{ margin: "0 16px", padding: "2px" }} />}
         />
         <Button
           variant="contained"
@@ -31,7 +29,7 @@ const Overview = () => {
             background: "var(--primaryColor)",
             fontSize: "16px",
             fontWeight: "500",
-            textTransform : 'none'
+            textTransform: "none",
           }}
           onClick={handleonBoard}
         >
@@ -41,18 +39,10 @@ const Overview = () => {
       <Box>
         <RosterTable />
         <Grid2 container spacing={2}>
-          <Grid2 size={{ xs: 6, md: 8 }}>
-            {/* <h2>size=8</h2> */}
-          </Grid2>
-          <Grid2 size={4}>
-            {/* <h4>size=4</h4> */}
-          </Grid2>
-          <Grid2 size={4}>
-            {/* <h2>size=4</h2> */}
-          </Grid2>
-          <Grid2 size={8}>
-            {/* <h4>size=8</h4> */}
-          </Grid2>
+          <Grid2 size={{ xs: 6, md: 8 }}>{/* <h2>size=8</h2> */}</Grid2>
+          <Grid2 size={4}>{/* <h4>size=4</h4> */}</Grid2>
+          <Grid2 size={4}>{/* <h2>size=4</h2> */}</Grid2>
+          <Grid2 size={8}>{/* <h4>size=8</h4> */}</Grid2>
         </Grid2>
       </Box>
     </Box>
