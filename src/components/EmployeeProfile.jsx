@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import BackButton from "../commonComponents/BackButton";
+import "../index.css";
 
 const EmployeeProfile = () => {
   return (
@@ -73,11 +74,43 @@ const EmployeeProfile = () => {
             +61 417 456 789
           </Typography>
           <Stack direction="row" spacing={2} justifyContent="center">
-            <Button variant="contained" color="success">
-              Plan Schedule
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "var(--primaryColor)",
+                width: "105px",
+                height: "35px",
+                padding: "10px",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: "12px",
+                  fontWeight: "500",
+                  textTransform: "none",
+                }}
+              >
+                Plan Schedule
+              </Typography>
             </Button>
-            <Button variant="contained" color="warning">
-              View Profile
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "var(--secondaryColor)",
+                color: "black",
+                width: "105px",
+                height: "35px",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: "12px",
+                  fontWeight: "500",
+                  textTransform: "none",
+                }}
+              >
+                View Profile
+              </Typography>
             </Button>
           </Stack>
         </CardContent>

@@ -34,6 +34,7 @@ const Overview = () => {
             lineHeight: "100%",
             padding: "10px 20px",
             transitionProperty: "1s ease",
+            textTransform : 'none'
           }}
           onClick={handleonBoard}
         >
