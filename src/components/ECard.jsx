@@ -1,6 +1,7 @@
 import { Avatar, Button, Card, CardContent, Stack, Typography } from '@mui/material'
 import React from 'react'
 
+
 const ECard = () => {
   return (
     <div>
@@ -17,7 +18,7 @@ const ECard = () => {
     }}
   >
     <Avatar
-      src="https://via.placeholder.com/150"
+      src="./src/assets/images/1.png"
       alt="James Wilson"
       sx={{ width: 80, height: 80, margin: "auto", mb: 2 }}
     />

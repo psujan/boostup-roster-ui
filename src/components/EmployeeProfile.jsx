@@ -33,7 +33,7 @@ const EmployeeProfile = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          width : '80%'
+          // width : '80%'
         }}
       >
         <Typography
@@ -49,20 +49,37 @@ const EmployeeProfile = () => {
             fontWeight: "600",
           }}
         >
-           <Typography sx={{fontSize : "16px", textTransform : "none"}}>+ Add</Typography>
+          <Typography sx={{ fontSize: "16px", textTransform: "none" }}>
+            + Add
+          </Typography>
         </Button>
       </Box>
-      <Box sx={{height : '916px', width : '916px' ,borderRadius: '8px', backgroundColor : 'white', padding : '40px 40px'}}>
-      <TextField 
-  id="outlined-basic" 
-  label="Search..." 
-  variant="outlined" 
-  sx={{ width: "200px" }}
-  inputProps={{ style: { height: "15px", padding: "10px" } }} 
-/>
-      <ECard/>
-     
-
+      <Box
+        sx={{
+          height: "916px",
+          borderRadius: "8px",
+          backgroundColor: "white",
+          padding: "40px 40px",
+        }}
+      >
+        <TextField
+          id="outlined-basic"
+          label="Search..."
+          variant="outlined"
+          sx={{ width: "200px" }}
+          inputProps={{ style: { height: "15px", padding: "10px" } }}
+        />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <ECard />
+          <ECard />
+          <ECard />
+        </Box>
       </Box>
     </>
   );
