@@ -7,6 +7,7 @@ import {
   Avatar,
   Stack,
   Box,
+  TextField,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import BackButton from "../commonComponents/BackButton";
@@ -31,6 +32,7 @@ const EmployeeProfile = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          width : '80%'
         }}
       >
         <Typography
@@ -46,16 +48,27 @@ const EmployeeProfile = () => {
             fontWeight: "600",
           }}
         >
-          Add
+           <Typography sx={{fontSize : "16px", textTransform : "none"}}>+ Add</Typography>
         </Button>
       </Box>
+      <Box sx={{height : '916px', width : '916px' ,borderRadius: '8px', backgroundColor : 'white', padding : '40px 40px'}}>
+      <TextField 
+  id="outlined-basic" 
+  label="Search..." 
+  variant="outlined" 
+  sx={{ width: "200px" }}
+  inputProps={{ style: { height: "15px", padding: "10px" } }} 
+/>
       <Card
         sx={{
-          maxWidth: 300,
+          maxWidth: "294px",
+          height : "300px",
           textAlign: "center",
           p: 2,
-          borderRadius: "10px",
-          boxShadow: 3,
+          borderRadius: "6px",
+          // boxShadow: 3,
+          backgroundColor: '#FCFBFB',
+          mt: '40px'
         }}
       >
         <Avatar
@@ -64,7 +77,7 @@ const EmployeeProfile = () => {
           sx={{ width: 80, height: 80, margin: "auto", mb: 2 }}
         />
         <CardContent>
-          <Typography variant="h6" fontWeight="bold">
+          <Typography sx={{fontFamily : 'Inter', fontWeight : '500'}}>
             James Wilson
           </Typography>
           <Typography variant="body2" color="text.secondary">
@@ -115,6 +128,7 @@ const EmployeeProfile = () => {
           </Stack>
         </CardContent>
       </Card>
+      </Box>
     </>
   );
 };
