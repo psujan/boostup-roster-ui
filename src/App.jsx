@@ -1,13 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
-import Employees from "./components/Employees";
+import EmployeeProfile from "./components/EmployeeProfile";
 import Schedule from "./components/Schedule";
 import { CssBaseline, Box, ThemeProvider, createTheme } from "@mui/material";
 import Drawer from "./components/Drawer";
 import Overview from "./pages/admin/Overview";
 import OnBoardStaff from "./pages/admin/OnBoardStaff";
 import ScheduleShift from "./pages/admin/ScheduleShift";
+import EventsTable from "./components/Eventstable";
+import LeaveRequest from "./components/Leavereq";
+import RosterTable from "./components/RosterTable";
 
 const App = () => {
   const [open, setOpen] = React.useState(true); //  drawer open state
@@ -72,8 +75,11 @@ const App = () => {
               <Route path="/schedule-shift" element={<ScheduleShift />} />
 
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/employees" element={<Employees />} />
+              <Route path="/employee" element={<EmployeeProfile />} />
               <Route path="/schedule" element={<Schedule />} />
+              <Route path="/events" element={<EventsTable />} />
+              <Route path="/leave-request" element={<LeaveRequest />} />
+              <Route path="/roster" element={<RosterTable />} />
             </Routes>
           </Box>
         </Box>

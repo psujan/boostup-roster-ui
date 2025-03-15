@@ -1,147 +1,146 @@
-import { Button, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  MenuItem,
+  Select,
+  Typography,
+} from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import React from "react";
 import { Grid2 } from "@mui/material";
+import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
+import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
+import { Toys } from "@mui/icons-material";
+import BackButton from "../commonComponents/BackButton";
+// import BackButton from "../commonComponents/BackButton";
 
 const RosterTable = () => {
   const rows = [
     {
-      name: "Employee 1",
-      schedule: [
-        "9 AM - 5 PM",
-        "off",
-        "9 AM - 5 PM",
-        "9 AM - 5 PM",
-        "9 AM - 5 PM",
-        "9 AM - 5 PM",
-        "Annual Leave",
-      ],
+      name: "David Jones",
+      schedule: ["9 am - 5 pm", "", "", "9 am - 5 pm", "", ""],
     },
     {
-      name: "Employee 2",
-      schedule: [
-        "10 AM - 6 PM",
-        "10 AM - 6 PM",
-        "Annual Leave",
-        "10 AM - 6 PM",
-        "10 AM - 6 PM",
-        "10 AM - 6 PM",
-        "Annual Leave",
-      ],
+      name: "Luis Rood",
+      schedule: ["", "", "", "", "", "10 am - 6 pm"],
     },
     {
-      name: "Employee 3",
-      schedule: [
-        "11 AM - 7 PM",
-        "11 AM - 7 PM",
-        "11 AM - 7 PM",
-        "Annual Leave",
-        "11 AM - 7 PM",
-        "11 AM - 7 PM",
-        "Annual Leave",
-      ],
+      name: "Mike Davis",
+      schedule: ["11 am - 7 pm", "", "11 am - 7 pm", "", "11 am - 7 pm", ""],
     },
     {
-      name: "Employee 4",
-      schedule: [
-        "Annual Leave",
-        "8 AM - 4 PM",
-        "8 AM - 4 PM",
-        "8 AM - 4 PM",
-        "Annual Leave",
-        "8 AM - 4 PM",
-        "8 AM - 4 PM",
-      ],
+      name: "Brian Horn",
+      schedule: ["", "", "", "", "", ""],
     },
     {
-      name: "Employee 5",
-      schedule: [
-        "9 AM - 5 PM",
-        "9 AM - 5 PM",
-        "Off",
-        "Off",
-        "9 AM - 5 PM",
-        "9 AM - 5 PM",
-        "9 AM - 5 PM",
-      ],
+      name: "Luis Smith",
+      schedule: ["", "9 am - 5 pm", "", "", "9 am - 5 pm", "9 am - 5 pm"],
     },
     {
-      name: "Employee 6",
-      schedule: [
-        "Off",
-        "10 AM - 6 PM",
-        "10 AM - 6 PM",
-        "10 AM - 6 PM",
-        "Off",
-        "Off",
-        "10 AM - 6 PM",
-      ],
+      name: "Mike Johnson",
+      schedule: ["", "", "", "10 am - 6 pm", "Annual Leave", "Annual Leave"],
     },
     {
-      name: "Employee 7",
-      schedule: [
-        "8 AM - 4 PM",
-        "8 AM - 4 PM",
-        "8 AM - 4 PM",
-        "Off",
-        "Annual Leave",
-        "8 AM - 4 PM",
-        "8 AM - 4 PM",
-      ],
-    },
-    {
-      name: "Employee 8",
-      schedule: [
-        "9 AM - 5 PM",
-        "9 AM - 5 PM",
-        "9 AM - 5 PM",
-        "9 AM - 5 PM",
-        "Annual Leave",
-        "Off",
-        "9 AM - 5 PM",
-      ],
+      name: "Jessica Brown",
+      schedule: ["8 am - 4 pm", "", "8 am - 4 pm", "", "", "8 am - 4 pm"],
     },
   ];
 
   return (
     <Grid2>
-      <div className="roster-container">
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-start",
+        }}
+      >
+        <BackButton />
+      </Box>
+      <Box
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <h2 style={{ fontWeight: "500" }}>Roster</h2>
+        <Button
+          variant="contained"
+          sx={{
+            background: "var(--primaryColor)",
+            fontSize: "16px",
+            fontWeight: "600",
           }}
         >
-          <h1>Roster Plan</h1>
+          <AddIcon sx={{ marginRight: "10px" }} /> Add
+        </Button>
+      </Box>
+
+      <div className="roster-container">
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            padding: "12px 20px",
+            borderBottom: "1px solid #ddd",
+            backgroundColor: "--greyColor",
+          }}
+        >
+          {/* Left: Title */}
           <Typography
-            style={{
-              border: "1px solid black",
-              borderRadius: "5px",
-              padding: "5px",
-              borderColor: "grey",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
+            sx={{ fontSize: "20px", fontWeight: "500", marginRight: "20px" }}
           >
-            This Week <ExpandMoreIcon />
+            Roster Plan
           </Typography>
-          <Typography>Dec1-Dec7</Typography>
-          <MoreVertIcon />
-        </div>
-        <hr />
-        <table className="roster-table">
+
+          {/* Center: Dropdown and Date */}
+          <Box
+            sx={{ display: "flex", alignItems: "center", gap: 1, flexGrow: 1 }}
+          >
+            <Select
+              defaultValue="This Week"
+              variant="outlined"
+              size="small"
+              sx={{
+                color: "#666666",
+                fontSize: "14px",
+                borderRadius: "8px",
+                border: "1px solid lightgrey",
+                // backgroundColor: "#f5f5f5",
+                "& .MuiOutlinedInput-notchedOutline": { border: "none" },
+              }}
+            >
+              <MenuItem value="This Week">This Week</MenuItem>
+              <MenuItem value="Next Week">Next Week</MenuItem>
+            </Select>
+            <Typography sx={{ color: "grey", fontSize: "14px" }}>
+              Dec 1 - Dec 7
+            </Typography>
+          </Box>
+
+          {/* Right: Three-dot Menu Icon */}
+          <IconButton>
+            <MoreVertIcon />
+          </IconButton>
+        </Box>
+        <br />
+        <ArrowCircleUpIcon
+          sx={{ marginLeft: "95%", transform: "rotate(90deg)", color: "green" }}
+        />
+        <table className="roster-table" style={{ width: "90%" }}>
           <thead>
             <tr>
-              <th>View by Employees</th>
+              <th style={{ borderRadius: "5px 0 0 0" }}>View by Employee</th>
               <th>Sun</th>
               <th>Mon</th>
               <th>Tue</th>
               <th>Wed</th>
               <th>Thu</th>
               <th>Fri</th>
-              <th>Sat</th>
             </tr>
           </thead>
           <tbody>
