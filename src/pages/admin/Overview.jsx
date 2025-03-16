@@ -37,7 +37,8 @@ const Overview = () => {
           <PersonAddAltIcon /> &nbsp; Onboard New Staff
         </Button>
       </Box>
-      <Box>
+      <Box >
+      
         <RosterTable />
         <Grid2 container spacing={2}>
           <Grid2 size={{ xs: 6, md: 8 }}>{/* <h2>size=8</h2> */}</Grid2>

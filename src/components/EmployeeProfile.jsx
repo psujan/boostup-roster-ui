@@ -1,4 +1,6 @@
 import React from "react";
+import AddIcon from "@mui/icons-material/Add";
+
 import {
   Card,
   CardContent,
@@ -36,24 +38,26 @@ const EmployeeProfile = () => {
           // width : '80%'
         }}
       >
-        <Typography
-          style={{ fontSize: "20px", fontWeight: "bold", margin: "30px 0px" }}
-        >
-          Employee
-        </Typography>
-        <Button
-          variant="contained"
-          sx={{
-            background: "var(--primaryColor)",
-            fontSize: "16px",
-            fontWeight: "600",
-          }}
-        >
-          <Typography sx={{ fontSize: "16px", textTransform: "none" }}>
-            + Add
-          </Typography>
-        </Button>
+       
+      
       </Box>
+      <Box style={{display:'flex', justifyContent : 'space-between', alignItems :'center', margin:'20px 0'}}>
+      <Typography style ={{fontWeight : '500', fontSize : '20px'}}>Employee</Typography>
+  <Button
+            variant="contained"
+            sx={{
+              background: "var(--primaryColor)",
+              fontSize: "16px",
+              fontWeight: "600",
+              width :'106px',
+              height : '40px'
+
+
+            }}
+          >
+            <AddIcon sx={{marginRight : '10px'}}/> Add
+          </Button>
+          </Box>
       <Box
         sx={{
           height: "916px",

@@ -25,7 +25,7 @@ const LeaveRequest = () => {
         Leave Request
       </Typography>
 
-      <Paper sx={{ p: 3 }}>
+      <Paper sx={{ p: 3, ml : '-22px', borderRadius: '8px', border : 'none' }}>
         <TextField
           //   label="Requested By"
           size="small"
@@ -98,13 +98,13 @@ const LeaveRequest = () => {
         </Box>
 
         <Box sx={{ display: "flex", gap: 2, mt: 3 }}>
-          <Button variant="contained" color="success">
-            <Typography sx={{ color: "white" }}>
+          <Button  sx={{backgroundColor : '#1E7E51', width : '244px'}}>
+            <Typography sx={{ color: "white", textTransform : 'none' }}>
               Approve Leave Request
             </Typography>
           </Button>
-          <Button variant="contained" sx={{ backgroundColor: "#F3CB5F" }}>
-            <Typography sx={{ color: "black" }}> Manage Conflict</Typography>
+          <Button sx={{ backgroundColor: "#F3CB5F", width : '244px' }}>
+            <Typography sx={{ color: "black", textTransform : 'none' }}> Manage Conflict</Typography>
           </Button>
         </Box>
       </Paper>

@@ -58,16 +58,18 @@ const RosterTable = () => {
           justifyContent: "flex-start",
         }}
       >
-        <BackButton />
+        {/* <BackButton /> */}
       </Box>
-      <Box
+      {/* <Box
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
         }}
       >
-        <h2 style={{ fontWeight: "500" }}>Roster</h2>
+        <Typography style={{ fontWeight: "500", fontSize: "20px" }}>
+          Roster
+        </Typography>
         <Button
           variant="contained"
           sx={{
@@ -78,7 +80,7 @@ const RosterTable = () => {
         >
           <AddIcon sx={{ marginRight: "10px" }} /> Add
         </Button>
-      </Box>
+      </Box> */}
 
       <div className="roster-container">
         <Box

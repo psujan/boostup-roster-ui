@@ -23,23 +23,28 @@ const EventsTable = () => {
 <BackButton />
 {/* <Typography sx={{ ml: 1, mt: 1.5 }}>Back</Typography> */}
  </Box>
-    <Box style={{display:'flex', justifyContent : 'space-between', alignItems :'center'}}>
-      <h2 style ={{fontWeight : '500'}}>Events</h2>
+    <Box style={{display:'flex', justifyContent : 'space-between', alignItems :'center', margin:'20px 0'}}>
+      <Typography style ={{fontWeight : '500', fontSize : '20px'}}>Events</Typography>
   <Button
             variant="contained"
             sx={{
               background: "var(--primaryColor)",
               fontSize: "16px",
               fontWeight: "600",
+              width :'106px',
+              height : '40px'
+
+
             }}
           >
             <AddIcon sx={{marginRight : '10px'}}/> Add
           </Button>
           </Box>
+          
       <Box display="flex" justifyContent="flex-end" sx={{ mb: 1 }}>
       
       </Box>
-      <Box sx={{ padding : '50px 15px', borderRadius:'8px', backgroundColor:'white' }}>
+      <Box sx={{ padding : '50px 15px', borderRadius:'8px', backgroundColor:'white', ml:'-20px' }}>
       
 
 <TableContainer component={Paper}>
