@@ -3,6 +3,7 @@ import { Box, Button, Grid2 } from "@mui/material";
 import DropMenu from "../../commonComponents/DropMenu";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import { useNavigate } from "react-router-dom";
+import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 const Overview = () => {
   const navigate = useNavigate();
@@ -19,22 +20,17 @@ const Overview = () => {
         sx={{ borderRadius: 2 }}
       >
         <DropMenu
-          sx={{ fontSize: "46px", fontWeight: "600" }}
-          name={"Quick Actions "}
-          icon={":"}
+          sx={{ fontSize: "26px", fontWeight: "500", color: "red" }}
+          name="Quick Actions"
+          icon={<MoreVertIcon sx={{ margin: "0 16px", padding: "2px" }} />}
         />
         <Button
           variant="contained"
           sx={{
             background: "var(--primaryColor)",
             fontSize: "16px",
-            fontWeight: "600",
-            borderRadius: "8px",
             fontWeight: "500",
-            lineHeight: "100%",
-            padding: "10px 20px",
-            transitionProperty: "1s ease",
-            textTransform : 'none'
+            textTransform: "none",
           }}
           onClick={handleonBoard}
         >

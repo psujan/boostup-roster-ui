@@ -74,13 +74,13 @@ const App = () => {
               <Route path="/onboard-staff" element={<OnBoardStaff />} />
               <Route path="/schedule-shift" element={<ScheduleShift />} />
 
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/employee" element={<EmployeeProfile />} />
-            <Route path="/schedule" element={<Schedule />} />
-            <Route path="/events" element={<EventsTable />} />
-            <Route path="/leave-request" element={<LeaveRequest />} />
-            <Route path="/roster" element={<RosterTable />} />
-          </Routes>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/employee" element={<EmployeeProfile />} />
+              <Route path="/schedule" element={<Schedule />} />
+              <Route path="/events" element={<EventsTable />} />
+              <Route path="/leave-request" element={<LeaveRequest />} />
+              <Route path="/roster" element={<RosterTable />} />
+            </Routes>
           </Box>
         </Box>
       </ThemeProvider>

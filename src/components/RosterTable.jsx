@@ -59,7 +59,6 @@ const RosterTable = () => {
         }}
       >
         <BackButton />
-        {/* <Typography sx={{ ml: 1, mt: 1.5 }}>Back</Typography> */}
       </Box>
       <Box
         style={{
