@@ -45,7 +45,7 @@ const Overview = () => {
       </Box>
 
       <Box>
-        <RosterTable />
+        <RosterTable showDiv={false} />
 
         <Grid2 container spacing={2}>
           <Grid2 size={{ xs: 6, md: 8 }}>{/* <h2>size=8</h2> */}</Grid2>

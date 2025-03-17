@@ -1,11 +1,11 @@
-import { Avatar, Button, Card, CardContent, Stack, Typography } from '@mui/material'
+import { Avatar, Box, Button, Card, CardContent, Stack, Typography } from '@mui/material'
 import React from 'react'
 
 
 const ECard = () => {
   return (
     <div>
-    <Card
+    <Box
     sx={{
       maxWidth: "294px",
       height : "300px",
@@ -14,7 +14,8 @@ const ECard = () => {
       borderRadius: "6px",
       // boxShadow: 3,
       backgroundColor: '#FCFBFB',
-      mt: '40px'
+      mt: '40px',
+      border: 'none'
     }}
   >
     <Avatar
@@ -40,6 +41,7 @@ const ECard = () => {
             width: "105px",
             height: "35px",
             padding: "10px",
+            boxShadow : 'none'
           }}
         >
           <Typography
@@ -59,6 +61,7 @@ const ECard = () => {
             color: "black",
             width: "105px",
             height: "35px",
+            boxShadow :'none'
           }}
         >
           <Typography
@@ -73,7 +76,7 @@ const ECard = () => {
         </Button>
       </Stack>
     </CardContent>
-  </Card></div>
+  </Box></div>
   )
 }
 

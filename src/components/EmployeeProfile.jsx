@@ -24,7 +24,7 @@ const EmployeeProfile = () => {
           display: "flex",
           justifyContent: "flex-start",
           alignItems: "center",
-          marginTop: "20px",
+          // marginTop: "20px",
         }}
       >
         <BackButton />
@@ -41,7 +41,7 @@ const EmployeeProfile = () => {
        
       
       </Box>
-      <Box style={{display:'flex', justifyContent : 'space-between', alignItems :'center', margin:'20px 0'}}>
+      <Box style={{display:'flex', justifyContent : 'space-between', alignItems :'center', marginTop:'-20px', marginBottom : '20px'}}>
       <Typography style ={{fontWeight : '500', fontSize : '20px'}}>Employee</Typography>
   <Button
             variant="contained"
@@ -50,7 +50,8 @@ const EmployeeProfile = () => {
               fontSize: "16px",
               fontWeight: "600",
               width :'106px',
-              height : '40px'
+              height : '40px',
+              textTransform :'none'
 
 
             }}

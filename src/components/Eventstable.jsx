@@ -18,12 +18,12 @@ const eventsData = [
 
 const EventsTable = () => {
   return (
-    <Box sx={{ padding: 3 }}>
+    <Box >
     <Box sx={{display:'flex', alignItems : 'center', justifyContent:'flex-start'}}>
 <BackButton />
 {/* <Typography sx={{ ml: 1, mt: 1.5 }}>Back</Typography> */}
  </Box>
-    <Box style={{display:'flex', justifyContent : 'space-between', alignItems :'center', margin:'20px 0'}}>
+    <Box style={{display:'flex', justifyContent : 'space-between', alignItems :'center', marginBottom: '15px', marginTop: "-20px"}}>
       <Typography style ={{fontWeight : '500', fontSize : '20px'}}>Events</Typography>
   <Button
             variant="contained"
@@ -32,7 +32,8 @@ const EventsTable = () => {
               fontSize: "16px",
               fontWeight: "600",
               width :'106px',
-              height : '40px'
+              height : '40px',
+              textTransform:'none'
 
 
             }}
@@ -44,10 +45,10 @@ const EventsTable = () => {
       <Box display="flex" justifyContent="flex-end" sx={{ mb: 1 }}>
       
       </Box>
-      <Box sx={{ padding : '50px 15px', borderRadius:'8px', backgroundColor:'white', ml:'-20px' }}>
+      <Box sx={{ padding : '50px 15px', borderRadius:'8px', backgroundColor:'white',  height : '659px' }}>
       
 
-<TableContainer component={Paper}>
+<TableContainer component={Paper} sx={{margin : '0 15px', paddingRight : '10px'}}>
   <Table>
     <TableHead>
       <TableRow sx={{ backgroundColor: "lightgrey", height: "30px" }}> 

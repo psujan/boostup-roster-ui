@@ -79,7 +79,7 @@ const App = () => {
               <Route path="/schedule" element={<Schedule />} />
               <Route path="/events" element={<EventsTable />} />
               <Route path="/leave-request" element={<LeaveRequest />} />
-              <Route path="/roster" element={<RosterTable />} />
+              <Route path="/roster" element={<RosterTable addRoster={true} />} />
             </Routes>
           </Box>
         </Box>
