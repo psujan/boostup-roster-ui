@@ -15,6 +15,7 @@ import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import { Toys } from "@mui/icons-material";
 import BackButton from "../commonComponents/BackButton";
+import DateRangeSelector from "../commonComponents/DatePicker";
 // import BackButton from "../commonComponents/BackButton";
 
 const RosterTable = () => {
@@ -82,7 +83,7 @@ const RosterTable = () => {
         </Button>
       </Box> */}
 
-      <div className="roster-container">
+      <div className="roster-container" style={{   height : '675px'}}>
         <Box
           sx={{
             display: "flex",
@@ -90,6 +91,7 @@ const RosterTable = () => {
             padding: "12px 20px",
             borderBottom: "1px solid #ddd",
             backgroundColor: "--greyColor",
+          
           }}
         >
           {/* Left: Title */}
@@ -119,9 +121,10 @@ const RosterTable = () => {
               <MenuItem value="This Week">This Week</MenuItem>
               <MenuItem value="Next Week">Next Week</MenuItem>
             </Select>
-            <Typography sx={{ color: "grey", fontSize: "14px" }}>
+            {/* <Typography sx={{ color: "grey", fontSize: "14px" }}>
               Dec 1 - Dec 7
-            </Typography>
+            </Typography> */}
+            <DateRangeSelector/>
           </Box>
 
           {/* Right: Three-dot Menu Icon */}
@@ -133,7 +136,7 @@ const RosterTable = () => {
         <ArrowCircleUpIcon
           sx={{ marginLeft: "95%", transform: "rotate(90deg)", color: "green" }}
         />
-        <table className="roster-table" style={{ width: "90%" }}>
+        <table className="roster-table" style={{ width: "90%",margin : '0 20px' }}>
           <thead>
             <tr>
               <th style={{ borderRadius: "5px 0 0 0" }}>View by Employee</th>
