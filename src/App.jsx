@@ -24,6 +24,7 @@ const App = () => {
       MuiButton: {
         styleOverrides: {
           root: {
+            borderRadius: "8px",
             transition: "all 0.3s ease-in-out", // Smooth transition for hover/click
             "&:hover": {
               transform: "translateY(-2px)", // Slight lift effect on hover
