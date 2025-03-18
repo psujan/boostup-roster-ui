@@ -15,9 +15,10 @@ import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import { Toys } from "@mui/icons-material";
 import BackButton from "../commonComponents/BackButton";
+import DateRangeSelector from "../commonComponents/DatePicker";
 // import BackButton from "../commonComponents/BackButton";
 
-const RosterTable = () => {
+const RosterTable = ({ addRoster }) => {
   const rows = [
     {
       name: "David Jones",
@@ -51,7 +52,46 @@ const RosterTable = () => {
 
   return (
     <Grid2>
-      <Box
+      {addRoster && (
+        <div>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-start",
+         
+            }}
+          >
+            <BackButton />
+          </Box>
+          <Box
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+                   marginBottom : '20px',
+                   marginTop: '-20px'
+            }}
+          >
+            <Typography style={{ fontWeight: "500", fontSize: "20px" , }}>
+              Roster
+            </Typography>
+            <Button
+              variant="contained"
+              sx={{
+                background: "var(--primaryColor)",
+                fontSize: "16px",
+                fontWeight: "600",
+                textTransform : 'none',
+                width : '106px'
+              }}
+            >
+              <AddIcon sx={{ marginRight: "10px" }} /> Add
+            </Button>
+          </Box>
+        </div>
+      )}
+      {/* <Box
         sx={{
           display: "flex",
           alignItems: "center",
@@ -67,7 +107,9 @@ const RosterTable = () => {
           alignItems: "center",
         }}
       >
-        <h2 style={{ fontWeight: "500" }}>Roster</h2>
+        <Typography style={{ fontWeight: "500", fontSize: "20px" }}>
+          Roster
+        </Typography>
         <Button
           variant="contained"
           sx={{
@@ -78,9 +120,9 @@ const RosterTable = () => {
         >
           <AddIcon sx={{ marginRight: "10px" }} /> Add
         </Button>
-      </Box>
+      </Box> */}
 
-      <div className="roster-container">
+      <Box  style={{ height: "675px", borderRadius : '8px', backgroundColor : 'white' }}>
         <Box
           sx={{
             display: "flex",
@@ -117,9 +159,10 @@ const RosterTable = () => {
               <MenuItem value="This Week">This Week</MenuItem>
               <MenuItem value="Next Week">Next Week</MenuItem>
             </Select>
-            <Typography sx={{ color: "grey", fontSize: "14px" }}>
+            {/* <Typography sx={{ color: "grey", fontSize: "14px" }}>
               Dec 1 - Dec 7
-            </Typography>
+            </Typography> */}
+            <DateRangeSelector />
           </Box>
 
           {/* Right: Three-dot Menu Icon */}
@@ -131,7 +174,10 @@ const RosterTable = () => {
         <ArrowCircleUpIcon
           sx={{ marginLeft: "95%", transform: "rotate(90deg)", color: "green" }}
         />
-        <table className="roster-table" style={{ width: "90%" }}>
+        <table
+          className="roster-table"
+          style={{ width: "90%", margin: "0 20px" }}
+        >
           <thead>
             <tr>
               <th style={{ borderRadius: "5px 0 0 0" }}>View by Employee</th>
@@ -159,7 +205,7 @@ const RosterTable = () => {
             ))}
           </tbody>
         </table>
-      </div>
+      </Box>
     </Grid2>
   );
 };

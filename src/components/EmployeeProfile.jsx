@@ -1,4 +1,6 @@
 import React from "react";
+import AddIcon from "@mui/icons-material/Add";
+
 import {
   Card,
   CardContent,
@@ -7,73 +9,83 @@ import {
   Avatar,
   Stack,
   Box,
+  TextField,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import BackButton from "../commonComponents/BackButton";
+import "../index.css";
+import ECard from "./ECard";
 
 const EmployeeProfile = () => {
   return (
     <>
-      <Box style={{display: "flex",
-          justifyContent: 'flex-start',
+      <Box
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
           alignItems: "center",
-          marginTop: '20px'}}>
-        <ArrowBackIcon />
-        <Typography  >Back</Typography>
+          // marginTop: "20px",
+        }}
+      >
+        <BackButton />
+        {/* <Typography  >Back</Typography> */}
       </Box>
       <Box
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          // width : '80%'
         }}
       >
-        <Typography style={{fontSize : '20px', fontWeight: 'bold', margin : '30px 0px'}}>Employee</Typography>
-        <Button
-          variant="contained"
+       
+      
+      </Box>
+      <Box style={{display:'flex', justifyContent : 'space-between', alignItems :'center', marginTop:'-20px', marginBottom : '20px'}}>
+      <Typography style ={{fontWeight : '500', fontSize : '20px'}}>Employee</Typography>
+  <Button
+            variant="contained"
+            sx={{
+              background: "var(--primaryColor)",
+              fontSize: "16px",
+              fontWeight: "600",
+              width :'106px',
+              height : '40px',
+              textTransform :'none'
+
+
+            }}
+          >
+            <AddIcon sx={{marginRight : '10px'}}/> Add
+          </Button>
+          </Box>
+      <Box
+        sx={{
+          height: "916px",
+          borderRadius: "8px",
+          backgroundColor: "white",
+          padding: "40px 40px",
+        }}
+      >
+        <TextField
+          id="outlined-basic"
+          label="Search..."
+          variant="outlined"
+          sx={{ width: "200px" }}
+          inputProps={{ style: { height: "15px", padding: "10px" } }}
+        />
+        <Box
           sx={{
-            background: "var(--primaryColor)",
-            fontSize: "16px",
-            fontWeight: "600",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          Add
-        </Button>
+          <ECard />
+          <ECard />
+          <ECard />
+        </Box>
       </Box>
-      <Card
-        sx={{
-          maxWidth: 300,
-          textAlign: "center",
-          p: 2,
-          borderRadius: "10px",
-          boxShadow: 3,
-        }}
-      >
-        <Avatar
-          src="https://via.placeholder.com/150"
-          alt="James Wilson"
-          sx={{ width: 80, height: 80, margin: "auto", mb: 2 }}
-        />
-        <CardContent>
-          <Typography variant="h6" fontWeight="bold">
-            James Wilson
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            jameswilsom@gmail.com
-          </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-            +61 417 456 789
-          </Typography>
-          <Stack direction="row" spacing={2} justifyContent="center">
-            <Button variant="contained" color="success">
-              Plan Schedule
-            </Button>
-            <Button variant="contained" color="warning">
-              View Profile
-            </Button>
-          </Stack>
-        </CardContent>
-      </Card>
-      
     </>
   );
 };
