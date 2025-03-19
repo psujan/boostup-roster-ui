@@ -195,7 +195,7 @@ export default function ResponsiveDrawer({ open, setOpen }) {
         <List>
           {[
             { text: " Overview", path: "/" },
-            { text: " Events", path: "/events" },
+            { text: " Jobs", path: "/events" },
             { text: " Roster", path: "/roster" },
             { text: " Leave Request", path: "/leave-request" },
             { text: " Employee", path: "/employee" },

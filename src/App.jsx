@@ -11,6 +11,7 @@ import ScheduleShift from "./pages/admin/ScheduleShift";
 import EventsTable from "./components/Eventstable";
 import LeaveRequest from "./components/Leavereq";
 import RosterTable from "./components/RosterTable";
+import EmployeeHome from "./components/EmployeeHome";
 
 const App = () => {
   const [open, setOpen] = React.useState(true); //  drawer open state
@@ -80,6 +81,8 @@ const App = () => {
               <Route path="/events" element={<EventsTable />} />
               <Route path="/leave-request" element={<LeaveRequest />} />
               <Route path="/roster" element={<RosterTable addRoster={true} />} />
+              <Route path="/employeehome" element={<EmployeeHome />} />
+
             </Routes>
           </Box>
         </Box>
