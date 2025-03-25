@@ -175,9 +175,11 @@ export default function ResponsiveDrawer({ open, setOpen }) {
             variant="h5"
             style={{
               color: "var(--primaryColor)",
+              fontWSize: "24px",
+              fontWeight: "600",
               width: "100%",
               padding: theme.spacing(0, 1),
-              textAlign: "center", // Center the text for better alignment
+              textAlign: "left", // Center the text for better alignment
               visibility: open ? "visible" : "hidden", // Hide the text when the drawer is closed
             }}
           >

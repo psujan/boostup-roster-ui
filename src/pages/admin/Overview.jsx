@@ -37,6 +37,7 @@ const Overview = () => {
             fontSize: "16px",
             fontWeight: "500",
             textTransform: "none",
+            padding: "8px 22px",
           }}
           onClick={handleonBoard}
         >
