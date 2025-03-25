@@ -73,7 +73,7 @@ const EmployeeHome = () => {
               width: "150px",
               height: "38px",
               borderRadius: "8px",
-              backgroundColor: "#F2F0F0",
+              backgroundColor: "#F3CB5F",
               border: "1px solid lightgrey",
             }}
           >
