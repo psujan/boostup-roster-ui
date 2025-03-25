@@ -24,7 +24,7 @@ const EventsTable = () => {
 {/* <Typography sx={{ ml: 1, mt: 1.5 }}>Back</Typography> */}
  </Box>
     <Box style={{display:'flex', justifyContent : 'space-between', alignItems :'center', marginBottom: '15px', marginTop: "-20px"}}>
-      <Typography style ={{fontWeight : '500', fontSize : '20px'}}>Events</Typography>
+      <Typography style ={{fontWeight : '500', fontSize : '20px'}}>Jobs</Typography>
   <Button
             variant="contained"
             sx={{

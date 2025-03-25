@@ -11,6 +11,9 @@ import ScheduleShift from "./pages/admin/ScheduleShift";
 import EventsTable from "./components/Eventstable";
 import LeaveRequest from "./components/Leavereq";
 import RosterTable from "./components/RosterTable";
+import EmployeeHome from "./components/EmployeeHome";
+import LoginPage from "./components/LoginPage";
+import Modal from "./components/Modal";
 
 const App = () => {
   const [open, setOpen] = React.useState(true); //  drawer open state
@@ -100,6 +103,9 @@ const App = () => {
                 path="/roster"
                 element={<RosterTable addRoster={true} />}
               />
+              <Route path="/employeehome" element={<EmployeeHome />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/modal" element={<Modal />} />
             </Routes>
           </Box>
         </Box>
