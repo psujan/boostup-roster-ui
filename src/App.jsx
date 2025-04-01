@@ -1,6 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Dashboard from "./components/Dashboard";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import EmployeeProfile from "./components/EmployeeProfile";
 import Schedule from "./components/Schedule";
 import { CssBaseline, Box, ThemeProvider, createTheme } from "@mui/material";
@@ -13,10 +17,48 @@ import LeaveRequest from "./components/Leavereq";
 import RosterTable from "./components/RosterTable";
 import EmployeeHome from "./components/EmployeeHome";
 import LoginPage from "./components/LoginPage";
-import Modal from "./components/Modal";
+
+const AppContent = ({ open, setOpen }) => {
+  const location = useLocation();
+  const isLoginPage = location.pathname === "/";
+
+  return isLoginPage ? (
+    <Routes>
+      <Route path="/" element={<LoginPage />} />
+    </Routes>
+  ) : (
+    <Box>
+      <Drawer open={open} setOpen={setOpen} />
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          bgcolor: "#f5f5f5",
+          p: 3,
+          transition: "margin-left 0.3s ease",
+          marginLeft: open ? "240px" : "60px",
+          marginTop: "44px",
+          paddingLeft: open ? "40px" : "30px",
+        }}
+      >
+        <Routes>
+          <Route path="/admin-dashboard" element={<Overview />} />
+          <Route path="/onboard-staff" element={<OnBoardStaff />} />
+          <Route path="/schedule-shift" element={<ScheduleShift />} />
+          <Route path="/employee" element={<EmployeeProfile />} />
+          <Route path="/schedule" element={<Schedule />} />
+          <Route path="/events" element={<EventsTable />} />
+          <Route path="/leave-request" element={<LeaveRequest />} />
+          <Route path="/roster" element={<RosterTable addRoster={true} />} />
+          <Route path="/employeehome" element={<EmployeeHome />} />
+        </Routes>
+      </Box>
+    </Box>
+  );
+};
 
 const App = () => {
-  const [open, setOpen] = React.useState(true); //  drawer open state
+  const [open, setOpen] = React.useState(true);
 
   const theme = createTheme({
     typography: {
@@ -28,13 +70,13 @@ const App = () => {
         styleOverrides: {
           root: {
             borderRadius: "8px",
-            transition: "all 0.3s ease-in-out", // Smooth transition for hover/click
+            transition: "all 0.3s ease-in-out",
             "&:hover": {
-              transform: "translateY(-2px)", // Slight lift effect on hover
+              transform: "translateY(-2px)",
             },
             "&:active": {
-              transform: "translateY(0px)", // Reset position when clicked
-              boxShadow: "none", // Remove shadow on click
+              transform: "translateY(0px)",
+              boxShadow: "none",
             },
           },
         },
@@ -44,13 +86,13 @@ const App = () => {
           root: {
             backgroundColor: "transparent",
             "& .MuiOutlinedInput-notchedOutline": {
-              border: "none", // 🔥 Remove border
+              border: "none",
             },
             "&:hover .MuiOutlinedInput-notchedOutline": {
-              border: "none", // 🔥 Remove border on hover
+              border: "none",
             },
             "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-              border: "none", // 🔥 Remove border on focus (click)
+              border: "none",
             },
           },
         },
@@ -63,52 +105,22 @@ const App = () => {
               borderRadius: "8px",
             },
             "&:hover fieldset": {
-              borderColor: "var(-primaryColor)", // Border color on hover
+              borderColor: "var(--primaryColor)",
+            },
+            "&.focused fieldset": {
+              outline: "var(--primaryColor)", // Change to your primary color when focused
             },
           },
         },
       },
     },
   });
+
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Box sx={{}}>
-          <Drawer open={open} setOpen={setOpen} />{" "}
-          {/* Pass open state to Drawer */}
-          <Box
-            component="main"
-            sx={{
-              flexGrow: 1,
-              bgcolor: "#f5f5f5",
-              p: 3,
-              transition: "margin-left 0.3s ease",
-              marginLeft: open ? "240px" : "60px",
-              marginTop: "44px",
-              paddingLeft: open ? "40px" : "30px",
-            }}
-          >
-            <Routes>
-              <Route path="/" element={<Overview />} />
-              <Route path="/onboard-staff" element={<OnBoardStaff />} />
-              <Route path="/schedule-shift" element={<ScheduleShift />} />
-
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/employee" element={<EmployeeProfile />} />
-              <Route path="/schedule" element={<Schedule />} />
-              <Route path="/events" element={<EventsTable />} />
-              <Route path="/leave-request" element={<LeaveRequest />} />
-              <Route
-                path="/roster"
-                element={<RosterTable addRoster={true} />}
-              />
-              <Route path="/employeehome" element={<EmployeeHome />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/modal" element={<Modal />} />
-            </Routes>
-          </Box>
-        </Box>
+        <AppContent open={open} setOpen={setOpen} />
       </ThemeProvider>
     </Router>
   );

@@ -7,13 +7,20 @@ import {
   Box,
   Paper,
 } from "@mui/material";
+import api from "../services/api";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    console.log("Logging in with", email, password);
+    api
+      .post("/api/v1/auth", { email, password })
+      .then((res) =>
+        res.status == 200
+          ? console.log(res.data.data)
+          : console.log("res.error")
+      );
   };
 
   return (
@@ -31,7 +38,14 @@ const LoginPage = () => {
         elevation={3}
         sx={{ padding: 4, width: "100%", textAlign: "center" }}
       >
-        <Typography variant="h5" sx={{ marginBottom: 2, fontWeight: "bold" }}>
+        <Typography
+          variant="h5"
+          sx={{
+            marginBottom: 2,
+            fontWeight: "bold",
+            color: "var(--primaryColor)",
+          }}
+        >
           BoostUp Login
         </Typography>
         <Box
@@ -44,7 +58,6 @@ const LoginPage = () => {
             fullWidth
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-           
           />
           <TextField
             label="Password"
@@ -58,20 +71,11 @@ const LoginPage = () => {
             variant="contained"
             fullWidth
             onClick={handleLogin}
-            sx={{backgroundColor:'#1E7E51'}}
+            sx={{ backgroundColor: "#1E7E51" }}
           >
             Login
           </Button>
         </Box>
-        {/* <Typography variant="body2" sx={{ marginTop: 2 }}>
-          Don't have an account?{" "}
-          <a
-            href="/signup"
-            style={{ textDecoration: "none", color: "#1976d2" }}
-          >
-            Sign up
-          </a>
-        </Typography> */}
       </Paper>
     </Container>
   );

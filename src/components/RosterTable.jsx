@@ -17,6 +17,7 @@ import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import { Toys } from "@mui/icons-material";
 import BackButton from "../commonComponents/BackButton";
 import DateRangeSelector from "../commonComponents/DatePicker";
+import ShiftModal from "./ShiftModal";
 // import BackButton from "../commonComponents/BackButton";
 
 const RosterTable = ({ addRoster }) => {
@@ -59,13 +60,22 @@ const RosterTable = ({ addRoster }) => {
       schedule: ["8 am - 4 pm", "", "8 am - 4 pm", "", "", "8 am - 4 pm"],
     },
   ];
+  const shifts = [
+    {
+      name: "James Rodriguez",
+      day: "Sun",
+      date: "03 Mar",
+      time: "6:00 AM - 2:00 PM",
+      location: "Strata Cleaning - 2 Avona St, Glebe",
+    },
+  ];
 
-  const handleTableClick = () => {
-    console.log("ho ki");
-    setOpen(true);
-  };
   const handleViewChange = (event) => {
     setViewBy(event.target.value);
+  };
+
+  const handleTableClick = () => {
+    setOpen(true);
   };
   return (
     <Grid2>
@@ -219,27 +229,7 @@ const RosterTable = ({ addRoster }) => {
             ))}
           </tbody>
         </table>
-        <Modal open={open} onClose={() => setOpen(false)}>
-          <Box
-            sx={{
-              // border: none,
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              bgcolor: "background.paper",
-              borderRadius: "8px",
-              boxShadow: 24,
-              p: 4,
-              width: 300,
-            }}
-          >
-            <Typography variant="h6" component="h2">
-              Launa hajur aayo mmodal
-            </Typography>
-            <Typography sx={{ mt: 2 }}>Schedule: "estai xa"</Typography>
-          </Box>
-        </Modal>
+        <ShiftModal open={open} setOpen={setOpen} shifts={shifts} />
       </Box>
     </Grid2>
   );

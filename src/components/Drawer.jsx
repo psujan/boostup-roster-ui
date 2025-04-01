@@ -101,6 +101,14 @@ export default function ResponsiveDrawer({ open, setOpen }) {
   const location = useLocation();
   const theme = useTheme();
 
+  const adminPath = [
+    { text: " Overview", path: "/admin-dashboard" },
+    { text: " Jobs", path: "/events" },
+    { text: " Roster", path: "/roster" },
+    { text: " Leave Request", path: "/leave-request" },
+    { text: " Employee", path: "/employee" },
+  ];
+
   const handleDrawerOpen = () => setOpen(true);
   const handleDrawerClose = () => setOpen(false);
 
@@ -195,13 +203,7 @@ export default function ResponsiveDrawer({ open, setOpen }) {
         </DrawerHeader>
         <Divider />
         <List>
-          {[
-            { text: " Overview", path: "/" },
-            { text: " Jobs", path: "/events" },
-            { text: " Roster", path: "/roster" },
-            { text: " Leave Request", path: "/leave-request" },
-            { text: " Employee", path: "/employee" },
-          ].map((item, index) => (
+          {adminPath.map((item, index) => (
             <ListItem key={item.text} disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 onClick={() => navigate(item.path)}
