@@ -23,9 +23,12 @@ import EventBusyOutlinedIcon from "@mui/icons-material/EventBusyOutlined";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import DropMenu from "../commonComponents/DropMenu";
 import { useLocation, useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography"; // <-- Add this line for Typography import
+import { isAuthenticated } from "../utils/auth";
+import { MenuItem, Select } from "@mui/material";
+import ClickableTextMenu from "../commonComponents/TextMenu";
+import { ToastMesssage } from "../commonComponents/ToastNotification";
 
 const drawerWidth = 240;
 
@@ -86,11 +89,19 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-const icons = [
+const adminIcons = [
   <SpaceDashboardOutlinedIcon />,
   <CalendarTodayOutlinedIcon />,
   <UpdateOutlinedIcon />,
   <EventBusyOutlinedIcon />,
+  <GroupOutlinedIcon />,
+];
+
+const employeeIcons = [
+  <SpaceDashboardOutlinedIcon />,
+  <CalendarTodayOutlinedIcon />,
+  <EventBusyOutlinedIcon />,
+  <UpdateOutlinedIcon />,
   <GroupOutlinedIcon />,
 ];
 
@@ -100,7 +111,15 @@ export default function ResponsiveDrawer({ open, setOpen }) {
   const navigate = useNavigate();
   const location = useLocation();
   const theme = useTheme();
+  const { isAuth, role } = isAuthenticated();
 
+  const employeePath = [
+    { text: " Dashboard", path: "/admin-dashboard" },
+    { text: " My Shifts", path: "/employee-jobs" },
+    { text: " Request Leave", path: "/employee-roster" },
+    { text: " Shift History", path: "/employee-request" },
+    { text: " Profile", path: "/employee-profile" },
+  ];
   const adminPath = [
     { text: " Overview", path: "/admin-dashboard" },
     { text: " Jobs", path: "/events" },
@@ -111,7 +130,14 @@ export default function ResponsiveDrawer({ open, setOpen }) {
 
   const handleDrawerOpen = () => setOpen(true);
   const handleDrawerClose = () => setOpen(false);
-
+  const handleProfile = () => {
+    navigate("/events");
+  };
+  const handleLogout = () => {
+    navigate("/");
+    ToastMesssage("success", "logout Successfully!");
+    localStorage.clear();
+  };
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -163,10 +189,12 @@ export default function ResponsiveDrawer({ open, setOpen }) {
               sx={{ color: "var(--greyColor)", fontWeight: "600" }}
             />
             &nbsp; &nbsp; &nbsp;
-            <DropMenu
-              name={"William John"}
-              icon={<KeyboardArrowDownIcon />}
-              options={options}
+            <ClickableTextMenu
+              text="John Doe"
+              items={[
+                { label: "My Profile", onClick: handleProfile },
+                { label: "Logout", onClick: handleLogout },
+              ]}
             />
           </div>
         </Toolbar>
@@ -202,40 +230,85 @@ export default function ResponsiveDrawer({ open, setOpen }) {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
-          {adminPath.map((item, index) => (
-            <ListItem key={item.text} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                onClick={() => navigate(item.path)}
-                sx={{
-                  minHeight: 48,
-                  px: 2.5,
-                  backgroundColor:
-                    location.pathname === item.path ? "#64ECAC24" : "inherit", // Active background color
-                  display: "flex",
-                  alignItems: "center", // Align icon and text properly
-                }}
+        {isAuth && role == "SuperAdmin" ? (
+          <List>
+            {adminPath.map((item, index) => (
+              <ListItem
+                key={item.text}
+                disablePadding
+                sx={{ display: "block" }}
               >
-                <ListItemIcon
+                <ListItemButton
+                  onClick={() => navigate(item.path)}
                   sx={{
-                    minWidth: 0,
-                    justifyContent: "center",
-                    marginRight: open ? theme.spacing(2) : 0, // Add gap between icon and text when open
+                    minHeight: 48,
+                    px: 2.5,
+                    backgroundColor:
+                      location.pathname === item.path ? "#64ECAC24" : "inherit", // Active background color
+                    display: "flex",
+                    alignItems: "center", // Align icon and text properly
                   }}
                 >
-                  {icons[index % 5]}
-                </ListItemIcon>
-                <ListItemText
-                  primary={item.text}
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      justifyContent: "center",
+                      marginRight: open ? theme.spacing(2) : 0, // Add gap between icon and text when open
+                    }}
+                  >
+                    {adminIcons[index % 5]}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={item.text}
+                    sx={{
+                      display: open ? "block" : "none", // Hide text when the drawer is closed
+                      marginLeft: open ? theme.spacing(2) : 0, // Add space between icon and text
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        ) : isAuth && role == "Employee" ? (
+          <List>
+            {employeePath.map((item, index) => (
+              <ListItem
+                key={item.text}
+                disablePadding
+                sx={{ display: "block" }}
+              >
+                <ListItemButton
+                  onClick={() => navigate(item.path)}
                   sx={{
-                    display: open ? "block" : "none", // Hide text when the drawer is closed
-                    marginLeft: open ? theme.spacing(2) : 0, // Add space between icon and text
+                    minHeight: 48,
+                    px: 2.5,
+                    backgroundColor:
+                      location.pathname === item.path ? "#64ECAC24" : "inherit", // Active background color
+                    display: "flex",
+                    alignItems: "center", // Align icon and text properly
                   }}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      justifyContent: "center",
+                      marginRight: open ? theme.spacing(2) : 0, // Add gap between icon and text when open
+                    }}
+                  >
+                    {employeeIcons[index % 5]}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={item.text}
+                    sx={{
+                      display: open ? "block" : "none", // Hide text when the drawer is closed
+                      marginLeft: open ? theme.spacing(2) : 0, // Add space between icon and text
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        ) : null}
       </Drawer>
     </Box>
   );

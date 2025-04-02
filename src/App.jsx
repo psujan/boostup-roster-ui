@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
   useLocation,
+  useNavigate,
 } from "react-router-dom";
 import EmployeeProfile from "./components/EmployeeProfile";
 import Schedule from "./components/Schedule";
@@ -17,16 +18,31 @@ import LeaveRequest from "./components/Leavereq";
 import RosterTable from "./components/RosterTable";
 import EmployeeHome from "./components/EmployeeHome";
 import LoginPage from "./components/LoginPage";
+import { isAuthenticated } from "./utils/auth";
+import { ToastContainer } from "react-toastify";
 
 const AppContent = ({ open, setOpen }) => {
   const location = useLocation();
-  const isLoginPage = location.pathname === "/";
+  const navigate = useNavigate();
+  const isLoginPage =
+    location.pathname === "/" || location.pathname === "/login";
+  const { isAuth, role } = isAuthenticated();
+  React.useEffect(() => {
+    if (!isAuth && !isLoginPage) {
+      navigate("/login");
+    }
+  }, [isAuth, isLoginPage, navigate]);
 
-  return isLoginPage ? (
-    <Routes>
-      <Route path="/" element={<LoginPage />} />
-    </Routes>
-  ) : (
+  if (isLoginPage)
+    return (
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
+    );
+  if (!isAuth) return null;
+
+  return (
     <Box>
       <Drawer open={open} setOpen={setOpen} />
       <Box
@@ -42,15 +58,31 @@ const AppContent = ({ open, setOpen }) => {
         }}
       >
         <Routes>
-          <Route path="/admin-dashboard" element={<Overview />} />
-          <Route path="/onboard-staff" element={<OnBoardStaff />} />
-          <Route path="/schedule-shift" element={<ScheduleShift />} />
-          <Route path="/employee" element={<EmployeeProfile />} />
-          <Route path="/schedule" element={<Schedule />} />
-          <Route path="/events" element={<EventsTable />} />
-          <Route path="/leave-request" element={<LeaveRequest />} />
-          <Route path="/roster" element={<RosterTable addRoster={true} />} />
-          <Route path="/employeehome" element={<EmployeeHome />} />
+          {role === "SuperAdmin" ? (
+            <>
+              <Route path="/" element={<Overview />} />
+              <Route path="/admin-dashboard" element={<Overview />} />
+              <Route path="/onboard-staff" element={<OnBoardStaff />} />
+              <Route path="/schedule-shift" element={<ScheduleShift />} />
+              <Route path="/employee" element={<EmployeeProfile />} />
+              <Route path="/schedule" element={<Schedule />} />
+              <Route path="/events" element={<EventsTable />} />
+              <Route path="/leave-request" element={<LeaveRequest />} />
+              <Route
+                path="/roster"
+                element={<RosterTable addRoster={true} />}
+              />
+            </>
+          ) : role == "Employee" ? (
+            <>
+              <Route path="/" element={<EmployeeHome />} />
+              <Route path="/employee-dashboard" element={<EmployeeHome />} />
+              <Route path="/employee-jobs" element={<EmployeeHome />} />
+              <Route path="/employee-roster" element={<EmployeeHome />} />
+              <Route path="/employee-request" element={<EmployeeHome />} />
+              <Route path="/employee-profile" element={<EmployeeHome />} />
+            </>
+          ) : null}
         </Routes>
       </Box>
     </Box>
@@ -118,6 +150,7 @@ const App = () => {
 
   return (
     <Router>
+      <ToastContainer />
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <AppContent open={open} setOpen={setOpen} />

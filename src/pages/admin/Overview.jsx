@@ -1,13 +1,20 @@
 import RosterTable from "../../components/RosterTable";
-import { Box, Button, Grid2 } from "@mui/material";
-import DropMenu from "../../commonComponents/DropMenu";
+import { Box, Button, Grid2, MenuItem, Select } from "@mui/material";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import { useNavigate } from "react-router-dom";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import ClickableTextMenu from "../../commonComponents/TextMenu";
 const Overview = () => {
   const navigate = useNavigate();
   const handleonBoard = () => {
     navigate("/onboard-staff");
+  };
+  const handleProfile = () => {
+    console.log("test1");
+  };
+
+  const handleLogout = () => {
+    console.log("test1");
   };
   return (
     <Box>
@@ -18,15 +25,16 @@ const Overview = () => {
         padding="30px 0px"
         sx={{ borderRadius: 2 }}
       >
-        <DropMenu
-          sx={{
-            fontSize: "26px",
-            fontWeight: "500",
-            color: "red",
-            textTransform: "none",
-          }}
-          name={<span style={{ textTransform: "none" }}>Quick Actions</span>}
-          icon={<MoreVertIcon sx={{ margin: "0 16px", padding: "2px" }} />}
+        <ClickableTextMenu
+          text={
+            <span style={{ fontSize: "16px", fontWeight: "600" }}>
+              Quick Actions :
+            </span>
+          }
+          items={[
+            { label: "My Profile", onClick: handleProfile },
+            { label: "Logout", onClick: handleLogout },
+          ]}
         />
 
         <Button

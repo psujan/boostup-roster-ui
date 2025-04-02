@@ -37,28 +37,33 @@ const EmployeeProfile = () => {
           alignItems: "center",
           // width : '80%'
         }}
+      ></Box>
+      <Box
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginTop: "-20px",
+          marginBottom: "20px",
+        }}
       >
-       
-      
+        <Typography style={{ fontWeight: "500", fontSize: "20px" }}>
+          Employee
+        </Typography>
+        <Button
+          variant="contained"
+          sx={{
+            background: "var(--primaryColor)",
+            fontSize: "16px",
+            fontWeight: "600",
+            width: "106px",
+            height: "40px",
+            textTransform: "none",
+          }}
+        >
+          <AddIcon sx={{ marginRight: "10px" }} /> Add
+        </Button>
       </Box>
-      <Box style={{display:'flex', justifyContent : 'space-between', alignItems :'center', marginTop:'-20px', marginBottom : '20px'}}>
-      <Typography style ={{fontWeight : '500', fontSize : '20px'}}>Employee</Typography>
-  <Button
-            variant="contained"
-            sx={{
-              background: "var(--primaryColor)",
-              fontSize: "16px",
-              fontWeight: "600",
-              width :'106px',
-              height : '40px',
-              textTransform :'none'
-
-
-            }}
-          >
-            <AddIcon sx={{marginRight : '10px'}}/> Add
-          </Button>
-          </Box>
       <Box
         sx={{
           height: "916px",
@@ -81,6 +86,7 @@ const EmployeeProfile = () => {
             alignItems: "center",
           }}
         >
+          <ECard />
           <ECard />
           <ECard />
           <ECard />

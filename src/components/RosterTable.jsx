@@ -161,10 +161,6 @@ const RosterTable = ({ addRoster }) => {
               <MenuItem value="This Week">This Week</MenuItem>
               <MenuItem value="Next Week">Next Week</MenuItem>
             </Select>
-            {/* <Typography sx={{ color: "grey", fontSize: "14px" }}>
-              Dec 1 - Dec 7
-            </Typography> */}
-            {/* <DateRangeSelector /> */}
           </Box>
 
           {/* Right: Three-dot Menu Icon */}

@@ -8,19 +8,47 @@ import {
   Paper,
 } from "@mui/material";
 import api from "../services/api";
+import { useNavigate } from "react-router-dom";
+import { ToastMesssage } from "../commonComponents/ToastNotification";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
     api
       .post("/api/v1/auth", { email, password })
-      .then((res) =>
-        res.status == 200
-          ? console.log(res.data.data)
-          : console.log("res.error")
-      );
+      .then((res) => {
+        console.log(res);
+        const token = res.data?.data?.token;
+        const role = res.data?.data?.roles?.[0];
+
+        if (token && role) {
+          localStorage.setItem("token", token);
+          localStorage.setItem("role", role);
+
+          switch (role) {
+            case "SuperAdmin":
+              navigate("/admin-dashboard");
+              ToastMesssage("success", "Login Successfull");
+              break;
+            case "Employee":
+              navigate("/employee-dashboard");
+              ToastMesssage("success", "Login Successfull");
+              break;
+            default:
+              navigate("/login");
+          }
+        } else {
+          console.error("Invalid response structure");
+          ToastMesssage("error", "invalid Login");
+        }
+      })
+      .catch((error) => {
+        ToastMesssage("error", error?.response?.data?.message);
+        console.error(error?.response?.data?.message || "Login failed");
+      });
   };
 
   return (
