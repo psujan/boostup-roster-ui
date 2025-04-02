@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import "../assets/css/styles.css";
 import {
   Container,
   TextField,
@@ -10,6 +11,7 @@ import {
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 import { ToastMesssage } from "../commonComponents/ToastNotification";
+import Logo from "../assets/images/boostup-logo.png";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -54,7 +56,7 @@ const LoginPage = () => {
   return (
     <Container
       component="main"
-      maxWidth="xs"
+      maxWidth="sm"
       sx={{
         display: "flex",
         height: "100vh",
@@ -63,18 +65,34 @@ const LoginPage = () => {
       }}
     >
       <Paper
-        elevation={3}
-        sx={{ padding: 4, width: "100%", textAlign: "center" }}
+        elevation={2}
+        sx={{
+          padding: 4,
+          width: "100%",
+          borderRadius: "8px",
+          boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
+        }}
       >
         <Typography
           variant="h5"
           sx={{
-            marginBottom: 2,
+            marginBottom: 5,
             fontWeight: "bold",
             color: "var(--primaryColor)",
           }}
         >
-          BoostUp Login
+          <div style={{ display: "flex" }}>
+            <span>
+              <img
+                src={Logo}
+                alt="LOGO"
+                style={{ width: "60px", height: "60px" }}
+              />
+            </span>
+            <span style={{ paddingLeft: "12px" }}>
+              Welcome To Boostup Cleaning Services
+            </span>
+          </div>
         </Typography>
         <Box
           component="form"
@@ -85,6 +103,13 @@ const LoginPage = () => {
             variant="outlined"
             fullWidth
             value={email}
+            size="small"
+            sx={{
+              "& .MuiInputBase-root": {
+                height: 48, // Adjust height
+                fontSize: "0.875rem", // Adjust font size
+              },
+            }}
             onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
@@ -92,17 +117,30 @@ const LoginPage = () => {
             type="password"
             variant="outlined"
             fullWidth
+            size="small"
             value={password}
+            sx={{
+              "& .MuiInputBase-root": {
+                height: 48, // Adjust height
+                fontSize: "0.875rem", // Adjust font size
+              },
+            }}
             onChange={(e) => setPassword(e.target.value)}
           />
           <Button
             variant="contained"
             fullWidth
             onClick={handleLogin}
-            sx={{ backgroundColor: "#1E7E51" }}
+            sx={{ backgroundColor: "#1E7E51", height: 48 }}
           >
             Login
           </Button>
+
+          <div style={{ textAlign: "left" }}>
+            <a href="" className="clr-text">
+              Forgot Password ?
+            </a>
+          </div>
         </Box>
       </Paper>
     </Container>
