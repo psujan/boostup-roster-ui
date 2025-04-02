@@ -80,3 +80,8 @@ hr {
   /* background-color: #f1f1f1; */
   cursor: pointer;
 }
+
+.clr-black{
+  color:'#000' !important;
+}
+
