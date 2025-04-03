@@ -102,11 +102,11 @@ export default function ResponsiveDrawer({ open, setOpen }) {
   const theme = useTheme();
 
   const adminPath = [
-    { text: " Overview", path: "/admin-dashboard" },
-    { text: " Jobs", path: "/events" },
-    { text: " Roster", path: "/roster" },
-    { text: " Leave Request", path: "/leave-request" },
-    { text: " Employee", path: "/employee" },
+    { text: "Dashboard", path: "/admin-dashboard" },
+    { text: "Jobs", path: "/events" },
+    { text: "Roster", path: "/roster" },
+    { text: "Leave Request", path: "/leave-request" },
+    { text: "Employee", path: "/employee" },
   ];
 
   const handleDrawerOpen = () => setOpen(true);
@@ -202,17 +202,19 @@ export default function ResponsiveDrawer({ open, setOpen }) {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
+        <List sx={{paddingTop:'24px'}}>
           {adminPath.map((item, index) => (
             <ListItem key={item.text} disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 onClick={() => navigate(item.path)}
                 sx={{
-                  minHeight: 48,
+                  maxHeight: 40,
                   px: 2.5,
                   backgroundColor:
                     location.pathname === item.path ? "#64ECAC24" : "inherit", // Active background color
                   display: "flex",
+                  margin:'10px 10px',
+                  borderRadius:'6px',
                   alignItems: "center", // Align icon and text properly
                 }}
               >

@@ -9,51 +9,51 @@ import EmployeeProfile from "./components/EmployeeProfile";
 import Schedule from "./components/Schedule";
 import { CssBaseline, Box, ThemeProvider, createTheme } from "@mui/material";
 import Drawer from "./components/Drawer";
-import Overview from "./pages/admin/Overview";
+import Dashboard from "./pages/admin/dashboard/Dashboard";
 import OnBoardStaff from "./pages/admin/OnBoardStaff";
 import ScheduleShift from "./pages/admin/ScheduleShift";
 import EventsTable from "./components/Eventstable";
 import LeaveRequest from "./components/Leavereq";
 import RosterTable from "./components/RosterTable";
 import EmployeeHome from "./components/EmployeeHome";
-import LoginPage from "./components/LoginPage";
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+//import LoginPage from "./components/LoginPage";
 
 const AppContent = ({ open, setOpen }) => {
-  const location = useLocation();
-  const isLoginPage = location.pathname === "/";
+  //const location = useLocation();
+  //const isLoginPage = location.pathname === "/";
 
-  return isLoginPage ? (
-    <Routes>
-      <Route path="/" element={<LoginPage />} />
-    </Routes>
-  ) : (
-    <Box>
-      <Drawer open={open} setOpen={setOpen} />
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          bgcolor: "#f5f5f5",
-          p: 3,
-          transition: "margin-left 0.3s ease",
-          marginLeft: open ? "240px" : "60px",
-          marginTop: "44px",
-          paddingLeft: open ? "40px" : "30px",
-        }}
-      >
-        <Routes>
-          <Route path="/admin-dashboard" element={<Overview />} />
-          <Route path="/onboard-staff" element={<OnBoardStaff />} />
-          <Route path="/schedule-shift" element={<ScheduleShift />} />
-          <Route path="/employee" element={<EmployeeProfile />} />
-          <Route path="/schedule" element={<Schedule />} />
-          <Route path="/events" element={<EventsTable />} />
-          <Route path="/leave-request" element={<LeaveRequest />} />
-          <Route path="/roster" element={<RosterTable addRoster={true} />} />
-          <Route path="/employeehome" element={<EmployeeHome />} />
-        </Routes>
+  return (
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <Box>
+        <Drawer open={open} setOpen={setOpen} />
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            bgcolor: "#f5f5f5",
+            p: 3,
+            transition: "margin-left 0.3s ease",
+            marginLeft: open ? "240px" : "60px",
+            marginTop: "44px",
+            paddingLeft: open ? "40px" : "30px",
+          }}
+        >
+          <Routes>
+            <Route path="/admin-dashboard" element={<Dashboard />} />
+            <Route path="/onboard-staff" element={<OnBoardStaff />} />
+            <Route path="/schedule-shift" element={<ScheduleShift />} />
+            <Route path="/employee" element={<EmployeeProfile />} />
+            <Route path="/schedule" element={<Schedule />} />
+            <Route path="/events" element={<EventsTable />} />
+            <Route path="/leave-request" element={<LeaveRequest />} />
+            <Route path="/roster" element={<RosterTable addRoster={true} />} />
+            <Route path="/employeehome" element={<EmployeeHome />} />
+          </Routes>
+        </Box>
       </Box>
-    </Box>
+    </LocalizationProvider>
   );
 };
 
