@@ -67,8 +67,7 @@ export default function QuickActions() {
         aria-controls={open ? "quick-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
-       
-        sx={{border:'none', color:'#666', textTransform:'capitalize'}}
+        sx={{ border: "none", color: "#666", textTransform: "capitalize" }}
         disableElevation
         onClick={handleClick}
       >
@@ -83,14 +82,14 @@ export default function QuickActions() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple sx={{fontSize:'13px'}}>
+        <MenuItem onClick={handleClose} disableRipple sx={{ fontSize: "13px" }}>
           Onboard Staff
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple sx={{fontSize:'13px'}}>
-           Add Job
+        <MenuItem onClick={handleClose} disableRipple sx={{ fontSize: "13px" }}>
+          Add Job
         </MenuItem>
         {/* <Divider sx={{ my: 0.5 }} /> */}
-        <MenuItem onClick={handleClose} disableRipple sx={{fontSize:'13px'}}>
+        <MenuItem onClick={handleClose} disableRipple sx={{ fontSize: "13px" }}>
           Plan Roster
         </MenuItem>
         {/* <MenuItem onClick={handleClose} disableRipple>

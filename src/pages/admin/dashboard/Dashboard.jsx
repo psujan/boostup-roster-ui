@@ -1,14 +1,10 @@
 //import RosterTable from "../../../components/RosterTable";
-import { Box, Button } from "@mui/material";
-import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
-import { useNavigate } from "react-router-dom";
+import { Box, } from "@mui/material";
 import QuickActions from "./partials/QuickActions";
 import RosterList from "./partials/RosterList";
+import Overview from "./partials/Overview";
 const Dashboard = () => {
-  const navigate = useNavigate();
-  const handleonBoard = () => {
-    navigate("/onboard-staff");
-  };
+ 
   return (
     <Box>
       <Box
@@ -18,26 +14,12 @@ const Dashboard = () => {
         padding="30px 0px"
         sx={{ borderRadius: 2 }}
       >
+        <h1>
+          <span className="clr-primary">Hi</span> Boostup Admin
+        </h1>
         <QuickActions />
-
-        {/* <Button
-          variant="contained"
-          sx={{
-            background: "var(--primaryColor)",
-            fontSize: "14px",
-            fontWeight: "500",
-            textTransform: "none",
-            padding: "10px 22px",
-            height:'36px'
-          }}
-          onClick={handleonBoard}
-          disableRipple 
-          disableElevation
-        >
-          <PersonAddAltIcon /> &nbsp; Onboard New Staff
-        </Button> */}
       </Box>
-
+      <Overview />
       <Box>
         <RosterList />
       </Box>
