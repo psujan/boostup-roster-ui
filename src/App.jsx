@@ -10,7 +10,7 @@ import EmployeeProfile from "./components/EmployeeProfile";
 import Schedule from "./components/Schedule";
 import { CssBaseline, Box, ThemeProvider, createTheme } from "@mui/material";
 import Drawer from "./components/Drawer";
-import Overview from "./pages/admin/Overview";
+import Dashboard from "./pages/admin/dashboard/Dashboard";
 import OnBoardStaff from "./pages/admin/OnBoardStaff";
 import ScheduleShift from "./pages/admin/ScheduleShift";
 import EventsTable from "./components/Eventstable";
@@ -20,6 +20,9 @@ import EmployeeHome from "./components/EmployeeHome";
 import LoginPage from "./components/LoginPage";
 import { isAuthenticated } from "./utils/auth";
 import { ToastContainer } from "react-toastify";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+//import LoginPage from "./components/LoginPage";
 
 const AppContent = ({ open, setOpen }) => {
   const location = useLocation();
@@ -43,49 +46,51 @@ const AppContent = ({ open, setOpen }) => {
   if (!isAuth) return null;
 
   return (
-    <Box>
-      <Drawer open={open} setOpen={setOpen} />
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          bgcolor: "#f5f5f5",
-          p: 3,
-          transition: "margin-left 0.3s ease",
-          marginLeft: open ? "240px" : "60px",
-          marginTop: "44px",
-          paddingLeft: open ? "40px" : "30px",
-        }}
-      >
-        <Routes>
-          {role === "SuperAdmin" ? (
-            <>
-              <Route path="/" element={<Overview />} />
-              <Route path="/admin-dashboard" element={<Overview />} />
-              <Route path="/onboard-staff" element={<OnBoardStaff />} />
-              <Route path="/schedule-shift" element={<ScheduleShift />} />
-              <Route path="/employee" element={<EmployeeProfile />} />
-              <Route path="/schedule" element={<Schedule />} />
-              <Route path="/events" element={<EventsTable />} />
-              <Route path="/leave-request" element={<LeaveRequest />} />
-              <Route
-                path="/roster"
-                element={<RosterTable addRoster={true} />}
-              />
-            </>
-          ) : role == "Employee" ? (
-            <>
-              <Route path="/" element={<EmployeeHome />} />
-              <Route path="/employee-dashboard" element={<EmployeeHome />} />
-              <Route path="/employee-jobs" element={<EmployeeHome />} />
-              <Route path="/employee-roster" element={<EmployeeHome />} />
-              <Route path="/employee-request" element={<EmployeeHome />} />
-              <Route path="/employee-profile" element={<EmployeeHome />} />
-            </>
-          ) : null}
-        </Routes>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <Box>
+        <Drawer open={open} setOpen={setOpen} />
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            bgcolor: "#f5f5f5",
+            p: 3,
+            transition: "margin-left 0.3s ease",
+            marginLeft: open ? "240px" : "60px",
+            marginTop: "44px",
+            paddingLeft: open ? "40px" : "30px",
+          }}
+        >
+          <Routes>
+            {role === "SuperAdmin" ? (
+              <>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/admin-dashboard" element={<Dashboard />} />
+                <Route path="/onboard-staff" element={<OnBoardStaff />} />
+                <Route path="/schedule-shift" element={<ScheduleShift />} />
+                <Route path="/employee" element={<EmployeeProfile />} />
+                <Route path="/schedule" element={<Schedule />} />
+                <Route path="/events" element={<EventsTable />} />
+                <Route path="/leave-request" element={<LeaveRequest />} />
+                <Route
+                  path="/roster"
+                  element={<RosterTable addRoster={true} />}
+                />
+              </>
+            ) : role == "Employee" ? (
+              <>
+                <Route path="/" element={<EmployeeHome />} />
+                <Route path="/employee-dashboard" element={<EmployeeHome />} />
+                <Route path="/employee-jobs" element={<EmployeeHome />} />
+                <Route path="/employee-roster" element={<EmployeeHome />} />
+                <Route path="/employee-request" element={<EmployeeHome />} />
+                <Route path="/employee-profile" element={<EmployeeHome />} />
+              </>
+            ) : null}
+          </Routes>
+        </Box>
       </Box>
-    </Box>
+    </LocalizationProvider>
   );
 };
 

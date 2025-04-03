@@ -1,6 +1,215 @@
+@import "./custom.css";
 /*
 Custom CSS
 */
-.clr-black{
-    color:black;
+.clr-black {
+  color: black;
+}
+
+.clr-primary {
+  color: #1e7e51;
+}
+
+.heading-3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+.flex-center {
+  align-items: center;
+}
+
+.flex-inline {
+  display: inline-flex;
+}
+
+.roster-list-header {
+  padding: 20px 16px;
+  border-bottom: 1px solid #eae8e8;
+}
+
+.text-muted {
+  font-size: 14px;
+  color: #666;
+}
+
+.base-table-wrap {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.base-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  width: 100%;
+}
+
+.base-table thead tr {
+  background-color: #ececec;
+  color: #000000;
+  text-align: left;
+}
+
+.base-table th,
+.base-table td {
+  padding: 12px 15px;
+}
+
+.base-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.base-table tbody td {
+  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  font-size: 0.85rem;
+}
+
+.base-table thead tr th {
+  border-left: 1px solid #ddd;
+  /* border-right: 1px solid #dddddd; */
+}
+
+.base-table tbody tr:nth-of-type(even) {
+  background-color: #f6f6f6;
+}
+
+.base-table tbody tr:last-of-type {
+  border-bottom: 1px solid #eae8e8;
+}
+
+.base-table tbody tr.active-row {
+  /* font-weight: bold; */
+  color: #009879;
+}
+
+.roster-table tbody tr td {
+  width: 230px;
+  overflow-x: auto;
+  padding: 4px;
+}
+.roster-cell {
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.roster-cell.active:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+.drawer-shift-details li h6 {
+  font-size: 0.92rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.drawer-shift-details {
+  list-style: none;
+  margin-bottom: 16px;
+}
+
+.drawer-shift-details li {
+  padding: 10px 0;
+  margin-bottom: 8px;
+}
+
+.drawer-shift-details li p {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+}
+
+.shift-detail {
+  font-size: 0.85rem;
+  padding: 10px 0;
+}
+
+.shift-detail .text-muted {
+  font-size: 0.85rem;
+}
+
+.shift-items-wrap {
+  margin-bottom: 16px;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #fafafa;
+}
+
+.shift-action {
+  margin: 12px 0;
+  gap: 16px;
+}
+
+.shift-action button {
+  background-color: #f3cb5f;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  width: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.35s ease;
+}
+
+.shift-action button:hover {
+  background-color: #fecb41;
+}
+
+.shift-action .btn-remove {
+  background-color: rgb(250, 154, 154);
+}
+
+.shift-action .btn-remove:hover {
+  background-color: rgb(250, 124, 124);
+}
+
+/* Dashboard Styles */
+.flex-overview {
+  gap: 16px;
+  margin-bottom: 30px;
+  margin-top: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.overview-item {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  width: 160px;
+  flex: 1;
+  position: relative;
+}
+
+.overview-item h6 {
+  font-weight: 500;
+  margin-top: 32px;
+  color: #666;
+}
+
+.count-highlight {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.overview-item .icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
 }
