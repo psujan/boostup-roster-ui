@@ -230,31 +230,13 @@ export default function ResponsiveDrawer({ open, setOpen }) {
           </IconButton>
         </DrawerHeader>
         <Divider />
-<<<<<<< HEAD
         {isAuth && role == "SuperAdmin" ? (
-          <List>
+          <List sx={{ paddingTop: "20px" }}>
             {adminPath.map((item, index) => (
               <ListItem
                 key={item.text}
                 disablePadding
                 sx={{ display: "block" }}
-=======
-        <List sx={{paddingTop:'24px'}}>
-          {adminPath.map((item, index) => (
-            <ListItem key={item.text} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                onClick={() => navigate(item.path)}
-                sx={{
-                  maxHeight: 40,
-                  px: 2.5,
-                  backgroundColor:
-                    location.pathname === item.path ? "#64ECAC24" : "inherit", // Active background color
-                  display: "flex",
-                  margin:'10px 10px',
-                  borderRadius:'6px',
-                  alignItems: "center", // Align icon and text properly
-                }}
->>>>>>> dev-sujan
               >
                 <ListItemButton
                   onClick={() => navigate(item.path)}
@@ -264,6 +246,8 @@ export default function ResponsiveDrawer({ open, setOpen }) {
                     backgroundColor:
                       location.pathname === item.path ? "#64ECAC24" : "inherit", // Active background color
                     display: "flex",
+                    margin: "10px 10px",
+                    borderRadius: "6px",
                     alignItems: "center", // Align icon and text properly
                   }}
                 >
