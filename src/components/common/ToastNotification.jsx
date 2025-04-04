@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // Initialize toast settings
-export const ToastMesssage = (type, message) => {
+export const ToastMessage = (type, message) => {
   toast[type](message, {
     position: "top-right",
     autoClose: 3000,
@@ -13,3 +13,5 @@ export const ToastMesssage = (type, message) => {
     theme: "light",
   });
 };
+
+

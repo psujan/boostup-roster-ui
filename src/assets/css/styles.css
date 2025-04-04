@@ -1,4 +1,6 @@
+@import "./loading.css";
 @import "./custom.css";
+
 /*
 Custom CSS
 */
@@ -14,6 +16,78 @@ Custom CSS
   margin: 0;
   font-size: 16px;
   font-weight: 600;
+}
+
+.back-btn {
+  color: #666;
+
+  border-radius: 12px;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  color: #1e7e51;
+  font-weight: 500;
+}
+
+.content-top {
+  margin-top: 18px;
+}
+
+.base-input input {
+  padding: 0 !important;
+  font-size: 15px !important;
+}
+
+.base-input {
+  width: 100% !important;
+}
+
+.base-input-label {
+  display: block !important;
+  margin-bottom: 10px !important;
+  color: #666 !important;
+  font-size: 14px !important;
+}
+
+.validation-error-box {
+  padding: 10px;
+  color: #f31212;
+  background-color: #fff2f2;
+  margin-bottom: 24px;
+  border-radius: 8px;
+}
+
+.validation-error-box h6 {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.validation-error-box ul {
+  margin-top: 16px;
+}
+
+.validation-error-box li {
+  font-size: 13px;
+  list-style: none !important;
+  margin-bottom: 6px;
+}
+
+.is-required {
+  color: #f31212;
+  font-size: 12px;
+  padding-left: 3px;
+}
+
+.content-box {
+  margin: 30px 0;
+  background-color: #fff;
+  padding: 24px 16px;
+  border-radius: 8px;
 }
 
 .flex {
@@ -180,12 +254,13 @@ Custom CSS
 }
 
 /* Dashboard Styles */
-.flex-overview {
-  gap: 16px;
+.grid-overview {
+  /* gap: 16px; */
   margin-bottom: 30px;
   margin-top: 16px;
   align-items: center;
-  justify-content: space-between;
+
+  /* justify-content: space-between; */
 }
 
 .overview-item {
@@ -193,8 +268,10 @@ Custom CSS
   border-radius: 8px;
   background-color: #fff;
   width: 160px;
-  flex: 1;
+  /* flex: 1; */
   position: relative;
+  height: 142px;
+  overflow-y: hidden;
 }
 
 .overview-item h6 {
