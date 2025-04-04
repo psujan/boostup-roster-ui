@@ -1,5 +1,4 @@
 import { Box, Button, TextField, InputLabel } from "@mui/material";
-import BackButton from "../../../components/common/BackButton.jsx";
 import Heading from "../../../commonComponents/Heading";
 import AddIcon from "@mui/icons-material/NorthEast";
 import Grid from "@mui/material/Grid2";
@@ -9,6 +8,7 @@ import ValidationMessages from "../../../components/common/ValidationMessages";
 import { useLoader } from "../../../utils/context/LoaderContext.jsx";
 import { useNavigate } from "react-router-dom";
 import { ToastMessage } from "../../../components/common/ToastNotification.jsx";
+import BaseLayout from "../../../commonComponents/BaseLayout.jsx";
 
 export default function Onboard() {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ export default function Onboard() {
       .then((res) => {
         const message = res?.data?.message;
         const empId = res?.data?.data?.id;
-        navigate(`/employee-detail/${empId}`);
+        navigate(`/employee/${empId}`);
         ToastMessage("success", message || "Onboarding Successful");
       })
       .catch((err) => {
@@ -35,22 +35,21 @@ export default function Onboard() {
           setValidationErrors([]);
           const validationErrors = err.response.data.errors;
           console.log(validationErrors);
-          for (const [key, message] of Object.entries(validationErrors)) {
+          for (const [_, message] of Object.entries(validationErrors)) {
             setValidationErrors((prevErrors) => [...prevErrors, message[0]]);
           }
           setShowErrors(true);
+          return;
         }
+        ToastMessage("error", "Something Went Wrong");
       })
       .finally(() => {
-        setTimeout(() => {
-          hideLoader();
-        }, 1500);
+        hideLoader();
       });
   };
 
   return (
-    <Box sx={{ padding: "30px 0" }}>
-      <BackButton />
+    <BaseLayout>
       <Box className="content-top flex flex-between flex-center">
         <Heading title="Onboard Staff" />
         <Button
@@ -166,6 +165,6 @@ export default function Onboard() {
           </Grid>
         </form>
       </Box>
-    </Box>
+    </BaseLayout>
   );
 }
