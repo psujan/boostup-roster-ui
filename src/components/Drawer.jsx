@@ -122,7 +122,7 @@ export default function ResponsiveDrawer({ open, setOpen }) {
   ];
   const adminPath = [
     { text: "Dashboard", path: "/admin-dashboard" },
-    { text: "Jobs", path: "/events" },
+    { text: "Jobs", path: "/jobs" },
     { text: "Roster", path: "/roster" },
     { text: "Leave Request", path: "/leave-request" },
     { text: "Employee", path: "/employee" },
@@ -131,7 +131,7 @@ export default function ResponsiveDrawer({ open, setOpen }) {
   const handleDrawerOpen = () => setOpen(true);
   const handleDrawerClose = () => setOpen(false);
   const handleProfile = () => {
-    navigate("/events");
+    navigate("/jobs");
   };
   const handleLogout = () => {
     navigate("/");
