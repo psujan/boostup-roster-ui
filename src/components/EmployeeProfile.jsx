@@ -12,7 +12,7 @@ import {
   TextField,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import BackButton from "../commonComponents/BackButton";
+import BackButton from "./common/BackButton";
 import "../index.css";
 import ECard from "./ECard";
 

@@ -1,18 +1,13 @@
-import React from "react";
 import { Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import KeyboardBackspaceOutlinedIcon from "@mui/icons-material/KeyboardBackspaceOutlined";
 const BackButton = () => {
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+  };
   return (
-    <Box
-      sx={{
-        padding: "28px 0px",
-        fontColor: "#000)",
-        fontSize: "14px",
-        fontWeight: "300",
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
+    <Box className="back-btn" onClick={() => goBack()}>
       <KeyboardBackspaceOutlinedIcon size="16px" />
       &nbsp;Back
     </Box>

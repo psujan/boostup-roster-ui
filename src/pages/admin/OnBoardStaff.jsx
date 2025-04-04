@@ -1,6 +1,6 @@
 import { Box, TextField, Button, Typography } from "@mui/material";
 import React, { useState } from "react";
-import BackButton from "../../commonComponents/BackButton";
+import BackButton from "../../components/common/BackButton";
 import { useForm } from "react-hook-form";
 
 const OnBoardStaff = () => {

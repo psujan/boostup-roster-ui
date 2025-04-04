@@ -28,7 +28,7 @@ import Typography from "@mui/material/Typography"; // <-- Add this line for Typo
 import { isAuthenticated } from "../utils/auth";
 import { MenuItem, Select } from "@mui/material";
 import ClickableTextMenu from "../commonComponents/TextMenu";
-import { ToastMesssage } from "../commonComponents/ToastNotification";
+import { ToastMessage } from "./common/ToastNotification";
 
 const drawerWidth = 240;
 

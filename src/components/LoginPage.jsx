@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
-import { ToastMesssage } from "../commonComponents/ToastNotification";
+import { ToastMessage } from "./common/ToastNotification";
 import Logo from "../assets/images/boostup-logo.png";
 
 const LoginPage = () => {
@@ -33,11 +33,11 @@ const LoginPage = () => {
           switch (role) {
             case "SuperAdmin":
               navigate("/admin-dashboard");
-              ToastMesssage("success", "Login Successfull");
+              ToastMessage("success", "Login Successfull");
               break;
             case "Employee":
               navigate("/employee-dashboard");
-              ToastMesssage("success", "Login Successfull");
+              ToastMessage("success", "Login Successfull");
               break;
             default:
               navigate("/login");

@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, Paper, Button, TextField } from "@mui/material";
-import BackButton from "../commonComponents/BackButton";
+import BackButton from "./common/BackButton";
 import ErrorIcon from "@mui/icons-material/Error";
 
 const LeaveRequest = () => {
