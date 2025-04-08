@@ -1,32 +1,26 @@
 import React from "react";
 import AddIcon from "@mui/icons-material/Add";
 import JobTable from "./partials/JobTable";
-import { Box, Button, Typography } from "@mui/material";
-import BackButton from "../../../commonComponents/BackButton";
+import { Box, Button } from "@mui/material";
+import Heading from "../../../components/common/Heading";
+import BaseLayout from "../../../components/common/BaseLayout";
+import { useNavigate } from "react-router-dom";
 const JobPage = () => {
+  const navigate = useNavigate();
+  const handleJobAdd = () => {
+    navigate("add-jobs");
+  };
   return (
-    <div>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "flex-start",
-        }}
-      >
-        <BackButton />
-      </Box>
+    <BaseLayout>
       <Box
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
           marginBottom: "15px",
-          marginTop: "-20px",
         }}
       >
-        <Typography style={{ fontWeight: "500", fontSize: "20px" }}>
-          Jobs
-        </Typography>
+        <Heading title={"Jobs"} />
         <Button
           variant="contained"
           sx={{
@@ -37,12 +31,13 @@ const JobPage = () => {
             height: "40px",
             textTransform: "none",
           }}
+          onClick={handleJobAdd}
         >
           <AddIcon sx={{ marginRight: "10px" }} /> Add
         </Button>
       </Box>
       <JobTable />
-    </div>
+    </BaseLayout>
   );
 };
 

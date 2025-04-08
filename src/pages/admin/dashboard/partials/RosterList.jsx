@@ -1,6 +1,6 @@
 import { Box, Select, MenuItem, Drawer, Divider } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import Heading from "../../../../commonComponents/Heading";
+import Heading from "../../../../components/common/Heading";
 import { useState } from "react";
 import SwapHorizOutlinedIcon from "@mui/icons-material/SwapHorizOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
@@ -95,7 +95,12 @@ export default function RosterList() {
                     <div></div>
                   </td>
                   <td>
-                    <div className="roster-cell active" onClick={handleRosterClick}>6:00AM -2:00 PM</div>
+                    <div
+                      className="roster-cell active"
+                      onClick={handleRosterClick}
+                    >
+                      6:00AM -2:00 PM
+                    </div>
                   </td>
                   <td>
                     <div></div>
@@ -104,10 +109,20 @@ export default function RosterList() {
                     <div></div>
                   </td>
                   <td>
-                    <div className="roster-cell active" onClick={handleRosterClick}>6:00AM -2:00 PM</div>
+                    <div
+                      className="roster-cell active"
+                      onClick={handleRosterClick}
+                    >
+                      6:00AM -2:00 PM
+                    </div>
                   </td>
                   <td>
-                    <div className="roster-cell active" onClick={handleRosterClick}>6:00AM -2:00 PM</div>
+                    <div
+                      className="roster-cell active"
+                      onClick={handleRosterClick}
+                    >
+                      6:00AM -2:00 PM
+                    </div>
                   </td>
                 </tr>
               </tbody>

@@ -1,5 +1,5 @@
 import { Box, Button, TextField, InputLabel } from "@mui/material";
-import Heading from "../../../commonComponents/Heading";
+import Heading from "../../../components/common/Heading.jsx";
 import AddIcon from "@mui/icons-material/NorthEast";
 import Grid from "@mui/material/Grid2";
 import { useState } from "react";
@@ -8,7 +8,7 @@ import ValidationMessages from "../../../components/common/ValidationMessages";
 import { useLoader } from "../../../utils/context/LoaderContext.jsx";
 import { useNavigate } from "react-router-dom";
 import { ToastMessage } from "../../../components/common/ToastNotification.jsx";
-import BaseLayout from "../../../commonComponents/BaseLayout.jsx";
+import BaseLayout from "../../../components/common/BaseLayout.jsx";
 
 export default function Onboard() {
   const navigate = useNavigate();
@@ -57,7 +57,6 @@ export default function Onboard() {
           sx={{
             fontSize: "14px",
             fontWeight: "500",
-            width: "106px",
             height: "32px",
             padding: "6px 10px",
             textTransform: "none",

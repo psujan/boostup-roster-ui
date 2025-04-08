@@ -27,8 +27,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography"; // <-- Add this line for Typography import
 import { isAuthenticated } from "../utils/auth";
 import { MenuItem, Select } from "@mui/material";
-import ClickableTextMenu from "../commonComponents/TextMenu";
 import { ToastMessage } from "./common/ToastNotification";
+import ClickableTextMenu from "./common/TextMenu";
 
 const drawerWidth = 240;
 
@@ -114,9 +114,9 @@ export default function ResponsiveDrawer({ open, setOpen }) {
   const { isAuth, role } = isAuthenticated();
 
   const employeePath = [
-    { text: " Dashboard", path: "/admin-dashboard" },
+    { text: " Dashboard", path: "/employee-dashboard" },
     { text: " My Shifts", path: "/employee-jobs" },
-    { text: " Request Leave", path: "/employee-roster" },
+    { text: " Request Leave", path: "/employee-leaves" },
     { text: " Shift History", path: "/employee-request" },
     { text: " Profile", path: "/employee-profile" },
   ];

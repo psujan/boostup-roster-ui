@@ -42,7 +42,6 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           "& .MuiOutlinedInput-root": {
-            // padding: "10px",
             borderRadius: "8px",
           },
           "&:hover fieldset": {

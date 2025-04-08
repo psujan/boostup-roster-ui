@@ -6,6 +6,7 @@ import BaseLayout from "../../../components/common/BaseLayout";
 import Heading from "../../../components/common/Heading";
 import AddIcon from "@mui/icons-material/NorthEast";
 import { useNavigate } from "react-router-dom";
+import UpdateJobForm from "./partials/UpdateJobForm";
 
 const AddJob = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const AddJob = () => {
           <AddIcon sx={{ marginLeft: "10px", fontSize: "15px" }} />
         </Button>
       </Box>
-      <JobForm />
+      <UpdateJobForm />
     </BaseLayout>
   );
 };

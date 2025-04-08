@@ -4,7 +4,7 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import UpdateOutlinedIcon from "@mui/icons-material/UpdateOutlined";
 import ChecklistOutlinedIcon from "@mui/icons-material/ChecklistOutlined";
 import WorkspacesOutlinedIcon from "@mui/icons-material/WorkspacesOutlined";
-import Heading from "../../../../commonComponents/Heading";
+import Heading from "../../../../components/common/Heading";
 
 export default function Overview() {
   return (

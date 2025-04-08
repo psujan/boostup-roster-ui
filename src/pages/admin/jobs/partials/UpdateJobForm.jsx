@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { TextField, Button, Box, Grid2, InputLabel } from "@mui/material";
 import { TimePicker } from "@mui/x-date-pickers";
@@ -8,7 +8,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../../../services/api";
 import { ToastMessage } from "../../../../components/common/ToastNotification";
 import ValidationMessages from "../../../../components/common/ValidationMessages";
-import { useNavigate } from "react-router-dom";
+import { useLoader } from "../../../../utils/context/LoaderContext";
+import { useNavigate, useParams } from "react-router-dom";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("* Job Name is required"),
@@ -18,8 +19,11 @@ const validationSchema = Yup.object().shape({
   notes: Yup.string().optional(), // No validation for notes
 });
 
-const JobForm = () => {
+const UpdateJobForm = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
+  console.log("ididid", id);
+  const { showLoader, hideLoader } = useLoader();
   const [validationErrors, setValidationErrors] = useState([]);
   const {
     register,
@@ -41,6 +45,32 @@ const JobForm = () => {
     resolver: yupResolver(validationSchema),
     mode: "onChange",
   });
+
+  useEffect(() => {
+    showLoader();
+    api
+      .get(`/api/v1/job/${id}`)
+      .then((res) => {
+        if (res?.status === 200) {
+          // Check if the status is OK
+          const data = res?.data?.data;
+          console.log("Fetched job data:", data); // Log the fetched data
+          setValue("title", data?.title);
+          setValue("startTime", dayjs(data?.startTime, "h:mm a"));
+          setValue("endTime", dayjs(data?.endTime, "h:mm a"));
+          setValue("jobAddress", data?.jobAddress);
+          setValue("notes", data?.notes || ""); // Correct key usage here
+        } else {
+          console.error("API request failed with status:", res?.status); // Log unexpected status codes
+          ToastMessage("error", "Failed to fetch job data");
+        }
+      })
+      .catch((err) => {
+        console.error("API error:", err); // Log the error for more details
+        ToastMessage("error", "Failed to fetch job data");
+      })
+      .finally(() => hideLoader());
+  }, [id, setValue]);
 
   const handleStartTime = (value) => {
     if (value) {
@@ -77,10 +107,10 @@ const JobForm = () => {
 
     if (!isValid) return; // Stop if validation fails
     api
-      .post("/api/v1/job", data)
+      .put(`/api/v1/job/${id}`, data)
       .then((res) => {
         const message = res?.data?.message;
-        ToastMessage("success", message || "Job added successful");
+        ToastMessage("success", message || "Job updated successful");
         navigate("/jobs");
       })
       .catch((err) => {
@@ -150,7 +180,11 @@ const JobForm = () => {
             <InputLabel className="base-input-label" htmlFor="startTime">
               Start Time<span className="is-required">*</span>
             </InputLabel>
-            <TimePicker onChange={handleStartTime} sx={{ width: "100%" }} />
+            <TimePicker
+              value={dayjs(getValues("startTime"), "HH:MM")}
+              onChange={handleStartTime}
+              sx={{ width: "100%" }}
+            />
             <span className="is-required">{errors.startTime?.message}</span>
           </Grid2>
 
@@ -159,7 +193,11 @@ const JobForm = () => {
             <InputLabel className="base-input-label" htmlFor="endTime">
               End Time<span className="is-required">*</span>
             </InputLabel>
-            <TimePicker onChange={handleEndTime} sx={{ width: "100%" }} />
+            <TimePicker
+              value={dayjs(getValues("endTime"), "HH:MM")}
+              onChange={handleEndTime}
+              sx={{ width: "100%" }}
+            />
             <span className="is-required">{errors.endTime?.message}</span>
           </Grid2>
           <Grid2 size={{ md: 12 }}>
@@ -205,7 +243,7 @@ const JobForm = () => {
                 boxShadow: "none",
               }}
             >
-              Add Job
+              Update Job
             </Button>
           </Grid2>
         </Grid2>
@@ -214,4 +252,4 @@ const JobForm = () => {
   );
 };
 
-export default JobForm;
+export default UpdateJobForm;
