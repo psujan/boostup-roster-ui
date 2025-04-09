@@ -39,7 +39,7 @@ Custom CSS
 }
 
 .base-input input {
-  /* padding: 0 !important; */
+  padding: 12px 16px !important;
   font-size: 15px !important;
 }
 
@@ -127,7 +127,7 @@ Custom CSS
 
 .base-table {
   border-collapse: collapse;
-  margin: 25px 0;
+  /* margin: 25px 0; */
   font-size: 0.9em;
   width: 100%;
 }
@@ -151,6 +151,7 @@ Custom CSS
   border-left: 1px solid #dddddd;
   border-right: 1px solid #dddddd;
   font-size: 0.85rem;
+  padding: 10px 15px;
 }
 
 .base-table thead tr th {

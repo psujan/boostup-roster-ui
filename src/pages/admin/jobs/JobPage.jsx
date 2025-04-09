@@ -22,14 +22,14 @@ const JobPage = () => {
       >
         <Heading title={"Jobs"} />
         <Button
-          variant="contained"
+          variant="text"
           sx={{
-            background: "var(--primaryColor)",
-            fontSize: "16px",
+            fontSize: "14px",
             fontWeight: "600",
             width: "106px",
             height: "40px",
             textTransform: "none",
+            color:"var(--primaryColor)"
           }}
           onClick={handleJobAdd}
         >

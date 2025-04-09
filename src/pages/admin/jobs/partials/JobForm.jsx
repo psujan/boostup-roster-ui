@@ -150,7 +150,7 @@ const JobForm = () => {
             <InputLabel className="base-input-label" htmlFor="startTime">
               Start Time<span className="is-required">*</span>
             </InputLabel>
-            <TimePicker onChange={handleStartTime} sx={{ width: "100%" }} />
+            <TimePicker onChange={handleStartTime} className="base-input" />
             <span className="is-required">{errors.startTime?.message}</span>
           </Grid2>
 
@@ -159,7 +159,7 @@ const JobForm = () => {
             <InputLabel className="base-input-label" htmlFor="endTime">
               End Time<span className="is-required">*</span>
             </InputLabel>
-            <TimePicker onChange={handleEndTime} sx={{ width: "100%" }} />
+            <TimePicker onChange={handleEndTime} sx={{ width: "100%", height:'46px' }}  className="base-input"/>
             <span className="is-required">{errors.endTime?.message}</span>
           </Grid2>
           <Grid2 size={{ md: 12 }}>

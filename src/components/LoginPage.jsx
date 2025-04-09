@@ -7,18 +7,22 @@ import {
   Typography,
   Box,
   Paper,
+  InputLabel,
 } from "@mui/material";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 import { ToastMessage } from "./common/ToastNotification";
 import Logo from "../assets/images/boostup-logo.png";
+import { useLoader } from "../utils/context/LoaderContext";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+   const { showLoader, hideLoader } = useLoader();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
+    showLoader();
     api
       .post("/api/v1/auth", { email, password })
       .then((res) => {
@@ -33,24 +37,30 @@ const LoginPage = () => {
           switch (role) {
             case "SuperAdmin":
               navigate("/admin-dashboard");
-              ToastMessage("success", "Login Successfull");
+              ToastMessage("success", "Login Successful");
               break;
             case "Employee":
               navigate("/employee-dashboard");
-              ToastMessage("success", "Login Successfull");
+              ToastMessage("success", "Login Successful");
               break;
             default:
               navigate("/login");
           }
         } else {
           console.error("Invalid response structure");
-          ToastMesssage("error", "invalid Login");
+          ToastMessage("error", "Invalid Login");
         }
       })
       .catch((error) => {
         console.log("error aako ho ra");
-        ToastMesssage("error", error?.response?.data?.message);
+        ToastMessage(
+          "error",
+          error?.response?.data?.message || "Something Went Wrong"
+        );
         // console.error(error?.response?.data?.message || "Login failed");
+      })
+      .finally(()=>{
+        hideLoader()
       });
   };
 
@@ -99,35 +109,30 @@ const LoginPage = () => {
           component="form"
           sx={{ display: "flex", flexDirection: "column", gap: 2 }}
         >
-          <TextField
-            label="Email"
-            variant="outlined"
-            fullWidth
-            value={email}
-            size="small"
-            sx={{
-              "& .MuiInputBase-root": {
-                height: 48, // Adjust height
-                fontSize: "0.875rem", // Adjust font size
-              },
-            }}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <TextField
-            label="Password"
-            type="password"
-            variant="outlined"
-            fullWidth
-            size="small"
-            value={password}
-            sx={{
-              "& .MuiInputBase-root": {
-                height: 48, // Adjust height
-                fontSize: "0.875rem", // Adjust font size
-              },
-            }}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div>
+            <InputLabel className="base-input-label" htmlFor="login-email">
+              Email<span className="is-required">*</span>
+            </InputLabel>
+            <TextField
+              type="email"
+              id="login-email"
+              variant="outlined"
+              className="base-input"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div>
+            <InputLabel className="base-input-label" htmlFor="login-pwd">
+              Password<span className="is-required">*</span>
+            </InputLabel>
+            <TextField
+              type="password"
+              id="login-pwd"
+              variant="outlined"
+              className="base-input"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
           <Button
             variant="contained"
             fullWidth

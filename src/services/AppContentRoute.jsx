@@ -35,10 +35,12 @@ export const AppContentRoute = () => {
 
   if (isLoginPage)
     return (
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/login" element={<LoginPage />} />
-      </Routes>
+      <LoaderProvider>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
+      </LoaderProvider>
     );
   if (!isAuth) return null;
 
