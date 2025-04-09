@@ -77,7 +77,11 @@ export default function RosterList() {
             onClick={handleRosterClick}
           >
             {shiftList.map((shift, i) => {
-              return <p key={i} className="roster-individual-shift">{shift.startTime + "-" + shift.endTime}</p>;
+              return (
+                <p key={i} className="roster-individual-shift">
+                  {shift.startTime + "-" + shift.endTime}
+                </p>
+              );
             })}
           </div>
         ) : undefined}

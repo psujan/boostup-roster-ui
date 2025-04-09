@@ -67,32 +67,32 @@ const AllEmployee = () => {
   }, [page, pageSize]);
 
   return (
-    <>
-      <BaseLayout>
-        <Box
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "15px",
+    <BaseLayout>
+      <Box
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "15px",
+        }}
+      >
+        <Heading title={"Employees"} />
+        <Button
+          variant="text"
+          sx={{
+            fontSize: "14px",
+            fontWeight: "600",
+            width: "106px",
+            height: "40px",
+            textTransform: "none",
+            color: "var(--primaryColor)",
           }}
+          onClick={handleEmployeeAdd}
         >
-          <Heading title={"Employees"} />
-          <Button
-            variant="text"
-            sx={{
-              fontSize: "14px",
-              fontWeight: "600",
-              width: "106px",
-              height: "40px",
-              textTransform: "none",
-              color: "var(--primaryColor)",
-            }}
-            onClick={handleEmployeeAdd}
-          >
-            <AddIcon sx={{ marginRight: "10px" }} /> Add
-          </Button>
-        </Box>
+          <AddIcon sx={{ marginRight: "10px" }} /> Add
+        </Button>
+      </Box>
+      <Box className="content-box">
         {employeeData.length ? (
           <div>
             <p className="text-muted" style={{ marginBottom: "15px" }}>
@@ -123,8 +123,8 @@ const AllEmployee = () => {
         {employeeData?.length ? (
           <Paginate count={count} page={page} onPageChange={onPageChange} />
         ) : undefined}
-      </BaseLayout>
-    </>
+      </Box>
+    </BaseLayout>
   );
 };
 
