@@ -172,10 +172,16 @@ Custom CSS
   color: #009879;
 }
 
-.roster-table tbody tr td {
-  width: 230px;
+.roster-table thead tr th {
+  width: 280px;
   overflow-x: auto;
-  padding: 4px;
+  padding: 6px;
+}
+.roster-table tbody tr td {
+  width: 280px;
+  overflow-x: auto;
+  padding: 6px ;
+  font-size: 13px;
 }
 .roster-cell {
   padding: 4px;
@@ -183,7 +189,7 @@ Custom CSS
 }
 
 .roster-cell.active:hover {
-  background-color: #f1f1f1;
+  background-color: #64ECAC24;
   cursor: pointer;
 }
 
@@ -290,4 +296,10 @@ Custom CSS
   position: absolute;
   top: 16px;
   right: 16px;
+}
+
+.roster-date-range{
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
 }
