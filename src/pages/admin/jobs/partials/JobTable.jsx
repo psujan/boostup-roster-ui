@@ -28,7 +28,7 @@ export const JobTable = () => {
   const [open, setOpen] = useState(false);
   const [idDelete, setIdDelete] = useState(null);
   const [page, setPage] = useState(1);
-  const [count, setCount] = useState(10);
+  const [count, setCount] = useState(1);
 
   const handleDeleteModal = (id) => {
     setIdDelete(id);
@@ -61,9 +61,11 @@ export const JobTable = () => {
       .get(`/api/v1/job/get-paginated?pageNumber=${page}&pageSize=${pageSize}`)
       .then((res) => {
         // Ensure data exists and is in the expected format
-        console.log("data main", res?.data?.data?.data);
+        console.log("data main", res?.data);
         if (res?.data?.data) {
           setJobData(res?.data?.data?.data); // Update jobData state
+          setCount(res?.data?.data?.totalCount);
+          console.log("ddddd", res?.data?.data?.totalCount);
         }
         hideLoader();
       })
@@ -77,7 +79,7 @@ export const JobTable = () => {
   // Log jobData after it changes
   useEffect(() => {
     console.log("Updated jobData:", jobData);
-  }, [jobData, page]);
+  }, [jobData, page, count]);
 
   return (
     <Box
@@ -102,7 +104,7 @@ export const JobTable = () => {
                   textAlign: "center",
                 }}
               >
-                # Event Id
+                # Job Id
               </TableCell>
               <TableCell
                 sx={{
