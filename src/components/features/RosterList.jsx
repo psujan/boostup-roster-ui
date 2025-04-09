@@ -1,9 +1,12 @@
 import { Box, Select, MenuItem, Drawer, Divider } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import Heading from "../../../../components/common/Heading";
-import { useState } from "react";
+import Heading from "../common/Heading";
+import { useEffect, useState } from "react";
 import SwapHorizOutlinedIcon from "@mui/icons-material/SwapHorizOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import api from "../../services/api";
+import { useLoader } from "../../utils/context/LoaderContext";
+import Helper from "../../utils/helper";
 //import dayjs from 'dayjs';
 
 export default function RosterList() {
@@ -11,7 +14,7 @@ export default function RosterList() {
   const [to, setTo] = useState();
   const [sort, setSort] = useState("emp");
   const [drawer, setDrawer] = useState(false);
-
+  const { showLoader, hideLoader } = useLoader();
   const toggleDrawer = (isOpen) => {
     setDrawer(isOpen);
   };
@@ -19,6 +22,74 @@ export default function RosterList() {
   const handleRosterClick = () => {
     setDrawer(true);
   };
+  const [pageNumber, setPageNumber] = useState(1);
+  const [rosterItems, setRosterItems] = useState([]);
+  const PAGE_SIZE = 10;
+  const { startOfWeek, endOfWeek } = Helper.getWeekRange();
+  const dateRange = Helper.getDateRange(startOfWeek, endOfWeek);
+
+  // Get Roster List
+  // On Default Fetched Employee List With Pagination With Roster Details
+  const getRosterList = () => {
+    showLoader();
+    const filterQuery = `From=${startOfWeek}&To=${endOfWeek}&pageNumber=${pageNumber}&pageSize=${PAGE_SIZE}`;
+    api
+      .get(`/api/v1/roster?${filterQuery}`)
+      .then((res) => {
+        setRosterItems(() => res?.data?.data?.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => {
+        hideLoader();
+      });
+  };
+
+  // Get Roster Based On Array Index & Particular Date
+  // Roster Fetched From :  RosterItems[]
+  const getRosterByDate = (employeeId, date) => {
+    const employee = rosterItems.find((x) => x.id == employeeId);
+    if (!employee) {
+      return [];
+    }
+
+    if (!employee?.rosterItems?.length) {
+      return [];
+    }
+
+    var filtered = employee?.rosterItems?.filter(
+      (roster) => roster.date.toString() == date.toString()
+    );
+
+    return filtered;
+  };
+
+  // Roster Cell Component
+  const RosterCell = ({ employeeId, date }) => {
+    const shiftList = getRosterByDate(employeeId, date);
+    //console.log(shiftList)
+    return (
+      <td>
+        {shiftList.length ? (
+          <div
+            className={`roster-cell ${shiftList.length ? "active" : ""}`}
+            onClick={handleRosterClick}
+          >
+            {shiftList.map((shift, i) => {
+              return <p key={i} className="roster-individual-shift">{shift.startTime + "-" + shift.endTime}</p>;
+            })}
+          </div>
+        ) : undefined}
+      </td>
+    );
+  };
+
+  //
+
+  useEffect(() => {
+    getRosterList();
+  }, []);
   return (
     <Box sx={{ backgroundColor: "#fff", borderRadius: "8px" }}>
       <div className="flex flex-center flex-between roster-list-header">
@@ -71,60 +142,47 @@ export default function RosterList() {
                       </Select>
                     </div>
                   </th>
-                  <th>Mon</th>
-                  <th>Tue</th>
-                  <th>Wed</th>
-                  <th>Thu</th>
-                  <th>Fri</th>
-                  <th>Sat</th>
-                  <th>Sun</th>
+                  {dateRange.length &&
+                    dateRange.map((range, i) => (
+                      <th key={i}>
+                        <div className="roster-date-range">
+                          <p>
+                            {new Date(range.date)
+                              .toISOString()
+                              .slice(5, 10)
+                              .replace("-", "/")}
+                          </p>
+                          <p>{range.day}</p>
+                        </div>
+                      </th>
+                    ))}
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Jill Smith</td>
-                  <td>
-                    <div
-                      className="roster-cell active"
-                      onClick={handleRosterClick}
-                    >
-                      6:00AM -2:00 PM & 1 More Shift
-                    </div>
-                  </td>
-                  <td>
-                    <div></div>
-                  </td>
-                  <td>
-                    <div
-                      className="roster-cell active"
-                      onClick={handleRosterClick}
-                    >
-                      6:00AM -2:00 PM
-                    </div>
-                  </td>
-                  <td>
-                    <div></div>
-                  </td>
-                  <td>
-                    <div></div>
-                  </td>
-                  <td>
-                    <div
-                      className="roster-cell active"
-                      onClick={handleRosterClick}
-                    >
-                      6:00AM -2:00 PM
-                    </div>
-                  </td>
-                  <td>
-                    <div
-                      className="roster-cell active"
-                      onClick={handleRosterClick}
-                    >
-                      6:00AM -2:00 PM
-                    </div>
-                  </td>
-                </tr>
+                {rosterItems.length > 0 ? (
+                  rosterItems.map((emp, i) => (
+                    <tr key={i}>
+                      <td>
+                        <a href="" style={{ color: "#1e7e51" }}>
+                          <p>#{emp.id}</p>
+                          <p>{emp?.user?.fullName}</p>
+                        </a>
+                      </td>
+                      {dateRange.length &&
+                        dateRange.map((range, i) => (
+                          <RosterCell
+                            key={i}
+                            employeeId={emp.id}
+                            date={range.date}
+                          />
+                        ))}
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td>No Record Found</td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
