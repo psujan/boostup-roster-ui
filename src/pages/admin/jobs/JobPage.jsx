@@ -29,7 +29,7 @@ const JobPage = () => {
             width: "106px",
             height: "40px",
             textTransform: "none",
-            color:"var(--primaryColor)"
+            color: "var(--primaryColor)",
           }}
           onClick={handleJobAdd}
         >

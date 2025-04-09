@@ -125,7 +125,7 @@ export default function ResponsiveDrawer({ open, setOpen }) {
     { text: "Jobs", path: "/jobs" },
     { text: "Roster", path: "/roster" },
     { text: "Leave Request", path: "/leave-request" },
-    { text: "Employee", path: "/employee" },
+    { text: "Employee", path: "/all-employee" },
   ];
 
   const handleDrawerOpen = () => setOpen(true);

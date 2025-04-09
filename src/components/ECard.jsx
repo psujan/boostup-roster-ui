@@ -1,83 +1,82 @@
-import { Avatar, Box, Button, Card, CardContent, Stack, Typography } from '@mui/material'
-import React from 'react'
+import {
+  Avatar,
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Stack,
+  Typography,
+} from "@mui/material";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-
-const ECard = () => {
+const ECard = ({ emp }) => {
+  const navigate = useNavigate();
   return (
     <div>
-    <Box
-    sx={{
-      maxWidth: "294px",
-      height : "300px",
-      textAlign: "center",
-      p: 2,
-      borderRadius: "6px",
-      // boxShadow: 3,
-      backgroundColor: '#FCFBFB',
-      mt: '40px',
-      border: 'none'
-    }}
-  >
-    <Avatar
-      src="./src/assets/images/1.png"
-      alt="James Wilson"
-      sx={{ width: 80, height: 80, margin: "auto", mb: 2 }}
-    />
-    <CardContent>
-      <Typography sx={{fontFamily : 'Inter', fontWeight : '500'}}>
-        James Wilson
-      </Typography>
-      <Typography variant="body2" color="text.secondary">
-        jameswilsom@gmail.com
-      </Typography>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-        +61 417 456 789
-      </Typography>
-      <Stack direction="row" spacing={2} justifyContent="center">
-        <Button
-          variant="contained"
-          sx={{
-            backgroundColor: "var(--primaryColor)",
-            width: "105px",
-            height: "35px",
-            padding: "10px",
-            boxShadow : 'none'
-          }}
-        >
-          <Typography
-            sx={{
-              fontSize: "12px",
-              fontWeight: "500",
-              textTransform: "none",
-            }}
-          >
-            Plan Schedule
+      <Box
+        sx={{
+          width: "100%",
+          textAlign: "center",
+          p: 2,
+          borderRadius: "6px",
+          // boxShadow: 3,
+          backgroundColor: "#FCFBFB",
+          border: "none",
+        }}
+      >
+        <Avatar
+          src="./src/assets/images/1.png"
+          alt="James Wilson"
+          sx={{ width: 80, height: 80, margin: "auto", mb: 2 }}
+        />
+        <CardContent>
+          <Typography sx={{ fontFamily: "Inter", fontWeight: "500" }}>
+            {emp?.user?.fullName}
           </Typography>
-        </Button>
-        <Button
-          variant="contained"
-          sx={{
-            backgroundColor: "var(--secondaryColor)",
-            color: "black",
-            width: "105px",
-            height: "35px",
-            boxShadow :'none'
-          }}
-        >
-          <Typography
-            sx={{
-              fontSize: "12px",
-              fontWeight: "500",
-              textTransform: "none",
-            }}
-          >
-            View Profile
+          <Typography variant="body2" color="text.secondary">
+            {emp?.user?.email}
           </Typography>
-        </Button>
-      </Stack>
-    </CardContent>
-  </Box></div>
-  )
-}
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+            {emp?.contact}
+          </Typography>
+          <Stack
+            direction="row"
+            spacing={2}
+            sx={{ width: "100%" }}
+            justifyContent="center"
+          >
+            <Button
+              variant="contained"
+              sx={{
+                background: "var(--primaryColor)",
+                fontSize: "12px",
+                fontWeight: "500",
+                textTransform: "none",
+                boxShadow: "none",
+              }}
+            >
+              Plan Schedule
+            </Button>
+            <Button
+              variant="contained"
+              sx={{
+                background: "var(--secondaryColor)",
+                color: "rgba(0, 0, 0, 0.6)",
+                fontSize: "12px",
+                fontWeight: "500",
+                textTransform: "none",
+                boxShadow: "none",
+              }}
+              onClick={() => navigate("/employee-profile")}
+            >
+              View Profile
+            </Button>
+          </Stack>
+        </CardContent>
+      </Box>
+    </div>
+  );
+};
 
-export default ECard
+export default ECard;

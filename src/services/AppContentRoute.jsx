@@ -14,11 +14,12 @@ import Onboard from "../pages/admin/employee/Onboard";
 import { LoaderProvider } from "../utils/context/LoaderContext";
 import EmployeeDetail from "../pages/admin/employee/EmployeeDetail";
 import ScheduleShift from "../pages/admin/ScheduleShift";
-import EmployeeProfile from "../components/EmployeeProfile";
+
 import LeaveRequest from "../components/Leavereq";
 import EmployeeHome from "../pages/employee/EmployeeHome/EmployeeHome";
 import EmployeeShiftDetails from "../pages/employee/EmployeeShiftDetail/EmployeeShiftDetails";
 import EmployeeLeaveRequest from "../pages/employee/EmployeeLeaveRequest/EmployeeLeaveRequest";
+import AllEmployee from "../pages/admin/employee/AllEmployee";
 
 export const AppContentRoute = () => {
   const location = useLocation();
@@ -68,13 +69,17 @@ export const AppContentRoute = () => {
                   <Route path="/" element={<Dashboard />} />
                   <Route path="/admin-dashboard" element={<Dashboard />} />
                   <Route path="/schedule-shift" element={<ScheduleShift />} />
-                  <Route path="/employee" element={<EmployeeProfile />} />
                   <Route path="/jobs" element={<JobPage />} />
                   <Route path="/jobs/add-jobs" element={<AddJob />} />
                   <Route path="/jobs/update-jobs/:id" element={<EditJob />} />
+                  <Route path="/all-employee" element={<AllEmployee />} />
 
+                  <Route
+                    path="/employee-profile"
+                    element={<EmployeeDetail />}
+                  />
                   <Route path="/leave-request" element={<LeaveRequest />} />
-                  <Route path="/add-employee" element={<Onboard />} />
+                  <Route path="/onboard-staff" element={<Onboard />} />
 
                   <Route
                     path="/employee/:id"
