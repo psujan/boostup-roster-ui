@@ -12,14 +12,13 @@ const AddJob = () => {
   return (
     <BaseLayout>
       <Box className="content-top flex flex-between flex-center">
-        <Heading title="Add new job" />
+        <Heading title="Add Job" />
         <Button
           variant="text"
           sx={{
             fontSize: "14px",
             fontWeight: "500",
-            height: "32px",
-            padding: "6px 10px",
+            height: "40px",
             textTransform: "none",
             color: "var(--primaryColor)",
           }}

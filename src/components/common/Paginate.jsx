@@ -5,6 +5,7 @@ const Paginate = ({ count, page, onPageChange }) => {
   return (
     <Box sx={{ marginTop: "30px" }}>
       <Pagination
+        color="primary"
         count={Math.ceil(count / 10)}
         page={page}
         onChange={(event, value) => onPageChange(value)}
