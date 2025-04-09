@@ -27,17 +27,16 @@ export default function RosterList() {
   const PAGE_SIZE = 10;
   const { startOfWeek, endOfWeek } = Helper.getWeekRange();
   const dateRange = Helper.getDateRange(startOfWeek, endOfWeek);
-  console.log("date range", dateRange);
+
+  // Get Roster List
+  // On Default Fetched Employee List With Pagination With Roster Details
   const getRosterList = () => {
     showLoader();
-
     const filterQuery = `From=${startOfWeek}&To=${endOfWeek}&pageNumber=${pageNumber}&pageSize=${PAGE_SIZE}`;
-    console.log("calling here");
     api
       .get(`/api/v1/roster?${filterQuery}`)
       .then((res) => {
         setRosterItems(() => res?.data?.data?.data);
-        console.log(rosterItems);
       })
       .catch((err) => {
         console.error(err);
@@ -46,6 +45,47 @@ export default function RosterList() {
         hideLoader();
       });
   };
+
+  // Get Roster Based On Array Index & Particular Date
+  // Roster Fetched From :  RosterItems[]
+  const getRosterByDate = (employeeId, date) => {
+    const employee = rosterItems.find((x) => x.id == employeeId);
+    if (!employee) {
+      return [];
+    }
+
+    if (!employee?.rosterItems?.length) {
+      return [];
+    }
+
+    var filtered = employee?.rosterItems?.filter(
+      (roster) => roster.date.toString() == date.toString()
+    );
+
+    return filtered;
+  };
+
+  // Roster Cell Component
+  const RosterCell = ({ employeeId, date }) => {
+    const shiftList = getRosterByDate(employeeId, date);
+    //console.log(shiftList)
+    return (
+      <td>
+        {shiftList.length ? (
+          <div
+            className={`roster-cell ${shiftList.length ? "active" : ""}`}
+            onClick={handleRosterClick}
+          >
+            {shiftList.map((shift, i) => {
+              return <p key={i} className="roster-individual-shift">{shift.startTime + "-" + shift.endTime}</p>;
+            })}
+          </div>
+        ) : undefined}
+      </td>
+    );
+  };
+
+  //
 
   useEffect(() => {
     getRosterList();
@@ -119,7 +159,7 @@ export default function RosterList() {
                 </tr>
               </thead>
               <tbody>
-                {rosterItems.length &&
+                {rosterItems.length > 0 ? (
                   rosterItems.map((emp, i) => (
                     <tr key={i}>
                       <td>
@@ -130,31 +170,19 @@ export default function RosterList() {
                       </td>
                       {dateRange.length &&
                         dateRange.map((range, i) => (
-                          <td key={i}>
-                            <div
-                              className="roster-cell active"
-                              onClick={handleRosterClick}
-                            >
-                              6:00AM -2:00 PM & 1 More Shift
-                            </div>
-                          </td>
+                          <RosterCell
+                            key={i}
+                            employeeId={emp.id}
+                            date={range.date}
+                          />
                         ))}
                     </tr>
-                  ))}
-                {/* <tr>
-                  <td>Jill Smith</td>
-                  {dateRange.length &&
-                    dateRange.map((range, i) => (
-                      <td key={i}>
-                        <div
-                          className="roster-cell active"
-                          onClick={handleRosterClick}
-                        >
-                          6:00AM -2:00 PM & 1 More Shift
-                        </div>
-                      </td>
-                    ))}
-                </tr> */}
+                  ))
+                ) : (
+                  <tr>
+                    <td>No Record Found</td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>

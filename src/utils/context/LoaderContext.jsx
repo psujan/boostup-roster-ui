@@ -9,7 +9,6 @@ export const LoaderProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
 
   const showLoader = () => {
-    console.log("showing loader");
     setLoading(true);
   };
   const hideLoader = () => setLoading(false);
