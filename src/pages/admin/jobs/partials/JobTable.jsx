@@ -1,15 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  IconButton,
-  Box,
-} from "@mui/material";
+import { Box } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 import { useNavigate } from "react-router-dom";
@@ -24,7 +14,6 @@ import BasicActions from "../../../../components/common/BasicActions";
 export const JobTable = () => {
   const navigate = useNavigate();
   const { showLoader, hideLoader } = useLoader();
-
   const [jobData, setJobData] = useState([]);
   const [open, setOpen] = useState(false);
   const [idDelete, setIdDelete] = useState(null);
@@ -87,16 +76,10 @@ export const JobTable = () => {
         hideLoader();
       })
       .catch((err) => {
-        console.log("Error:", err);
         ToastMessage("error", err?.response?.data?.message);
         hideLoader();
       });
   }, [page, open]);
-
-  // Log jobData after it changes
-  useEffect(() => {
-    console.log("Updated jobData:", jobData);
-  }, [jobData, page, count]);
 
   return (
     <Box className="content-box">
