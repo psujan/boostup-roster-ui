@@ -14,13 +14,13 @@ const AddJob = () => {
       <Box className="content-top flex flex-between flex-center">
         <Heading title="Add Job" />
         <Button
-          variant="text"
+          variant="outlined"
+          color="primary"
+          size="sm"
           sx={{
             fontSize: "14px",
             fontWeight: "500",
-            height: "40px",
             textTransform: "none",
-            color: "var(--primaryColor)",
           }}
           onClick={() => navigate("/jobs")}
         >
