@@ -14,12 +14,15 @@ import { useNavigate } from "react-router-dom";
 import { ToastMessage } from "./common/ToastNotification";
 import Logo from "../assets/images/boostup-logo.png";
 import { useLoader } from "../utils/context/LoaderContext";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-   const { showLoader, hideLoader } = useLoader();
+  const { showLoader, hideLoader } = useLoader();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
     showLoader();
@@ -59,8 +62,8 @@ const LoginPage = () => {
         );
         // console.error(error?.response?.data?.message || "Login failed");
       })
-      .finally(()=>{
-        hideLoader()
+      .finally(() => {
+        hideLoader();
       });
   };
 
@@ -121,17 +124,28 @@ const LoginPage = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div>
+          <div id="login-password-wrap">
             <InputLabel className="base-input-label" htmlFor="login-pwd">
               Password<span className="is-required">*</span>
             </InputLabel>
             <TextField
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="login-pwd"
               variant="outlined"
               className="base-input"
               onChange={(e) => setPassword(e.target.value)}
             />
+            {showPassword ? (
+              <VisibilityIcon
+                className="eye-position"
+                onClick={() => setShowPassword(false)}
+              />
+            ) : (
+              <VisibilityOff
+                className="eye-position"
+                onClick={() => setShowPassword(true)}
+              />
+            )}
           </div>
           <Button
             variant="contained"
