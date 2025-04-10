@@ -5,6 +5,15 @@ export const theme = createTheme({
     fontFamily: "Inter, sans-serif",
     lineHeight: "100%",
   },
+  palette: {
+    primary: {
+      light: '#1e7e51',
+      main: '#1e7e51',
+      dark: '#1e7e51',
+      contrastText: '#fff',
+    }
+    
+  },
   components: {
     MuiButton: {
       styleOverrides: {

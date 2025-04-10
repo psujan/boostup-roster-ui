@@ -188,8 +188,12 @@ Custom CSS
   border-radius: 6px;
 }
 
+.roster-cell.active {
+  border: 1px solid transparent;
+}
+
 .roster-cell.active:hover {
-  border:1px solid  #1e7e51;
+  border: 1px solid #1e7e51;
   cursor: pointer;
 }
 
@@ -305,9 +309,22 @@ Custom CSS
 }
 
 .roster-individual-shift {
-  background-color: #64ECAC24;
+  background-color: #64ecac24;
   padding: 4px;
   border-radius: 4px;
-  margin:4px 0;
+  margin: 4px 0;
   font-size: 11px;
+}
+
+#login-password-wrap {
+  position: relative;
+}
+
+.eye-position {
+  position: absolute;
+  top: 54%;
+  right: 5%;
+  cursor: pointer;
+  color:#666;
+  font-size: 15px;
 }

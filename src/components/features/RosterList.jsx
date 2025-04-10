@@ -1,4 +1,12 @@
-import { Box, Select, MenuItem, Drawer, Divider } from "@mui/material";
+import {
+  Box,
+  Select,
+  MenuItem,
+  Drawer,
+  InputLabel,
+  Divider,
+  Button,
+} from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Heading from "../common/Heading";
 import { useEffect, useState } from "react";
@@ -7,6 +15,10 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 import api from "../../services/api";
 import { useLoader } from "../../utils/context/LoaderContext";
 import Helper from "../../utils/helper";
+import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
+import Grid from "@mui/material/Grid2";
+import EmployeeSelectDropdown from "./EmployeeSelectDropdown";
+
 //import dayjs from 'dayjs';
 
 export default function RosterList() {
@@ -27,6 +39,7 @@ export default function RosterList() {
   const PAGE_SIZE = 10;
   const { startOfWeek, endOfWeek } = Helper.getWeekRange();
   const dateRange = Helper.getDateRange(startOfWeek, endOfWeek);
+  const [showFilter, setShowFilter] = useState(false);
 
   // Get Roster List
   // On Default Fetched Employee List With Pagination With Roster Details
@@ -77,7 +90,11 @@ export default function RosterList() {
             onClick={handleRosterClick}
           >
             {shiftList.map((shift, i) => {
-              return <p key={i} className="roster-individual-shift">{shift.startTime + "-" + shift.endTime}</p>;
+              return (
+                <p key={i} className="roster-individual-shift">
+                  {shift.startTime + "-" + shift.endTime}
+                </p>
+              );
             })}
           </div>
         ) : undefined}
@@ -92,34 +109,114 @@ export default function RosterList() {
   }, []);
   return (
     <Box sx={{ backgroundColor: "#fff", borderRadius: "8px" }}>
-      <div className="flex flex-center flex-between roster-list-header">
-        <Heading title="Roster Details" />
-        <div>
-          <div className="flex-inline">
-            <span style={{ paddingRight: "4px" }} className="text-muted">
-              From
-            </span>
-            <DatePicker
-              className="datepicker-roster-filter"
-              value={from}
-              sx={{ padding: "4px", height: "20px" }}
-              onChange={(v) => setFrom(v)}
-            />
-          </div>
-
-          <div className="flex-inline" style={{ paddingLeft: "8px" }}>
-            <span style={{ paddingRight: "4px" }} className="text-muted">
-              To
-            </span>
-            <DatePicker
-              className="datepicker-roster-filter"
-              value={to}
-              sx={{ padding: "4px", height: "20px" }}
-              onChange={(v) => setTo(v)}
-            />
-          </div>
+      <div className="roster-list-header">
+        <div className="flex flex-between flex-center">
+          <Heading title="Roster Details" />
+          <Button
+            variant="outlined"
+            size="sm"
+            color="primary"
+            sx={{ textTransform: "capitalize" }}
+            onClick={() => setShowFilter(!showFilter)}
+          >
+            <span>{showFilter ? "Hide" : "Show"} Filter</span>
+          </Button>
         </div>
+
+        {showFilter ? (
+          <div
+            style={{
+              marginTop: "24px",
+              padding: "16px 10px",
+              backgroundColor: "#fafafa",
+              borderRadius: "8px",
+            }}
+          >
+            <form action="">
+              <Grid
+                container
+                columnSpacing={2}
+                columns={12}
+                sx={{
+                  alignItems: "baseline",
+                  justifyContent: "flex-start",
+                }}
+              >
+                <Grid size={{ sm: 6, md: 2 }}>
+                  <InputLabel className="base-input-label"> From</InputLabel>
+                  <DatePicker
+                    className="datepicker-roster-filter"
+                    value={from}
+                    sx={{ padding: "4px", height: "20px" }}
+                    onChange={(v) => setFrom(v)}
+                    placeholder="From"
+                  />
+                </Grid>
+                <Grid size={{ sm: 6, md: 2 }}>
+                  <InputLabel className="base-input-label">To</InputLabel>
+                  <DatePicker
+                    className="datepicker-roster-filter"
+                    value={to}
+                    sx={{ padding: "4px", height: "20px" }}
+                    onChange={(v) => setTo(v)}
+                  />
+                </Grid>
+                <Grid size={{ sm: 6, md: 3 }}>
+                  <InputLabel className="base-input-label">Employee</InputLabel>
+                  <EmployeeSelectDropdown style={{ marginTop: "13px" }} />
+                </Grid>
+                <Grid size={{ sm: 6, md: 2 }}>
+                  <InputLabel
+                    className="base-input-label"
+                    style={{ visibility: "hidden" }}
+                  >
+                    Employee
+                  </InputLabel>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    disableElevation
+                    sx={{ textTransform: "capitalize", width: "100%" }}
+                  >
+                    <FilterAltOutlinedIcon />
+                    Filter
+                  </Button>
+                </Grid>
+                <Grid size={{ sm: 6, md: 2 }}>
+                  <InputLabel
+                    className="base-input-label"
+                    style={{ visibility: "hidden" }}
+                  >
+                    Reset
+                  </InputLabel>
+                  <Button
+                    variant="outlined"
+                    disableElevation
+                    color="error"
+                    sx={{
+                      textTransform: "capitalize",
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                </Grid>
+              </Grid>
+              <Grid
+                container
+                spacing={2}
+                columns={12}
+                sx={{
+                  alignItems: "center",
+                  justifyContent: "flex-end",
+                }}
+              ></Grid>
+            </form>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
+
       <Box sx={{ padding: "10px 16px" }}>
         <div className="roster-list-body">
           <div className="base-table-wrap">
@@ -163,9 +260,8 @@ export default function RosterList() {
                   rosterItems.map((emp, i) => (
                     <tr key={i}>
                       <td>
-                        <a href="" style={{ color: "#1e7e51" }}>
-                          <p>#{emp.id}</p>
-                          <p>{emp?.user?.fullName}</p>
+                        <a href="" style={{ color: "#000", fontWeight: "400" }}>
+                          <p># {emp.id + " " + emp?.user?.fullName}</p>
                         </a>
                       </td>
                       {dateRange.length &&
