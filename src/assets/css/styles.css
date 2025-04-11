@@ -173,12 +173,13 @@ Custom CSS
 }
 
 .roster-table thead tr th {
-  width: 280px;
+  min-width: 150px;
   overflow-x: auto;
   padding: 6px;
 }
 .roster-table tbody tr td {
-  width: 280px;
+  min-width: 150px;
+  height: 100px !important;
   overflow-x: auto;
   padding: 6px;
   font-size: 13px;
@@ -325,6 +326,6 @@ Custom CSS
   top: 54%;
   right: 5%;
   cursor: pointer;
-  color:#666;
+  color: #666;
   font-size: 15px;
 }
