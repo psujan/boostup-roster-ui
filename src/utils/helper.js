@@ -27,7 +27,12 @@ export default class Helper {
     const end = new Date(endDate);
     end.setHours(0, 0, 0, 0);
 
-    const formatDate = (d) => d.toISOString().split("T")[0]; // YYYY-MM-DD
+    const formatDate = (d) => {
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    };
 
     const dates = [];
 

@@ -34,6 +34,9 @@ const LoginPage = () => {
         const role = res.data?.data?.roles?.[0];
 
         if (token && role) {
+          // Clear All Previously Stored Data
+          localStorage.clear()
+
           localStorage.setItem("token", token);
           localStorage.setItem("role", role);
 
@@ -55,7 +58,7 @@ const LoginPage = () => {
         }
       })
       .catch((error) => {
-        console.log("error aako ho ra");
+        console.error(error);
         ToastMessage(
           "error",
           error?.response?.data?.message || "Something Went Wrong"

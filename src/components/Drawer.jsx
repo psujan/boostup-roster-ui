@@ -134,9 +134,9 @@ export default function ResponsiveDrawer({ open, setOpen }) {
     navigate("/jobs");
   };
   const handleLogout = () => {
+    localStorage.clear();
     navigate("/");
     ToastMesssage("success", "logout Successfully!");
-    localStorage.clear();
   };
   return (
     <Box sx={{ display: "flex" }}>
