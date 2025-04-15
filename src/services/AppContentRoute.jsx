@@ -12,7 +12,7 @@ import EditJob from "../pages/admin/jobs/EditJob";
 import LoginPage from "../components/LoginPage";
 import Onboard from "../pages/admin/employee/Onboard";
 import { LoaderProvider } from "../utils/context/LoaderContext";
-import EmployeeDetail from "../pages/admin/employee/EmployeeDetail";
+import EmployeeDetail from "../pages/admin/employee/EmployeeDetail/EmployeeDetail";
 import ScheduleShift from "../pages/admin/ScheduleShift";
 
 import LeaveRequest from "../components/Leavereq";
@@ -20,6 +20,8 @@ import EmployeeHome from "../pages/employee/EmployeeHome/EmployeeHome";
 import EmployeeShiftDetails from "../pages/employee/EmployeeShiftDetail/EmployeeShiftDetails";
 import EmployeeLeaveRequest from "../pages/employee/EmployeeLeaveRequest/EmployeeLeaveRequest";
 import AllEmployee from "../pages/admin/employee/AllEmployee";
+import EmployeeProfile from "../pages/admin/employee/EmployeeDetail/EmployeeDetail";
+import EmployeeDetail1 from "../pages/admin/employee/EmployeeDetail/EmployeeDetail";
 
 export const AppContentRoute = () => {
   const location = useLocation();
@@ -105,7 +107,7 @@ export const AppContentRoute = () => {
 
                   <Route path="/employee-roster" element={<EmployeeHome />} />
                   <Route path="/employee-request" element={<EmployeeHome />} />
-                  <Route path="/employee-profile" element={<EmployeeHome />} />
+                  <Route path="/employee-profile" element={<EmployeeProfile />} />
                 </>
               ) : null}
             </Routes>
