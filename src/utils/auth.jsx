@@ -7,3 +7,10 @@ export const isAuthenticated = () => {
     role,
   };
 };
+
+// export const isAuthenticated = () => {
+//   return {
+//     isAuth: true,
+//     role: "SuperAdmin",
+//   };
+// };
