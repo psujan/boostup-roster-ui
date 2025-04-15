@@ -150,9 +150,19 @@ export default function RosterList() {
     <Box sx={{ backgroundColor: "#fff", borderRadius: "8px" }}>
       <div className="roster-list-header">
         <div className="flex flex-between flex-center">
-          <Heading title="Roster Details" />
+          <span style={{ visibility: "visible" }} className="text-muted">
+            Showing Shifts From <span>{` `}</span>
+            <span style={{ color: "#000", fontWeight: 500 }}>
+              {dateRange[0].date}
+            </span>
+            <span>{` `}</span>to
+            <span style={{ color: "#000", fontWeight: 500 }}>
+              <span>{` `}</span>
+              {dateRange[dateRange.length - 1].date}
+            </span>
+          </span>
           <Button
-            variant="outlined"
+            variant="text"
             size="sm"
             color="primary"
             sx={{ textTransform: "capitalize" }}

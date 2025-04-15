@@ -20,6 +20,8 @@ import EmployeeHome from "../pages/employee/EmployeeHome/EmployeeHome";
 import EmployeeShiftDetails from "../pages/employee/EmployeeShiftDetail/EmployeeShiftDetails";
 import EmployeeLeaveRequest from "../pages/employee/EmployeeLeaveRequest/EmployeeLeaveRequest";
 import AllEmployee from "../pages/admin/employee/AllEmployee";
+import RosterListIndex from "../pages/admin/roster/RosterList";
+import RosterAdd from "../pages/admin/roster/RosterAdd";
 
 export const AppContentRoute = () => {
   const location = useLocation();
@@ -85,6 +87,8 @@ export const AppContentRoute = () => {
                     path="/employee/:id"
                     element={<EmployeeDetail />}
                   ></Route>
+                  <Route path="/roster" element={<RosterListIndex />}></Route>
+                  <Route path="/roster/add" element={<RosterAdd />}></Route>
                 </>
               ) : role == "Employee" ? (
                 <>
