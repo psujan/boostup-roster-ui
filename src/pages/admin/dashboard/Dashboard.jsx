@@ -1,7 +1,7 @@
 //import RosterTable from "../../../components/RosterTable";
 import { Box } from "@mui/material";
 import QuickActions from "./partials/QuickActions";
-import RosterList from "../../../components/features/Roster/RosterList";
+import RosterList from "../../../components/features/roster/RosterList";
 import Overview from "./partials/Overview";
 const Dashboard = () => {
   return (
