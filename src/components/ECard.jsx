@@ -68,7 +68,7 @@ const ECard = ({ emp }) => {
                 textTransform: "none",
                 boxShadow: "none",
               }}
-              onClick={() => navigate("/employee-profile")}
+              onClick={() => navigate(`/employee/${emp.id}`)}
             >
               View Profile
             </Button>
