@@ -1,19 +1,16 @@
-import React from "react";
-import AddIcon from "@mui/icons-material/Add";
-import JobTable from "./partials/JobTable";
 import { Box, Button } from "@mui/material";
-import Heading from "../../../components/common/Heading";
-import BaseLayout from "../../../components/common/BaseLayout";
+import Heading from "../../../components/common/Heading.jsx";
+import AddIcon from "@mui/icons-material/Add";
+import BaseLayout from "../../../components/common/BaseLayout.jsx";
+import RosterList from "../../../components/features/Roster/RosterList.jsx";
 import { useNavigate } from "react-router-dom";
-const JobPage = () => {
+
+export default function RosterListIndex() {
   const navigate = useNavigate();
-  const handleJobAdd = () => {
-    navigate("add-jobs");
-  };
   return (
     <BaseLayout>
       <Box className="content-top flex flex-between flex-center">
-        <Heading title="Jobs" />
+        <Heading title="Roster" />
         <Button
           variant="outlined"
           color="primary"
@@ -23,14 +20,14 @@ const JobPage = () => {
             fontWeight: "500",
             textTransform: "none",
           }}
-          onClick={handleJobAdd}
+          onClick={() => navigate("/roster/add")}
         >
           <AddIcon sx={{ marginRight: "10px" }} /> Add
         </Button>
       </Box>
-      <JobTable />
+      <Box style={{ margin: "30px 0" }}>
+        <RosterList />
+      </Box>
     </BaseLayout>
   );
-};
-
-export default JobPage;
+}

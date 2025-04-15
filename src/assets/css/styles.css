@@ -43,6 +43,23 @@ Custom CSS
   font-size: 15px !important;
 }
 
+.base-input-select {
+  border: 1px solid #c4c4c4 !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  font-size: 15px !important;
+  width: 100%;
+}
+
+.base-input-select .MuiSelect-select {
+  padding: 10.5px 14px !important;
+}
+
+.base-input-select:focus {
+  border-color: #1e7e51 !important;
+  border-width: 2px !important;
+}
+
 .base-input {
   width: 100% !important;
 }
@@ -328,4 +345,13 @@ Custom CSS
   cursor: pointer;
   color: #666;
   font-size: 15px;
+}
+
+.roster-date h5 {
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
+.roster-date {
+  margin-bottom: 24px;
 }
