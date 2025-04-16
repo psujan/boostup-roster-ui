@@ -17,7 +17,6 @@ export default function RosterFilter({
   const employeeSelectRef = useRef();
   const [from, setFrom] = useState();
   const [to, setTo] = useState();
-  const [employeeIds, setEmployeeIds] = useState([]);
   const { startOfWeek, endOfWeek } = Helper.getWeekRange();
 
   //Event Handlers

@@ -18,6 +18,12 @@ Custom CSS
   font-weight: 600;
 }
 
+.heading-5 {
+  margin: 0;
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
 .back-btn {
   color: #666;
 
@@ -57,7 +63,8 @@ Custom CSS
 
 .base-input-select:focus {
   border-color: #1e7e51 !important;
-  border-width: 2px !important;
+  border-width: 1px !important;
+  outline: 1px solid #1e7e51;
 }
 
 .base-input {
@@ -108,23 +115,27 @@ Custom CSS
 }
 
 .flex {
-  display: flex;
+  display: flex !important;
 }
 
 .flex-column {
-  flex-direction: column;
+  flex-direction: column !important;
+}
+
+.flex-row {
+  flex-direction: row !important;
 }
 
 .flex-between {
-  justify-content: space-between;
+  justify-content: space-between !important;
 }
 
 .flex-center {
-  align-items: center;
+  align-items: center !important;
 }
 
 .flex-inline {
-  display: inline-flex;
+  display: inline-flex !important;
 }
 
 .roster-list-header {

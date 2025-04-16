@@ -7,12 +7,17 @@ export const theme = createTheme({
   },
   palette: {
     primary: {
-      light: '#1e7e51',
-      main: '#1e7e51',
-      dark: '#1e7e51',
-      contrastText: '#fff',
-    }
-    
+      light: "#1e7e51",
+      main: "#1e7e51",
+      dark: "#1e7e51",
+      contrastText: "#fff",
+    },
+    secondary: {
+      light: "#f3cb5f",
+      main: "#f3cb5f",
+      dark: "#f3cb5f",
+      contrastText: "#fff",
+    },
   },
   components: {
     MuiButton: {

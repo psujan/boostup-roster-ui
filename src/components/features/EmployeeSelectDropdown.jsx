@@ -41,7 +41,7 @@ const EmployeeSelectDropdown = forwardRef(
             sx={{ width: "100%", borderRadius: "8px" }}
             labelId="employee-select"
             className={customClass}
-            multiple
+            multiple={true}
             value={employeeIds}
             onChange={(event) => {
               handleChange(event);
