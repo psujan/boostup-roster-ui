@@ -105,13 +105,11 @@ const employeeIcons = [
   <GroupOutlinedIcon />,
 ];
 
-const options = ["My Profile", "Log out"];
-
 export default function ResponsiveDrawer({ open, setOpen }) {
   const navigate = useNavigate();
   const location = useLocation();
   const theme = useTheme();
-  const { isAuth, role } = isAuthenticated();
+  const { isAuth, role, user } = isAuthenticated();
 
   const employeePath = [
     { text: " Dashboard", path: "/employee-dashboard" },
@@ -189,13 +187,20 @@ export default function ResponsiveDrawer({ open, setOpen }) {
               sx={{ color: "var(--greyColor)", fontWeight: "600" }}
             />
             &nbsp; &nbsp; &nbsp;
-            <ClickableTextMenu
-              text="John Doe"
-              items={[
-                { label: "My Profile", onClick: handleProfile },
-                { label: "Logout", onClick: handleLogout },
-              ]}
-            />
+            {isAuth && role == "SuperAdmin" ? (
+              <ClickableTextMenu
+                text={user}
+                items={[{ label: "Logout", onClick: handleLogout }]}
+              />
+            ) : (
+              <ClickableTextMenu
+                text={user}
+                items={[
+                  { label: "My Profile", onClick: handleProfile },
+                  { label: "Logout", onClick: handleLogout },
+                ]}
+              />
+            )}
           </div>
         </Toolbar>
       </AppBar>

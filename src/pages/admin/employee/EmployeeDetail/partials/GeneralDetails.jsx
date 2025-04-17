@@ -22,43 +22,21 @@ const GeneralDetails = ({ employee }) => {
   );
 
   return (
-    <Box
-      bgcolor="#fafafa"
-      p={4}
-      borderRadius={2}
-      maxWidth="80%"
-      mx="auto"
-      my={4}
-    >
+    <Box bgcolor="#fafafa" p={4} borderRadius={2}>
       <Typography variant="h6" mb={3}>
         General Details
       </Typography>
 
       <DetailRow label="Address" value={employee?.address} />
-      <DetailRow label="Emergency Contact" value={employee?.contact} />
+      <DetailRow label="Gender" value={employee?.gender} />
+      <DetailRow label="Contact" value={employee?.contact} />
+      <DetailRow label="Date of Birth" value={employee?.address} />
       <DetailRow
-        label="Emergency Contact"
-        value={employee?.emergencyContact2}
+        label="Emergency Contact Name"
+        value={employee?.emergencyContactName}
       />
       <DetailRow label="Joined Date" value={employee?.joinedDate} />
-      <DetailRow
-        label="Verification Document"
-        value={
-          <Typography component="span" color="success.main">
-            {employee?.verificationDocument || "N/A"}
-          </Typography>
-        }
-      />
-      <DetailRow
-        label="TFN"
-        value={employee?.tfn ? "**********" : "N/A"}
-        showIcon
-      />
-      <DetailRow
-        label="Bank Account"
-        value={employee?.bankAccount ? "**********" : "N/A"}
-        showIcon
-      />
+      <DetailRow label="Birth Country" value={employee?.birthCountry} />
     </Box>
   );
 };

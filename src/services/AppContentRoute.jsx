@@ -26,6 +26,7 @@ import RosterAdd from "../pages/admin/roster/RosterAdd";
 
 import EmployeeProfile from "../pages/admin/employee/EmployeeDetail/EmployeeDetail";
 import EmployeeDetail1 from "../pages/admin/employee/EmployeeDetail/EmployeeDetail";
+import UpdateEmployeeDetails from "../pages/admin/employee/EmployeeUpdate/UpdateEmployeeDetails";
 
 export const AppContentRoute = () => {
   const location = useLocation();
@@ -84,6 +85,10 @@ export const AppContentRoute = () => {
                   <Route
                     path="/employee-profile"
                     element={<EmployeeDetail />}
+                  />
+                  <Route
+                    path="/update-employee-profile/:id"
+                    element={<UpdateEmployeeDetails />}
                   />
                   <Route path="/leave-request" element={<LeaveRequest />} />
                   <Route path="/onboard-staff" element={<Onboard />} />

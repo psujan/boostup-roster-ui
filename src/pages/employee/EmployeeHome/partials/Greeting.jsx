@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 
 const Greeting = () => {
+  const user = localStorage.getItem("user");
   return (
     <Box
       display="flex"
@@ -18,7 +19,7 @@ const Greeting = () => {
           color: "var(--primaryColor)",
         }}
       >
-        Jonathan
+        {user}
       </Typography>
       <Typography sx={{ fontSize: "clamp(15px, 5vw, 25px)" }}>
         &nbsp;!
