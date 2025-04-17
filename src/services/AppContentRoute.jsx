@@ -27,7 +27,6 @@ import RosterAdd from "../pages/admin/roster/RosterAdd";
 import EmployeeProfile from "../pages/admin/employee/EmployeeDetail/EmployeeDetail";
 import EmployeeDetail1 from "../pages/admin/employee/EmployeeDetail/EmployeeDetail";
 
-
 export const AppContentRoute = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -35,6 +34,7 @@ export const AppContentRoute = () => {
   const isLoginPage =
     location.pathname === "/" || location.pathname === "/login";
   const { isAuth, role } = isAuthenticated();
+  console.log("here", isAuth);
   React.useEffect(() => {
     if (!isAuth && !isLoginPage) {
       navigate("/login");
@@ -114,7 +114,10 @@ export const AppContentRoute = () => {
 
                   <Route path="/employee-roster" element={<EmployeeHome />} />
                   <Route path="/employee-request" element={<EmployeeHome />} />
-                  <Route path="/employee-profile" element={<EmployeeProfile />} />
+                  <Route
+                    path="/employee-profile"
+                    element={<EmployeeProfile />}
+                  />
                 </>
               ) : null}
             </Routes>

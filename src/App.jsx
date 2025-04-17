@@ -6,6 +6,7 @@ import { theme } from "./theme/theme";
 import { AppContentRoute } from "./services/AppContentRoute";
 
 const App = () => {
+  console.log('calling app')
   return (
     <Router>
       <ToastContainer />

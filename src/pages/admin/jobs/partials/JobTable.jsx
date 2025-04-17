@@ -19,6 +19,7 @@ export const JobTable = () => {
   const [idDelete, setIdDelete] = useState(null);
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(1);
+  const [deleteId, setDeleteId] = useState();
   const pageSize = 10;
   const [pageInfo, setPageInfo] = useState({
     from: 1,
@@ -26,8 +27,18 @@ export const JobTable = () => {
   });
 
   const handleDeleteModal = (id) => {
-    setIdDelete(id);
+    setDeleteId(id);
     setOpen(true);
+  };
+
+  const confirmDelete = (del) => {
+    //close the delete modal
+    setOpen(false);
+    if (!del) {
+      setDeleteId(undefined);
+      return;
+    }
+    handleDelete(deleteId);
   };
 
   const handleEdit = (id) => {
@@ -40,8 +51,8 @@ export const JobTable = () => {
       .delete(`/api/v1/job/${id}`)
       .then((res) => {
         const message = res?.data?.message;
-        setOpen(false);
         ToastMessage("success", message);
+        getJobList()
       })
       .catch((err) => {
         ToastMessage("error", err?.response?.data?.message);
@@ -55,8 +66,7 @@ export const JobTable = () => {
     setPage(value);
   };
 
-  // Fetch data on page change
-  useEffect(() => {
+  const getJobList = () => {
     showLoader();
     api
       .get(`/api/v1/job/get-paginated?pageNumber=${page}&pageSize=${pageSize}`)
@@ -73,13 +83,19 @@ export const JobTable = () => {
             };
           });
         }
-        hideLoader();
       })
       .catch((err) => {
         ToastMessage("error", err?.response?.data?.message);
+      })
+      .finally(() => {
         hideLoader();
       });
-  }, [page, open]);
+  };
+
+  // Fetch data on page change
+  useEffect(() => {
+    getJobList();
+  }, [page]);
 
   return (
     <Box className="content-box">
@@ -136,8 +152,7 @@ export const JobTable = () => {
       <DeleteModal
         open={open}
         setOpen={setOpen}
-        idDelete={idDelete}
-        handleDelete={handleDelete}
+        confirmDelete={confirmDelete}
       />
     </Box>
   );

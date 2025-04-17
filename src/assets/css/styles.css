@@ -138,6 +138,10 @@ Custom CSS
   display: inline-flex !important;
 }
 
+.flex-end {
+  justify-content: flex-end !important;
+}
+
 .roster-list-header {
   padding: 20px 16px;
   border-bottom: 1px solid #eae8e8;
@@ -222,7 +226,7 @@ Custom CSS
 }
 
 .roster-cell.active:hover {
-  border: 1px solid #1e7e51;
+  /* border: 1px solid #1e7e51; */
   cursor: pointer;
 }
 
@@ -365,4 +369,34 @@ Custom CSS
 
 .roster-date {
   margin-bottom: 24px;
+}
+
+.shift-wrap {
+  position: relative;
+}
+
+.shift-detail {
+  display: none;
+}
+
+.roster-individual-shift {
+  border: 1px solid transparent;
+  position: relative;
+  z-index: 100;
+}
+
+.roster-individual-shift:hover {
+  border: 1px solid #1e7e51;
+}
+
+.roster-individual-shift:hover .shift-detail {
+  display: block;
+  position: absolute;
+  bottom: -40px;
+  left: -10px;
+  padding: 6px;
+  background-color: #fff;
+  border: 1px solid #c4c4c4;
+  border-radius: 8px;
+  z-index: 10001;
 }
