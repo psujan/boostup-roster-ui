@@ -22,6 +22,7 @@ import EmployeeLeaveRequest from "../pages/employee/EmployeeLeaveRequest/Employe
 import AllEmployee from "../pages/admin/employee/AllEmployee";
 import EmployeeProfile from "../pages/admin/employee/EmployeeDetail/EmployeeDetail";
 import EmployeeDetail1 from "../pages/admin/employee/EmployeeDetail/EmployeeDetail";
+import UpdateEmployeeDetails from "../pages/admin/employee/EmployeeUpdate/UpdateEmployeeDetails";
 
 export const AppContentRoute = () => {
   const location = useLocation();
@@ -80,6 +81,10 @@ export const AppContentRoute = () => {
                     path="/employee-profile"
                     element={<EmployeeDetail />}
                   />
+                  <Route
+                    path="/update-employee-profile/:id"
+                    element={<UpdateEmployeeDetails />}
+                  />
                   <Route path="/leave-request" element={<LeaveRequest />} />
                   <Route path="/onboard-staff" element={<Onboard />} />
 
@@ -107,7 +112,10 @@ export const AppContentRoute = () => {
 
                   <Route path="/employee-roster" element={<EmployeeHome />} />
                   <Route path="/employee-request" element={<EmployeeHome />} />
-                  <Route path="/employee-profile" element={<EmployeeProfile />} />
+                  <Route
+                    path="/employee-profile"
+                    element={<EmployeeProfile />}
+                  />
                 </>
               ) : null}
             </Routes>

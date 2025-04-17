@@ -159,7 +159,11 @@ const JobForm = () => {
             <InputLabel className="base-input-label" htmlFor="endTime">
               End Time<span className="is-required">*</span>
             </InputLabel>
-            <TimePicker onChange={handleEndTime} sx={{ width: "100%", height:'46px' }}  className="base-input"/>
+            <TimePicker
+              onChange={handleEndTime}
+              sx={{ width: "100%", height: "46px" }}
+              className="base-input"
+            />
             <span className="is-required">{errors.endTime?.message}</span>
           </Grid2>
           <Grid2 size={{ md: 12 }}>

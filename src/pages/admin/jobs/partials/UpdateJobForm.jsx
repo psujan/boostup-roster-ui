@@ -22,7 +22,6 @@ const validationSchema = Yup.object().shape({
 const UpdateJobForm = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  console.log("ididid", id);
   const { showLoader, hideLoader } = useLoader();
   const [validationErrors, setValidationErrors] = useState([]);
   const {
@@ -106,8 +105,13 @@ const UpdateJobForm = () => {
     }
 
     if (!isValid) return; // Stop if validation fails
+    const updatingData = {
+      ...data,
+      startTime: dayjs(data?.startTime).format("h:mm A"),
+      endTime: dayjs(data?.endTime).format("h:mm A"),
+    };
     api
-      .put(`/api/v1/job/${id}`, data)
+      .put(`/api/v1/job/${id}`, updatingData)
       .then((res) => {
         const message = res?.data?.message;
         ToastMessage("success", message || "Job updated successful");

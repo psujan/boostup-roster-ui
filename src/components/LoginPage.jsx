@@ -32,13 +32,15 @@ const LoginPage = () => {
         console.log(res);
         const token = res.data?.data?.token;
         const role = res.data?.data?.roles?.[0];
-
+        const user = res?.data?.data?.user?.fullName;
+        console.log("dddd", user);
         if (token && role) {
           // Clear All Previously Stored Data
-          localStorage.clear()
+          localStorage.clear();
 
           localStorage.setItem("token", token);
           localStorage.setItem("role", role);
+          localStorage.setItem("user", user);
 
           switch (role) {
             case "SuperAdmin":
