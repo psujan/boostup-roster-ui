@@ -2,7 +2,7 @@ import { Box, Button } from "@mui/material";
 import Heading from "../../../components/common/Heading.jsx";
 import AddIcon from "@mui/icons-material/Add";
 import BaseLayout from "../../../components/common/BaseLayout.jsx";
-import RosterList from "../../../components/features/Roster/RosterList.jsx";
+import RosterList from "../../../components/features/roster/RosterList.jsx";
 import { useNavigate } from "react-router-dom";
 
 export default function RosterListIndex() {
