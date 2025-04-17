@@ -6,6 +6,8 @@ import { useLoader } from "../../../utils/context/LoaderContext";
 import Helper from "../../../utils/helper";
 import RosterFilter from "./RosterFilter";
 import RosterDrawer from "./RosterDrawer";
+import { ToastMessage } from "../../common/ToastNotification";
+import DeleteModal from "../../common/Deletemodal";
 
 export default function RosterList() {
   //Default Constant Variables
@@ -19,6 +21,7 @@ export default function RosterList() {
   const [showFilter, setShowFilter] = useState(false);
 
   const [sort, setSort] = useState("emp");
+  const [deleteModal, setDeleteModal] = useState(false);
 
   //drawer
   const [drawer, setDrawer] = useState(false);
@@ -33,10 +36,29 @@ export default function RosterList() {
     Helper.getDateRange(startOfWeek, endOfWeek)
   );
   const [employeeList, setEmployeeList] = useState();
+  const [rosterDetail, setRosterDetail] = useState(null);
+  const [deleteId, setDeleteId] = useState(undefined);
 
   //UI Event Handlers
-  const handleRosterClick = () => {
-    setDrawer(true);
+  const handleRosterClick = (id) => {
+    console.log(id);
+    showLoader();
+    api
+      .get("/api/v1/roster/" + id)
+      .then((res) => {
+        const data = res?.data?.data;
+        if (data) {
+          setRosterDetail(data);
+          setDrawer(true);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        ToastMessage("error", "Something Went Wrong");
+      })
+      .finally(() => {
+        hideLoader();
+      });
   };
 
   /**API  Function Call */
@@ -93,6 +115,47 @@ export default function RosterList() {
       });
   };
 
+  // delete roster
+  const handleDelete = (id) => {
+    setDeleteModal(true);
+    setDeleteId(id);
+  };
+
+  const confirmDelete = (del) => {
+    //close the delete modal
+    setDeleteModal(false);
+    if (!del) {
+      setDeleteId(undefined);
+      return;
+    }
+    // close drawer and then only make the api call
+    setDrawer(false);
+    setDeleteModal(false);
+    deleteRoster(deleteId);
+  };
+
+  const deleteRoster = (id) => {
+    console.log("deleting", id);
+    showLoader();
+    api
+      .delete("/api/v1/roster/" + id)
+      .then((res) => {
+        if (res?.data?.success) {
+          ToastMessage("success", res?.data?.message || "Delete Successful");
+        }
+        getRosterList();
+      })
+      .catch((err) => {
+        ToastMessage(
+          "error",
+          err?.response?.data?.message || "Something Went Wrong"
+        );
+      })
+      .finally(() => {
+        hideLoader();
+      });
+  };
+
   // Get Roster Based On Array Index & Particular Date
   // Roster Fetched From :  RosterItems[]
   const getRosterByDate = (employeeId, date) => {
@@ -119,15 +182,19 @@ export default function RosterList() {
     return (
       <td>
         {shiftList.length ? (
-          <div
-            className={`roster-cell ${shiftList.length ? "active" : ""}`}
-            onClick={handleRosterClick}
-          >
+          <div className={`roster-cell ${shiftList.length ? "active" : ""}`}>
             {shiftList.map((shift, i) => {
               return (
-                <p key={i} className="roster-individual-shift">
-                  {shift.startTime + "-" + shift.endTime}
-                </p>
+                <div key={i} className="shift-wrap">
+                  <p
+                    onClick={() => handleRosterClick(shift.id)}
+                    key={i}
+                    className="roster-individual-shift"
+                    title={shift?.job?.title}
+                  >
+                    {shift.startTime + "-" + shift.endTime}
+                  </p>
+                </div>
               );
             })}
           </div>
@@ -250,7 +317,17 @@ export default function RosterList() {
             </table>
           </div>
         </div>
-        <RosterDrawer drawer={drawer} toggleDrawer={toggleDrawer} />
+        <RosterDrawer
+          drawer={drawer}
+          toggleDrawer={toggleDrawer}
+          roster={rosterDetail}
+          handleDelete={(id) => handleDelete(id)}
+        />
+        <DeleteModal
+          open={deleteModal}
+          setOpen={(isOpen) => setDeleteModal(isOpen)}
+          confirmDelete={confirmDelete}
+        />
       </Box>
     </Box>
   );

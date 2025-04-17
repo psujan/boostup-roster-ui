@@ -2,12 +2,13 @@ import React from "react";
 import { Modal, Box, Button, Typography, Stack, Divider } from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
-const DeleteModal = ({ open, setOpen, idDelete, handleDelete }) => {
+const DeleteModal = ({ open, setOpen, confirmDelete = () => {} }) => {
   const handleClose = () => setOpen(false);
 
   return (
     <Modal
       open={open}
+      size="sm"
       onClose={handleClose}
       sx={{
         display: "flex",
@@ -27,16 +28,21 @@ const DeleteModal = ({ open, setOpen, idDelete, handleDelete }) => {
           bgcolor: "#fff",
           boxShadow: 24,
           borderRadius: 3,
-          width: 500, // Increased size
+          width: 380, // Increased size
           padding: 4, // More padding for better spacing
           border: "1px solid #ddd",
           outline: "none",
         }}
       >
         {/* Modal Content */}
-        <Typography variant="h6" align="center" sx={{ marginBottom: 3 }}>
+
+        <h5
+          className="heading-5"
+          style={{ textAlign: "center", marginBottom: "12px" }}
+        >
+          {" "}
           Are you sure you want to delete this item?
-        </Typography>
+        </h5>
 
         <Divider sx={{ marginBottom: 3 }} />
 
@@ -46,14 +52,10 @@ const DeleteModal = ({ open, setOpen, idDelete, handleDelete }) => {
           {/* Cancel Button */}
           <Button
             variant="outlined"
-            onClick={handleClose}
+            color="primary"
+            onClick={() => confirmDelete(false)}
             sx={{
               width: "45%",
-              backgroundColor: "#f0f0f0",
-              color: "#333",
-              "&:hover": {
-                backgroundColor: "#e0e0e0",
-              },
             }}
           >
             Cancel
@@ -61,7 +63,7 @@ const DeleteModal = ({ open, setOpen, idDelete, handleDelete }) => {
           {/* Delete Button */}
           <Button
             variant="contained"
-            onClick={() => handleDelete(idDelete)}
+            onClick={() => confirmDelete(true)}
             sx={{
               width: "45%",
               backgroundColor: "#FF4040",
