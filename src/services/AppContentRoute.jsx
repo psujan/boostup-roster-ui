@@ -20,6 +20,10 @@ import EmployeeHome from "../pages/employee/EmployeeHome/EmployeeHome";
 import EmployeeShiftDetails from "../pages/employee/EmployeeShiftDetail/EmployeeShiftDetails";
 import EmployeeLeaveRequest from "../pages/employee/EmployeeLeaveRequest/EmployeeLeaveRequest";
 import AllEmployee from "../pages/admin/employee/AllEmployee";
+
+import RosterListIndex from "../pages/admin/roster/RosterList";
+import RosterAdd from "../pages/admin/roster/RosterAdd";
+
 import EmployeeProfile from "../pages/admin/employee/EmployeeDetail/EmployeeDetail";
 import EmployeeDetail1 from "../pages/admin/employee/EmployeeDetail/EmployeeDetail";
 import UpdateEmployeeDetails from "../pages/admin/employee/EmployeeUpdate/UpdateEmployeeDetails";
@@ -31,6 +35,7 @@ export const AppContentRoute = () => {
   const isLoginPage =
     location.pathname === "/" || location.pathname === "/login";
   const { isAuth, role } = isAuthenticated();
+  console.log("here", isAuth);
   React.useEffect(() => {
     if (!isAuth && !isLoginPage) {
       navigate("/login");
@@ -92,6 +97,8 @@ export const AppContentRoute = () => {
                     path="/employee/:id"
                     element={<EmployeeDetail />}
                   ></Route>
+                  <Route path="/roster" element={<RosterListIndex />}></Route>
+                  <Route path="/roster/add" element={<RosterAdd />}></Route>
                 </>
               ) : role == "Employee" ? (
                 <>

@@ -17,7 +17,7 @@ export default function RosterFilter({
   const employeeSelectRef = useRef();
   const [from, setFrom] = useState();
   const [to, setTo] = useState();
-  const [employeeIds, setEmployeeIds] = useState([]);
+  const { startOfWeek, endOfWeek } = Helper.getWeekRange();
 
   //Event Handlers
   const handleCancelFilter = () => {
@@ -25,7 +25,8 @@ export default function RosterFilter({
     setTo(null);
     // clear selected employee ids
     employeeSelectRef.current?.setValue([]);
-    onFilter();
+    setDateRange(Helper.getDateRange(startOfWeek, endOfWeek));
+    onFilter("");
   };
 
   const handleFilter = () => {
@@ -40,8 +41,14 @@ export default function RosterFilter({
       return;
     }
 
+    if (from && to) {
+      if (to < from) {
+        ToastMessage("error", "Roster To Date Is Less Than From.");
+        return;
+      }
+    }
+
     if (!from && !to) {
-      const { startOfWeek, endOfWeek } = Helper.getWeekRange();
       filterQuery = `&From=${startOfWeek}&To=${endOfWeek}`;
       setDateRange(Helper.getDateRange(startOfWeek, endOfWeek));
     } else {
