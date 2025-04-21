@@ -1,16 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
-import {
-  Card,
-  CardContent,
-  Typography,
-  Button,
-  Avatar,
-  Stack,
-  Box,
-  TextField,
-  Grid2,
-} from "@mui/material";
+import { Box, Button, Grid2 } from "@mui/material";
 // import "../index.css";
 
 import { useNavigate } from "react-router-dom";
@@ -67,28 +57,20 @@ const AllEmployee = () => {
 
   return (
     <BaseLayout>
-      <Box
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "15px",
-        }}
-      >
+      <Box className="content-top flex flex-center flex-between">
         <Heading title={"Employees"} />
         <Button
-          variant="text"
+          variant="outlined"
+          color="primary"
+          size="sm"
           sx={{
             fontSize: "14px",
-            fontWeight: "600",
-            width: "106px",
-            height: "40px",
+            fontWeight: "500",
             textTransform: "none",
-            color: "var(--primaryColor)",
           }}
           onClick={handleEmployeeAdd}
         >
-          <AddIcon sx={{ marginRight: "10px" }} /> Add
+          <AddIcon sx={{ marginRight: "10px" }} /> Onboard
         </Button>
       </Box>
       <Box className="content-box">

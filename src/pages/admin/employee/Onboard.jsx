@@ -53,15 +53,15 @@ export default function Onboard() {
       <Box className="content-top flex flex-between flex-center">
         <Heading title="Onboard Staff" />
         <Button
-          variant="text"
+          variant="outlined"
+          color="primary"
+          size="sm"
           sx={{
             fontSize: "14px",
             fontWeight: "500",
-            height: "32px",
-            padding: "6px 10px",
             textTransform: "none",
-            color: "var(--primaryColor)",
           }}
+          onClick={() => navigate("/all-employee")}
         >
           View All
           <AddIcon sx={{ marginLeft: "10px", fontSize: "15px" }} />

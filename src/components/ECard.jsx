@@ -2,12 +2,10 @@ import {
   Avatar,
   Box,
   Button,
-  Card,
   CardContent,
   Stack,
   Typography,
 } from "@mui/material";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const ECard = ({ emp }) => {
@@ -15,31 +13,35 @@ const ECard = ({ emp }) => {
   return (
     <div>
       <Box
+        className="employee-box"
         sx={{
           width: "100%",
           textAlign: "center",
           p: 2,
-          borderRadius: "6px",
+          minHeight: "300px",
+          borderRadius: "8px",
           // boxShadow: 3,
           backgroundColor: "#FCFBFB",
           border: "none",
         }}
       >
         <Avatar
-          src="./src/assets/images/1.png"
+          src="./src/assets/images/default_user.jpg"
           alt="James Wilson"
-          sx={{ width: 80, height: 80, margin: "auto", mb: 2 }}
+          sx={{ width: 140, height: 140, margin: "auto", mb: 2 }}
         />
         <CardContent>
-          <Typography sx={{ fontFamily: "Inter", fontWeight: "500" }}>
-            {emp?.user?.fullName}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {emp?.user?.email}
-          </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-            {emp?.contact}
-          </Typography>
+          <div style={{ minHeight: "120px" }}>
+            <Typography sx={{ fontFamily: "Inter", fontWeight: "500", mb: 1 }}>
+              {emp?.user?.fullName}
+            </Typography>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+              {emp?.user?.email}
+            </Typography>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+              {emp?.contact || "Contact : N/A"}
+            </Typography>
+          </div>
           <Stack
             direction="row"
             spacing={2}
@@ -50,20 +52,21 @@ const ECard = ({ emp }) => {
               variant="contained"
               sx={{
                 background: "var(--primaryColor)",
-                fontSize: "12px",
+                fontSize: "13px",
                 fontWeight: "500",
                 textTransform: "none",
                 boxShadow: "none",
               }}
+              onClick={() => navigate("/roster/add?employeeId=" + emp.id)}
             >
-              Plan Schedule
+              Add Roster
             </Button>
             <Button
               variant="contained"
               sx={{
                 background: "var(--secondaryColor)",
                 color: "rgba(0, 0, 0, 0.6)",
-                fontSize: "12px",
+                fontSize: "13px",
                 fontWeight: "500",
                 textTransform: "none",
                 boxShadow: "none",
