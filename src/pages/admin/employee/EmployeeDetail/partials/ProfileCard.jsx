@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import UpdateImage from "./UpdateImage";
 import { useParams } from "react-router-dom";
 import api from "../../../../../services/api";
+import DefaultUserImg from "../../../../../assets/images/default_user.jpg";
+import CenterFocusStrongOutlinedIcon from "@mui/icons-material/CenterFocusStrongOutlined";
 const ProfileCard = ({ employee }) => {
   const { id } = useParams();
   const profileImage = employee?.user;
@@ -21,9 +23,9 @@ const ProfileCard = ({ employee }) => {
   return (
     <Box
       bgcolor="#fafafa"
-      p={4}
+      p={2}
       borderRadius={2}
-      maxWidth="80%"
+      maxWidth="100%"
       display="flex"
       justifyContent="center"
       alignItems="center"
@@ -31,7 +33,7 @@ const ProfileCard = ({ employee }) => {
     >
       <Box sx={{ position: "relative", width: "120px", height: "120px" }}>
         <img
-          src={profileImage}
+          src={DefaultUserImg}
           alt={fullName}
           style={{
             width: "120px",
@@ -42,28 +44,36 @@ const ProfileCard = ({ employee }) => {
           }}
         />
         <Button
-          sx={{ position: "absolute", top: "60" }}
+          title="Update Image"
+          sx={{
+            position: "absolute",
+            top: "60",
+            borderRadius: "50px",
+            width: "48px",
+            height: "48px",
+            display: "inline-flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
           onClick={() => setOpen(true)}
         >
-          <DriveFileRenameOutlineIcon />
+          <CenterFocusStrongOutlinedIcon />
         </Button>
       </Box>
-      <h2 style={{ margin: "1rem 0 0.5rem 0" }}>{fullName}</h2>
-      <a
-        href={`mailto:${email}`}
-        style={{ color: "gray", textDecoration: "underline" }}
-      >
+      <h5 className="heading-5" style={{ marginBottom: "12px" }}>
+        {fullName}
+      </h5>
+      <a href={`mailto:${email}`} className="text-muted">
         {email}
       </a>
       <br />
       <Button
+        variant="outlined"
+        color="primary"
         sx={{
-          color: "#fff",
-          background: "var(--primaryColor)",
-          fontSize: "16px",
-          fontWeight: "600",
+          fontSize: "13px",
+          fontWeight: "500",
           textTransform: "none",
-          padding: "10px 20px",
         }}
       >
         Manage Availability

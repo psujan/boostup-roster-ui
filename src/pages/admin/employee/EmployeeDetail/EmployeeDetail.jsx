@@ -10,7 +10,7 @@ import { ToastMessage } from "../../../../components/common/ToastNotification";
 import { useLoader } from "../../../../utils/context/LoaderContext";
 import Heading from "../../../../components/common/Heading";
 import { Box, Button, Divider, Grid2 as Grid } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import AddIcon from "@mui/icons-material/EditOutlined";
 
 const EmployeeDetail = () => {
   const { id } = useParams();
@@ -37,43 +37,41 @@ const EmployeeDetail = () => {
   }, [id]);
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <BaseLayout>
-        <Box
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "15px",
+    <BaseLayout>
+      <Box className="content-top flex flex-between flex-center">
+        <Heading title="Employee Detail" />
+        <Button
+          variant="outlined"
+          color="primary"
+          size="sm"
+          sx={{
+            fontSize: "14px",
+            fontWeight: "500",
+            textTransform: "none",
           }}
+          onClick={() => navigate(`/update-employee-profile/${id}`)}
         >
-          <Heading title="Employee Detail" />
-          <Button
-            variant="outlined"
-            color="primary"
-            size="sm"
-            sx={{
-              fontSize: "14px",
-              fontWeight: "500",
-              textTransform: "none",
-            }}
-            onClick={() => navigate(`/update-employee-profile/${id}`)}
-          >
-            <AddIcon sx={{ marginRight: "10px" }} /> Update profile
-          </Button>
-        </Box>
-        <Grid className="content-box" container>
-          <Grid size={{ md: 4 }}>
-            <ProfileCard employee={employee} />
+          <AddIcon sx={{ marginRight: "10px" }} /> Update Profile
+        </Button>
+      </Box>
+      <Box className="content-box">
+        <Grid container columns={12} spacing={1}>
+          <Grid size={{ md: 4, sm: 12 }} sx={{ mb: 2 }}>
+            <ProfileCard employee={employee} className="profile-card" />
           </Grid>
-          <Grid size={{ md: 8 }}>
-            <GeneralDetails employee={employee} />
-            <Divider sx={{ margin: "0px 24px" }} />
-            <OtherDetails employee={employee} />
+          <Grid size={{ md: 8, sm: 12 }} sx={{ mb: 2 }}>
+            <Box
+              sx={{ p: 0, background: "#fafafa", borderRadius: "8px" }}
+              className="detail-box"
+            >
+              <GeneralDetails employee={employee} />
+              <Divider sx={{ margin: "0px 24px" }} />
+              <OtherDetails employee={employee} />
+            </Box>
           </Grid>
         </Grid>
-      </BaseLayout>
-    </div>
+      </Box>
+    </BaseLayout>
   );
 };
 

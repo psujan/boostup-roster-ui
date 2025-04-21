@@ -211,8 +211,8 @@ const EmployeeForm = () => {
             <TextField
               id="status"
               select
-              variant="outlined"
               className="base-input"
+              variant="outlined"
               fullWidth
               {...register("status")}
               error={!!errors.status}
