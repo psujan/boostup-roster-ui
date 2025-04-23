@@ -4,26 +4,14 @@ import { Box, Typography } from "@mui/material";
 const Greeting = () => {
   const user = localStorage.getItem("user");
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-      flexWrap="wrap"
-      sx={{ margin: "30px 0px" }}
-    >
-      <Typography sx={{ fontSize: "clamp(15px, 5vw, 25px)" }}>
-        Good Morning&nbsp;
-      </Typography>
-      <Typography
-        sx={{
-          fontSize: "clamp(15px, 5vw, 25px)",
-          color: "var(--primaryColor)",
-        }}
-      >
-        {user}
-      </Typography>
-      <Typography sx={{ fontSize: "clamp(15px, 5vw, 25px)" }}>
-        &nbsp;!
-      </Typography>
+    <Box display="flex" alignItems="center" flexWrap="wrap" sx={{margin:'20px 0 35px 0'}}>
+      <h5 className="heading-5">
+        Hi &nbsp;
+        <span className="clr-primary" style={{ fontSize: "15.5px", fontWeight:'600' }}>
+          Sujan Poudel
+        </span>
+        &nbsp;👋
+      </h5>
     </Box>
   );
 };

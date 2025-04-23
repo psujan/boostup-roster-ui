@@ -20,8 +20,8 @@ Custom CSS
 
 .heading-5 {
   margin: 0;
-  font-size: 14.5px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .back-btn {
@@ -399,4 +399,29 @@ Custom CSS
   border: 1px solid #c4c4c4;
   border-radius: 8px;
   z-index: 10001;
+}
+
+.employee-box-wrap {
+  /* no padding */
+  margin-top: 24px;
+}
+
+.roster-detail-arrow {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.emp-sidebar-link-list {
+  margin: 15px 10px;
+}
+
+.emp-sidebar-link {
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.emp-sidebar-link:hover {
+  background-color: #64ecac24;
 }

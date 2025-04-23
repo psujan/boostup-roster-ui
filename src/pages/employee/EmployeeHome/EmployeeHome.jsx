@@ -1,18 +1,14 @@
-import { Box, Typography } from "@mui/material";
-import React from "react";
+import { Box } from "@mui/material";
 import WeeklyStatsCard from "./partials/WeeklyStatsCard";
-import MyShiftsHeader from "./partials/MyShiftsHeader";
-
 import Greeting from "./partials/Greeting";
-import ShiftSchedule from "./partials/ShiftSchedule";
+import AssignedShifts from "./partials/AssignedShifts";
 
 const EmployeeHome = () => {
   return (
-    <Box>
+    <Box className="employee-box-wrap">
       <Greeting />
       <WeeklyStatsCard />
-      <MyShiftsHeader />
-      <ShiftSchedule />
+      <AssignedShifts />
     </Box>
   );
 };
