@@ -1,0 +1,41 @@
+import { Route } from "react-router-dom";
+import Dashboard from "../pages/admin/dashboard/Dashboard";
+import ScheduleShift from "../pages/admin/ScheduleShift";
+import JobPage from "../pages/admin/jobs/JobPage";
+import AddJob from "../pages/admin/jobs/AddJob";
+import EditJob from "../pages/admin/jobs/EditJob";
+import AllEmployee from "../pages/admin/employee/AllEmployee";
+import EmployeeDetail from "../pages/admin/employee/EmployeeDetail/EmployeeDetail";
+import UpdateEmployeeDetails from "../pages/admin/employee/EmployeeUpdate/UpdateEmployeeDetails";
+import LeaveRequest from "../components/Leavereq";
+import Onboard from "../pages/admin/employee/Onboard";
+import RosterListIndex from "../pages/admin/roster/RosterList";
+import RosterAdd from "../pages/admin/roster/RosterAdd";
+
+export default function AdminRoutes() {
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/admin-dashboard" element={<Dashboard />} />
+        <Route path="/schedule-shift" element={<ScheduleShift />} />
+        <Route path="/jobs" element={<JobPage />} />
+        <Route path="/jobs/add-jobs" element={<AddJob />} />
+        <Route path="/jobs/update-jobs/:id" element={<EditJob />} />
+        <Route path="/all-employee" element={<AllEmployee />} />
+
+        <Route path="/employee-profile" element={<EmployeeDetail />} />
+        <Route
+          path="/update-employee-profile/:id"
+          element={<UpdateEmployeeDetails />}
+        />
+        <Route path="/leave-request" element={<LeaveRequest />} />
+        <Route path="/onboard-staff" element={<Onboard />} />
+
+        <Route path="/employee/:id" element={<EmployeeDetail />}></Route>
+        <Route path="/roster" element={<RosterListIndex />}></Route>
+        <Route path="/roster/add" element={<RosterAdd />}></Route>
+      </Routes>
+    </>
+  );
+}

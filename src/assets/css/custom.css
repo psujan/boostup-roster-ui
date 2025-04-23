@@ -1,0 +1,44 @@
+#root {
+  --primaryColor: #1e7e51;
+  --secondaryColor: #f3cb5f;
+  --greyColor: #666666;
+  --textColor: #000;
+  --redColor: #f31212;
+}
+/*Override third party component css*/
+.datepicker-roster-filter input {
+  padding: 0px 8px !important;
+  font-size: 13px;
+}
+
+/* .datepicker-roster-filter {
+  margin-top: -8px !important;
+} */
+
+.employee-select-field .MuiSelect-select {
+  padding: 9px !important;
+  color: #666 !important;
+  font-size: 14px !important;
+}
+
+.base-select-dropdown .MuiSelect-select{
+  padding: 11px !important;
+  color: #666 !important;
+  font-size: 14px !important;
+}
+
+.datepicker-roster-filter .MuiInputBase-root {
+  padding: 4px 6px !important;
+  width: 100%;
+  /* display: inline-flex; */
+}
+
+.datepicker-roster-filter .MuiButtonBase-root {
+  padding: 4px !important;
+  margin-right: 0px !important;
+}
+
+.MuiPaginationItem-colorPrimary.Mui-selected {
+  color: #fff !important;
+  background-color: var(--primaryColor) !important;
+}
