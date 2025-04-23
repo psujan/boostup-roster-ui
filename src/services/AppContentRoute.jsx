@@ -15,7 +15,6 @@ import { LoaderProvider } from "../utils/context/LoaderContext";
 import EmployeeDetail from "../pages/admin/employee/EmployeeDetail/EmployeeDetail";
 import ScheduleShift from "../pages/admin/ScheduleShift";
 
-import LeaveRequest from "../components/Leavereq";
 import EmployeeHome from "../pages/employee/EmployeeHome/EmployeeHome";
 import EmployeeShiftDetails from "../pages/employee/EmployeeShiftDetail/EmployeeShiftDetails";
 import EmployeeLeaveRequest from "../pages/employee/EmployeeLeaveRequest/EmployeeLeaveRequest";
@@ -27,6 +26,8 @@ import RosterAdd from "../pages/admin/roster/RosterAdd";
 import EmployeeProfile from "../pages/admin/employee/EmployeeDetail/EmployeeDetail";
 import EmployeeDetail1 from "../pages/admin/employee/EmployeeDetail/EmployeeDetail";
 import UpdateEmployeeDetails from "../pages/admin/employee/EmployeeUpdate/UpdateEmployeeDetails";
+import LeavePage from "../pages/admin/leave/LeavePage";
+import LeaveRequest from "../pages/admin/leave/LeaveRequest";
 
 export const AppContentRoute = () => {
   const location = useLocation();
@@ -90,7 +91,9 @@ export const AppContentRoute = () => {
                     path="/update-employee-profile/:id"
                     element={<UpdateEmployeeDetails />}
                   />
-                  <Route path="/leave-request" element={<LeaveRequest />} />
+                  <Route path="/leaves" element={<LeavePage />} />
+                  <Route path="/leave-request/:id" element={<LeaveRequest />} />
+
                   <Route path="/onboard-staff" element={<Onboard />} />
 
                   <Route
