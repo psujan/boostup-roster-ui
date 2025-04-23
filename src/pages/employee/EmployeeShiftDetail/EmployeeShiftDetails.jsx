@@ -19,7 +19,7 @@ export default function EmployeeShiftDetails() {
           }}
         >
           <h5 className="heading-5">
-            Shift Details <span className="text-muted">Roster ID : #43</span>
+            Shift Details <span className="text-muted">#43</span>
           </h5>
           <Button
             variant="text"
