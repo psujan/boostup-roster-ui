@@ -122,7 +122,11 @@ export default function ResponsiveDrawer({ open, setOpen }) {
     { text: "Dashboard", path: "/admin-dashboard" },
     { text: "Jobs", path: "/jobs" },
     { text: "Roster", path: "/roster" },
+<<<<<<< HEAD
     { text: "Leave Request", path: "/leave-request" },
+=======
+    { text: "Leave Requests", path: "/leaves" },
+>>>>>>> bf24c8b40d0f2c64e033459ddbc16934da383f42
     { text: "Employee", path: "/all-employee" },
   ];
 
