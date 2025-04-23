@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
-<<<<<<< HEAD
-import { useForm } from "react-hook-form";
-=======
 import { Controller, useForm } from "react-hook-form";
->>>>>>> bf24c8b40d0f2c64e033459ddbc16934da383f42
 import {
   TextField,
   Grid2 as Grid,
@@ -13,10 +9,7 @@ import {
   Checkbox,
   Box,
   MenuItem,
-<<<<<<< HEAD
-=======
   Autocomplete,
->>>>>>> bf24c8b40d0f2c64e033459ddbc16934da383f42
 } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -53,8 +46,6 @@ const EmployeeForm = () => {
   const { id } = useParams();
   const [profileData, setProfileData] = useState(null);
   const { showLoader, hideLoader } = useLoader();
-<<<<<<< HEAD
-=======
   const countryList = [
     "Afghanistan",
     "Albania",
@@ -96,7 +87,6 @@ const EmployeeForm = () => {
     "United States",
     "Vietnam",
   ];
->>>>>>> bf24c8b40d0f2c64e033459ddbc16934da383f42
 
   const {
     register,
@@ -150,10 +140,7 @@ const EmployeeForm = () => {
       .then((res) => {
         setProfileData(res?.data?.data);
         const data = res?.data?.data;
-<<<<<<< HEAD
-=======
         console.log("sachin", data);
->>>>>>> bf24c8b40d0f2c64e033459ddbc16934da383f42
         reset({
           address: data.address || "",
           contact: data.contact || "",
@@ -202,11 +189,6 @@ const EmployeeForm = () => {
             { label: "Contact", name: "contact" },
             { label: "Emergency Contact Name", name: "emergencyContactName" },
             { label: "Emergency Contact", name: "emergencyContact" },
-<<<<<<< HEAD
-            { label: "Birth Country", name: "birthCountry" },
-            { label: "Gender", name: "gender" },
-=======
->>>>>>> bf24c8b40d0f2c64e033459ddbc16934da383f42
           ].map((field, idx) => (
             <Grid key={idx} size={{ sm: 12, md: 6 }}>
               <InputLabel className="base-input-label" htmlFor={field.name}>
@@ -223,8 +205,6 @@ const EmployeeForm = () => {
               />
             </Grid>
           ))}
-<<<<<<< HEAD
-=======
           <Grid size={{ md: 6 }}>
             {/* <InputLabel className="base-input-label" htmlFor="country">
               Birth Country<span className="is-required">*</span>
@@ -290,7 +270,6 @@ const EmployeeForm = () => {
               <MenuItem value="Other">Other</MenuItem>
             </TextField>
           </Grid>
->>>>>>> bf24c8b40d0f2c64e033459ddbc16934da383f42
           <Grid size={{ sm: 12, md: 6 }}>
             <InputLabel className="base-input-label" htmlFor="DOB">
               Date of Birth<span className="is-required">*</span>
@@ -314,10 +293,6 @@ const EmployeeForm = () => {
             { label: "Account Number", name: "accountNumber" },
             { label: "TFN", name: "tfn" },
             { label: "ABN", name: "abn" },
-<<<<<<< HEAD
-            { label: "Employment Type", name: "employmentType" },
-=======
->>>>>>> bf24c8b40d0f2c64e033459ddbc16934da383f42
           ].map((field, idx) => (
             <Grid key={idx} size={{ sm: 12, md: 6 }}>
               <InputLabel className="base-input-label" htmlFor={field.name}>
@@ -335,8 +310,6 @@ const EmployeeForm = () => {
             </Grid>
           ))}
           <Grid size={{ md: 6 }}>
-<<<<<<< HEAD
-=======
             <InputLabel className="base-input-label" htmlFor="employmentType">
               Employment Type<span className="is-required">*</span>
             </InputLabel>
@@ -356,7 +329,6 @@ const EmployeeForm = () => {
             </TextField>
           </Grid>
           <Grid size={{ md: 6 }}>
->>>>>>> bf24c8b40d0f2c64e033459ddbc16934da383f42
             <InputLabel className="base-input-label" htmlFor="status">
               Status<span className="is-required">*</span>
             </InputLabel>

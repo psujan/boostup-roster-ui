@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Box, Button, Divider } from "@mui/material";
 import ShiftDetails from "./partials/ShiftDetails";
 import BackButton from "../../../components/common/BackButton";
@@ -48,24 +47,3 @@ export default function EmployeeShiftDetails() {
     </>
   );
 }
-=======
-import { Box } from "@mui/material";
-import React from "react";
-import Greeting from "../EmployeeHome/partials/Greeting";
-import MyShiftsHeader from "./partials/MyShiftsHeader";
-import WeeklyStatsCard from "../EmployeeHome/partials/WeeklyStatsCard";
-import JobCard from "./partials/JobCard";
-
-const EmployeeShiftDetails = () => {
-  return (
-    <Box>
-      <Greeting />
-      <WeeklyStatsCard />
-      <MyShiftsHeader />
-      <JobCard />
-    </Box>
-  );
-};
-
-export default EmployeeShiftDetails;
->>>>>>> bf24c8b40d0f2c64e033459ddbc16934da383f42

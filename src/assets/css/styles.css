@@ -20,13 +20,8 @@ Custom CSS
 
 .heading-5 {
   margin: 0;
-<<<<<<< HEAD
   font-size: 15px;
   font-weight: 600;
-=======
-  font-size: 14.5px;
-  font-weight: 500;
->>>>>>> bf24c8b40d0f2c64e033459ddbc16934da383f42
 }
 
 .back-btn {
@@ -405,7 +400,6 @@ Custom CSS
   border-radius: 8px;
   z-index: 10001;
 }
-<<<<<<< HEAD
 
 .employee-box-wrap {
   /* no padding */
@@ -431,5 +425,3 @@ Custom CSS
 .emp-sidebar-link:hover {
   background-color: #64ecac24;
 }
-=======
->>>>>>> bf24c8b40d0f2c64e033459ddbc16934da383f42
