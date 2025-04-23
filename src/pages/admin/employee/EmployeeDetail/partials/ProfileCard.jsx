@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import api from "../../../../../services/api";
 import DefaultUserImg from "../../../../../assets/images/default_user.jpg";
 import CenterFocusStrongOutlinedIcon from "@mui/icons-material/CenterFocusStrongOutlined";
+
 const ProfileCard = ({ employee }) => {
   const { id } = useParams();
   const profileImage = employee?.user;
@@ -13,6 +14,9 @@ const ProfileCard = ({ employee }) => {
   const fullName = employee?.user?.fullName || "Unknown Name";
   const email = employee?.user?.email || "N/A";
   const [open, setOpen] = useState(false);
+  const appUrl = import.meta.env.VITE_APP_API_URL 
+  const image = employee?.image?.path ? appUrl + '/' + employee?.image?.path : DefaultUserImg;
+  console.log(appUrl);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -33,7 +37,7 @@ const ProfileCard = ({ employee }) => {
     >
       <Box sx={{ position: "relative", width: "120px", height: "120px" }}>
         <img
-          src={DefaultUserImg}
+          src={image}
           alt={fullName}
           style={{
             width: "120px",
@@ -61,7 +65,7 @@ const ProfileCard = ({ employee }) => {
         </Button>
       </Box>
       <h5 className="heading-5" style={{ marginBottom: "12px" }}>
-        {fullName}
+        {fullName} (#{employee?.id})
       </h5>
       <a href={`mailto:${email}`} className="text-muted">
         {email}

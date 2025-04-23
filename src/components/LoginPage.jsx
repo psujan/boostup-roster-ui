@@ -32,16 +32,15 @@ const LoginPage = () => {
         console.log(res);
         const token = res.data?.data?.token;
         const role = res.data?.data?.roles?.[0];
-        const user = res?.data?.data?.user?.fullName;
-        console.log("dddd", user);
+        const user = res?.data?.data?.user; // store whole user object
+        const tokenExpiry = res?.data?.data?.tokenExpiresIn;
         if (token && role) {
           // Clear All Previously Stored Data
           localStorage.clear();
-
           localStorage.setItem("token", token);
           localStorage.setItem("role", role);
-          localStorage.setItem("user", user);
-
+          localStorage.setItem("user", JSON.stringify(user));
+          localStorage.setItem("tokenExpiry", tokenExpiry);
           switch (role) {
             case "SuperAdmin":
               navigate("/admin-dashboard");
