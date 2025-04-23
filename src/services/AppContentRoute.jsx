@@ -1,35 +1,44 @@
 import { useState, useEffect } from "react";
-import { Routes, useLocation, useNavigate } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../utils/auth";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import ResponsiveDrawer from "../components/Drawer";
 import { LoaderProvider } from "../utils/context/LoaderContext";
 import AdminRoutes from "../routes/AdminRoutes";
 import EmployeeRoutes from "../routes/EmployeeRoutes";
 import EmployeeSidebar from "../components/EmployeeSidebar";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOpenOutlined";
+import LoginPage from "../components/LoginPage"
 
 export const AppContentRoute = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [empSideBar, setEmpSideBar] = useState(false);
-  const isLoginPage =
-    location.pathname === "/" || location.pathname === "/login";
+  const isLoginPage = location.pathname === "/login";
   const { isAuth, role } = isAuthenticated();
   const toggleEmpSideBar = (toggleState) => {
     setEmpSideBar(toggleState);
   };
 
   useEffect(() => {
+    console.log("called here first", isAuth, isLoginPage);
     if (!isAuth && !isLoginPage) {
       navigate("/login");
     }
   }, [isAuth, isLoginPage, navigate]);
-  
-  
+
+  if (isLoginPage)
+    return (
+      <LoaderProvider>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
+      </LoaderProvider>
+    );
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -75,7 +84,7 @@ export const AppContentRoute = () => {
                 bgcolor: "#fff",
                 p: 1,
                 minHeight: "100vh",
-                backgroundColor:"#f5f5f5"
+                backgroundColor: "#f5f5f5",
               }}
             >
               <EmployeeRoutes />
