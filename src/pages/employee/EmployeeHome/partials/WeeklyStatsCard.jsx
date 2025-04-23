@@ -10,7 +10,7 @@ const WeeklyStatsCard = () => {
       <Box
         sx={{
           p: 3,
-          backgroundColor: "#f4f4f4",
+          backgroundColor: "#fff",
           borderRadius: "8px",
           display: "flex",
           justifyContent: "space-between",

@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Dashboard from "../pages/admin/dashboard/Dashboard";
 import ScheduleShift from "../pages/admin/ScheduleShift";
 import JobPage from "../pages/admin/jobs/JobPage";
@@ -14,28 +14,26 @@ import RosterAdd from "../pages/admin/roster/RosterAdd";
 
 export default function AdminRoutes() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/admin-dashboard" element={<Dashboard />} />
-        <Route path="/schedule-shift" element={<ScheduleShift />} />
-        <Route path="/jobs" element={<JobPage />} />
-        <Route path="/jobs/add-jobs" element={<AddJob />} />
-        <Route path="/jobs/update-jobs/:id" element={<EditJob />} />
-        <Route path="/all-employee" element={<AllEmployee />} />
+    <Routes>
+      <Route path="/" element={<Dashboard />} />
+      <Route path="/admin-dashboard" element={<Dashboard />} />
+      <Route path="/schedule-shift" element={<ScheduleShift />} />
+      <Route path="/jobs" element={<JobPage />} />
+      <Route path="/jobs/add-jobs" element={<AddJob />} />
+      <Route path="/jobs/update-jobs/:id" element={<EditJob />} />
+      <Route path="/all-employee" element={<AllEmployee />} />
 
-        <Route path="/employee-profile" element={<EmployeeDetail />} />
-        <Route
-          path="/update-employee-profile/:id"
-          element={<UpdateEmployeeDetails />}
-        />
-        <Route path="/leave-request" element={<LeaveRequest />} />
-        <Route path="/onboard-staff" element={<Onboard />} />
+      <Route path="/employee-profile" element={<EmployeeDetail />} />
+      <Route
+        path="/update-employee-profile/:id"
+        element={<UpdateEmployeeDetails />}
+      />
+      <Route path="/leave-request" element={<LeaveRequest />} />
+      <Route path="/onboard-staff" element={<Onboard />} />
 
-        <Route path="/employee/:id" element={<EmployeeDetail />}></Route>
-        <Route path="/roster" element={<RosterListIndex />}></Route>
-        <Route path="/roster/add" element={<RosterAdd />}></Route>
-      </Routes>
-    </>
+      <Route path="/employee/:id" element={<EmployeeDetail />}></Route>
+      <Route path="/roster" element={<RosterListIndex />}></Route>
+      <Route path="/roster/add" element={<RosterAdd />}></Route>
+    </Routes>
   );
 }

@@ -1,15 +1,19 @@
 import { Route, Routes } from "react-router-dom";
 import EmployeeHome from "../pages/employee/EmployeeHome/EmployeeHome";
 import EmployeeShiftDetails from "../pages/employee/EmployeeShiftDetail/EmployeeShiftDetails";
-import EmployeeLeaveRequest from "../pages/employee/EmployeeLeaveRequest/EmployeeLeaveRequest";
+import EmployeeAddLeave from "../pages/employee/Leave/EmployeeAddLeave";
+import ShiftHistory from "../pages/employee/ShiftHistory/ShiftHistory";
+import EmployeeLeaveRequests from "../pages/employee/Leave/EmployeeLeaveRequests";
 
 export default function EmployeeRoutes() {
   return (
     <Routes>
       <Route path="/" element={<EmployeeHome />} />
       <Route path="/employee-dashboard" element={<EmployeeHome />} />
-      <Route path="/employee-jobs" element={<EmployeeShiftDetails />} />
-      <Route path="/employee-leaves" element={<EmployeeLeaveRequest />} />
+      <Route path="/shift-detail/:id" element={<EmployeeShiftDetails />} />
+      <Route path="/employee-leave/add" element={<EmployeeAddLeave />} />
+      <Route path="/employee-leaves" element={<EmployeeLeaveRequests />} />
+      <Route path="/shift-history" element={<ShiftHistory />} />
     </Routes>
   );
 }

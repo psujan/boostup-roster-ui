@@ -411,3 +411,17 @@ Custom CSS
   right: 10px;
   top: 10px;
 }
+
+.emp-sidebar-link-list {
+  margin: 15px 10px;
+}
+
+.emp-sidebar-link {
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.emp-sidebar-link:hover {
+  background-color: #64ecac24;
+}

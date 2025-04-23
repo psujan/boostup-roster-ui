@@ -89,6 +89,7 @@ export const AppContentRoute = () => {
                 bgcolor: "#fff",
                 p: 1,
                 minHeight: "100vh",
+                backgroundColor:"#f5f5f5"
               }}
             >
               <EmployeeRoutes />
