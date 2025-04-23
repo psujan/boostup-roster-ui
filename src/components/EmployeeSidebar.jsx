@@ -5,7 +5,13 @@ import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined
 import AllOutOutlinedIcon from "@mui/icons-material/AllOutOutlined";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 export default function EmployeeSidebar({ empSideBar, toggleEmpSideBar }) {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
   return (
     <Drawer
       open={empSideBar}
@@ -17,7 +23,12 @@ export default function EmployeeSidebar({ empSideBar, toggleEmpSideBar }) {
         <Box sx={{ padding: "20px 10px" }}>
           <Box className="flex flex-between flex-center">
             <h5 className="heading-5">Hi, Sujan Poudel</h5>
-            <Button variant="outlined" color="primary" size="small">
+            <Button
+              variant="outlined"
+              color="primary"
+              size="small"
+              onClick={() => handleLogout()}
+            >
               Logout
             </Button>
           </Box>

@@ -189,12 +189,12 @@ export default function ResponsiveDrawer({ open, setOpen }) {
             &nbsp; &nbsp; &nbsp;
             {isAuth && role == "SuperAdmin" ? (
               <ClickableTextMenu
-                text={user}
+                text={user?.fullName}
                 items={[{ label: "Logout", onClick: handleLogout }]}
               />
             ) : (
               <ClickableTextMenu
-                text={user}
+                text={user?.fullName}
                 items={[
                   { label: "My Profile", onClick: handleProfile },
                   { label: "Logout", onClick: handleLogout },
