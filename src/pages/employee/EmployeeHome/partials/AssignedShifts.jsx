@@ -58,6 +58,7 @@ export default function AssignedShifts() {
           alignItems: "flex-start",
           fontSize: "14px",
           boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
+          cursor:"pointer"
         }}
       >
         <span className="roster-detail-arrow">
