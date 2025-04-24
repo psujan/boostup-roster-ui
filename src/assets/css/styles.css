@@ -425,3 +425,12 @@ Custom CSS
 .emp-sidebar-link:hover {
   background-color: #64ecac24;
 }
+
+.emp-logout-btn {
+  display: flex !important;
+  margin: 10px !important;
+  position: absolute !important;
+  bottom:10px !important;
+  width: 90% !important;
+  align-items: center !important;
+}

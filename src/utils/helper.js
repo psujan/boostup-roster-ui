@@ -61,4 +61,12 @@ export default class Helper {
     }
     return dates;
   }
+
+  static getCurrentEmployeeId() {
+    const emp = JSON.parse(localStorage.getItem("employee"));
+    if (!emp) {
+      return null;
+    }
+    return emp.employeeId;
+  }
 }

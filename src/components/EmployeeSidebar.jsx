@@ -6,6 +6,7 @@ import AllOutOutlinedIcon from "@mui/icons-material/AllOutOutlined";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
 export default function EmployeeSidebar({ empSideBar, toggleEmpSideBar }) {
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -20,21 +21,13 @@ export default function EmployeeSidebar({ empSideBar, toggleEmpSideBar }) {
       onClose={() => toggleEmpSideBar(false)}
     >
       <Box sx={{ width: 280 }} role="presentation">
-        <Box sx={{ padding: "20px 10px" }}>
+        {/* <Box sx={{ padding: "20px 10px" }}>
           <Box className="flex flex-between flex-center">
             <h5 className="heading-5">Hi, Sujan Poudel</h5>
-            <Button
-              variant="outlined"
-              color="primary"
-              size="small"
-              onClick={() => handleLogout()}
-            >
-              Logout
-            </Button>
           </Box>
           <Divider sx={{ margin: "10px 0" }}></Divider>
-        </Box>
-        <Box>
+        </Box> */}
+        <Box mt={4}>
           <ul>
             <li className="flex flex-center emp-sidebar-link-list">
               <Link
@@ -83,6 +76,20 @@ export default function EmployeeSidebar({ empSideBar, toggleEmpSideBar }) {
           </ul>
         </Box>
       </Box>
+      <Button
+        className="emp-logout-btn"
+        variant="outlined"
+        color="primary"
+        size="small"
+        onClick={() => handleLogout()}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <ArrowCircleLeftOutlinedIcon />
+        <span style={{ paddingLeft: "8px" }}>Logout</span>
+      </Button>
     </Drawer>
   );
 }

@@ -34,6 +34,7 @@ const LoginPage = () => {
         const role = res.data?.data?.roles?.[0];
         const user = res?.data?.data?.user; // store whole user object
         const tokenExpiry = res?.data?.data?.tokenExpiresIn;
+        const employee = res?.data?.data?.employee;
         if (token && role) {
           // Clear All Previously Stored Data
           localStorage.clear();
@@ -41,6 +42,7 @@ const LoginPage = () => {
           localStorage.setItem("role", role);
           localStorage.setItem("user", JSON.stringify(user));
           localStorage.setItem("tokenExpiry", tokenExpiry);
+          localStorage.setItem("employee", JSON.stringify(employee));
           switch (role) {
             case "SuperAdmin":
               navigate("/admin-dashboard");

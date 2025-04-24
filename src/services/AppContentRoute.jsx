@@ -25,7 +25,6 @@ export const AppContentRoute = () => {
       return false;
     }
     if (new Date(tokenExpiry) > Date.now()) {
-      console.log("checking token expiry");
       return true;
     }
 
