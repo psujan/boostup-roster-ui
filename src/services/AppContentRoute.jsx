@@ -9,10 +9,10 @@ import AdminLayouts from "../components/layouts/AdminLayouts";
 import EmployeeLayouts from "../components/layouts/EmployeeLayouts";
 
 export const AppContentRoute = () => {
-  const location = useLocation();
+  //const location = useLocation();
   const navigate = useNavigate();
-  const isLoginPage = location.pathname === "/login";
-  const { isAuth, role } = isAuthenticated();
+  // const isLoginPage = location.pathname === "/login";
+  const { role } = isAuthenticated();
 
   const isValidLoggedIn = () => {
     const token = localStorage.getItem("token");
@@ -34,7 +34,7 @@ export const AppContentRoute = () => {
     if (!isValidLoggedIn()) {
       navigate("/login");
     }
-  }, [isAuth, isLoginPage, navigate]);
+  }, []);
 
   const getRoleBasedLayout = () => {
     switch (role.toLowerCase()) {
@@ -51,9 +51,9 @@ export const AppContentRoute = () => {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <LoaderProvider>
         {getRoleBasedLayout()}
-        <Routes>
+        {/* <Routes>
           <Route path="/login" element={<LoginPage />} />
-        </Routes>
+        </Routes> */}
       </LoaderProvider>
     </LocalizationProvider>
   );
