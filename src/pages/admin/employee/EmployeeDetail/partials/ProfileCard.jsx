@@ -7,15 +7,17 @@ import api from "../../../../../services/api";
 import DefaultUserImg from "../../../../../assets/images/default_user.jpg";
 import CenterFocusStrongOutlinedIcon from "@mui/icons-material/CenterFocusStrongOutlined";
 
-const ProfileCard = ({ employee }) => {
+const ProfileCard = ({ employee, onImageUpload }) => {
   const { id } = useParams();
   const profileImage = employee?.user;
   console.log("pp", employee);
   const fullName = employee?.user?.fullName || "Unknown Name";
   const email = employee?.user?.email || "N/A";
   const [open, setOpen] = useState(false);
-  const appUrl = import.meta.env.VITE_APP_API_URL 
-  const image = employee?.image?.path ? appUrl + '/' + employee?.image?.path : DefaultUserImg;
+  const appUrl = import.meta.env.VITE_APP_API_URL;
+  const image = employee?.image?.path
+    ? appUrl + "/" + employee?.image?.path
+    : DefaultUserImg;
   console.log(appUrl);
 
   const handleOpen = () => setOpen(true);
@@ -64,7 +66,7 @@ const ProfileCard = ({ employee }) => {
           <CenterFocusStrongOutlinedIcon />
         </Button>
       </Box>
-      <h5 className="heading-5" style={{ marginBottom: "12px" }}>
+      <h5 className="heading-5" style={{ margin: "12px 0" }}>
         {fullName} (#{employee?.id})
       </h5>
       <a href={`mailto:${email}`} className="text-muted">
@@ -82,7 +84,12 @@ const ProfileCard = ({ employee }) => {
       >
         Manage Availability
       </Button>
-      <UpdateImage open={open} setOpen={setOpen} handleClose={handleClose} />
+      <UpdateImage
+        open={open}
+        setOpen={setOpen}
+        handleClose={handleClose}
+        onImageUpload={() => onImageUpload()}
+      />
     </Box>
   );
 };

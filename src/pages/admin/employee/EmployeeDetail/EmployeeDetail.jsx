@@ -22,7 +22,7 @@ const EmployeeDetail = () => {
   //   navigate(`/update-employee-profile/${id}`);
   // };
 
-  useEffect(() => {
+  const getEmployeeDetail = () => {
     showLoader();
     api
       .get(`/api/v1/employee/${id}`)
@@ -34,6 +34,9 @@ const EmployeeDetail = () => {
         ToastMessage("error", err?.response?.data?.message);
         hideLoader();
       });
+  };
+  useEffect(() => {
+    getEmployeeDetail();
   }, [id]);
 
   return (
@@ -57,7 +60,11 @@ const EmployeeDetail = () => {
       <Box className="content-box">
         <Grid container columns={12} spacing={1}>
           <Grid size={{ md: 4, sm: 12 }} sx={{ mb: 2 }}>
-            <ProfileCard employee={employee} className="profile-card" />
+            <ProfileCard
+              employee={employee}
+              className="profile-card"
+              onImageUpload={() => getEmployeeDetail()}
+            />
           </Grid>
           <Grid size={{ md: 8, sm: 12 }} sx={{ mb: 2 }}>
             <Box
