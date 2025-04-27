@@ -65,7 +65,7 @@ export default function EmployeeSidebar({ empSideBar, toggleEmpSideBar }) {
             <li className="flex flex-center emp-sidebar-link-list">
               <Link
                 onClick={() => toggleEmpSideBar(false)}
-                to="/employee-dashboard"
+                to="/my-profile"
                 style={{ width: "100%" }}
                 className="flex flex-center emp-sidebar-link"
               >

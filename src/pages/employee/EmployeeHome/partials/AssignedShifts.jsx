@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Grid2 } from "@mui/material";
 import CallMadeOutlinedIcon from "@mui/icons-material/CallMadeOutlined";
 import { useNavigate } from "react-router-dom";
 import api from "../../../../services/api";
@@ -45,43 +45,45 @@ export default function AssignedShifts() {
 
   const ShiftBox = ({ shift }) => {
     return (
-      <Box
-        onClick={() => navigate("/shift-detail/" + shift.id)}
-        sx={{
-          position: "relative",
-          p: 2,
-          mb: 3,
-          backgroundColor: "#fff",
-          border: "1px solid transparent",
-          borderRadius: "8px",
-          display: "flex",
-          alignItems: "flex-start",
-          fontSize: "14px",
-          boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
-          cursor:"pointer"
-        }}
-      >
-        <span className="roster-detail-arrow">
-          <CallMadeOutlinedIcon color="primary" />
-        </span>
-        <Box>
-          <p className="text-muted" style={{ marginBottom: "10px" }}>
-            {dayjs(shift.date).format("ddd[\n] D")}
-          </p>
+      <Grid2 size={{ md: 5, sm: 12, xs:12, lg:5 }}>
+        <Box
+          onClick={() => navigate("/shift-detail/" + shift.id)}
+          sx={{
+            position: "relative",
+            p: 2,
+            mb: 2,
+            backgroundColor: "#fff",
+            border: "1px solid transparent",
+            borderRadius: "8px",
+            display: "flex",
+            alignItems: "flex-start",
+            fontSize: "14px",
+            boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
+            cursor: "pointer",
+          }}
+        >
+          <span className="roster-detail-arrow">
+            <CallMadeOutlinedIcon color="primary" />
+          </span>
+          <Box>
+            <p className="text-muted" style={{ marginBottom: "10px" }}>
+              {dayjs(shift.date).format("ddd[\n] D")}
+            </p>
+          </Box>
+          <Box sx={{ marginLeft: "35px" }}>
+            <h6
+              style={{
+                fontSize: "14px",
+                fontWeight: "500",
+                marginBottom: "14px",
+              }}
+            >
+              {shift.startTime} - {shift.endTime} | {shift?.workHours} hrs
+            </h6>
+            <p className="text-muted">{shift?.job?.title}</p>
+          </Box>
         </Box>
-        <Box sx={{ marginLeft: "35px" }}>
-          <h6
-            style={{
-              fontSize: "14px",
-              fontWeight: "500",
-              marginBottom: "14px",
-            }}
-          >
-            {shift.startTime} - {shift.endTime} | {shift?.workHours} hrs
-          </h6>
-          <p className="text-muted">{shift?.job?.title}</p>
-        </Box>
-      </Box>
+      </Grid2>
     );
   };
 
@@ -98,13 +100,23 @@ export default function AssignedShifts() {
           </span>
         </span>
       </Box>
-      {shifts.length ? (
-        shifts.map((row, i) => <ShiftBox shift={row} key={i} />)
-      ) : (
-        <Box p={3} borderRadius={2} backgroundColor="#fff">
-          <p className="text-muted">No Shift Record Available For This Week</p>
-        </Box>
-      )}
+      <Grid2
+        container
+        rowGap={2}
+        columnGap={1}
+        columns={12}
+        alignItems="center"
+      >
+        {shifts.length ? (
+          shifts.map((row, i) => <ShiftBox shift={row} key={i} />)
+        ) : (
+          <Box p={3} borderRadius={2} backgroundColor="#fff">
+            <p className="text-muted">
+              No Shift Record Available For This Week
+            </p>
+          </Box>
+        )}
+      </Grid2>
       {shifts.length ? (
         <Paginate count={count} page={page} onPageChange={onPageChange} />
       ) : undefined}
