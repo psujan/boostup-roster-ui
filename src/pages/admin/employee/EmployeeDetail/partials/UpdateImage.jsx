@@ -86,7 +86,9 @@ const UpdateImage = ({ open, handleClose, onImageUpload = () => {} }) => {
         </Button>
 
         <Typography variant="caption" color="text.secondary">
-          {file ? file.name : "JPG, PNG, or JPEG under 5MB"}
+          {file
+            ? file.name + " | " + (file.size / (1024 * 1024)).toFixed(2) + "Mb"
+            : "JPG, PNG, or JPEG under 5MB"}
         </Typography>
 
         {file ? (

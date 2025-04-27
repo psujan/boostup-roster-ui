@@ -77,7 +77,7 @@ export default function EmployeeProfile() {
             <img
               src={
                 employee?.image?.path
-                  ? appUrl + employee?.image?.path
+                  ? appUrl +"/"+ employee?.image?.path
                   : DEFAULT_IMAGE
               }
               alt={employee?.user?.fullName}
