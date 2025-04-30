@@ -91,7 +91,7 @@ const AllEmployee = () => {
         >
           {employeeData.length ? (
             employeeData.map((emp) => (
-              <Grid2 md={4} lg={3} key={emp.id}>
+              <Grid2 md={3} lg={3} key={emp.id}>
                 <ECard emp={emp} />
               </Grid2>
             ))
