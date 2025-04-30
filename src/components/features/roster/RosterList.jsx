@@ -8,6 +8,7 @@ import RosterFilter from "./RosterFilter";
 import RosterDrawer from "./RosterDrawer";
 import { ToastMessage } from "../../common/ToastNotification";
 import DeleteModal from "../../common/Deletemodal";
+import Paginate from "../../common/Paginate";
 
 export default function RosterList() {
   //Default Constant Variables
@@ -19,6 +20,9 @@ export default function RosterList() {
 
   //filter form
   const [showFilter, setShowFilter] = useState(false);
+  const [filterQuery, setFilterQuery] = useState("");
+
+  //Pagination
 
   const [sort, setSort] = useState("emp");
   const [deleteModal, setDeleteModal] = useState(false);
@@ -30,6 +34,7 @@ export default function RosterList() {
   };
 
   // Component State
+  const [count, setCount] = useState(1);
   const [pageNumber, setPageNumber] = useState(1);
   const [rosterItems, setRosterItems] = useState([]);
   const [dateRange, setDateRange] = useState(
@@ -61,6 +66,10 @@ export default function RosterList() {
       });
   };
 
+  const getFilterQuery = () => {
+    return `From=${startOfWeek}&To=${endOfWeek}&pageNumber=${pageNumber}&pageSize=${PAGE_SIZE}`;
+  };
+
   /**API  Function Call */
   // Get Roster List
   // On Default Fetched Employee List With Pagination With Roster Details
@@ -72,14 +81,11 @@ export default function RosterList() {
       filterQuery = `From=${startOfWeek}&To=${endOfWeek}&pageNumber=${pageNumber}&pageSize=${PAGE_SIZE}`;
     }
     api
-      .get(`/api/v1/roster?${filterQuery}`, {
-        headers: {
-          MyName: "Sujan",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
+      .get(`/api/v1/roster?${filterQuery}`, {})
       .then((res) => {
+        setRosterItems(() => []);
         setRosterItems(() => res?.data?.data?.data);
+        setCount(res?.data?.data?.totalCount);
       })
       .catch((err) => {
         console.error(err);
@@ -89,8 +95,13 @@ export default function RosterList() {
       });
   };
 
+  const handlePageChange = (v) => {
+    setPageNumber(v);
+  };
+
   const handleFilter = (filterQuery) => {
     if (filterQuery) {
+      setFilterQuery(filterQuery);
       filterQuery = `${filterQuery}&pageNumber=${pageNumber}&pageSize=${PAGE_SIZE}`;
       getRosterList(filterQuery);
     } else {
@@ -210,6 +221,10 @@ export default function RosterList() {
   }, []);
 
   useEffect(() => {
+    getRosterList(getFilterQuery());
+  }, [pageNumber]);
+
+  useEffect(() => {
     getEmployeeList();
   }, []);
 
@@ -268,7 +283,7 @@ export default function RosterList() {
                         onChange={(e) => setSort(e.target.value)}
                       >
                         <MenuItem value="emp">Employee</MenuItem>
-                        <MenuItem value="job">Job</MenuItem>
+                        {/* <MenuItem value="job">Job</MenuItem> */}
                       </Select>
                     </div>
                   </th>
@@ -315,6 +330,11 @@ export default function RosterList() {
                 )}
               </tbody>
             </table>
+            <Paginate
+              count={count}
+              page={pageNumber}
+              onPageChange={handlePageChange}
+            />
           </div>
         </div>
         <RosterDrawer
