@@ -89,7 +89,6 @@ export default function AssignedShifts() {
     }
 
     showLoader();
-    console.log(shift);
     const payload = {
       timeSheetId: shift.timeSheets[0].id,
       clockOut: dayjs().format("h:mm A"),
