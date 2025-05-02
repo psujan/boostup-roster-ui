@@ -7,6 +7,7 @@ import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
+import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';
 export default function EmployeeSidebar({ empSideBar, toggleEmpSideBar }) {
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -71,6 +72,17 @@ export default function EmployeeSidebar({ empSideBar, toggleEmpSideBar }) {
               >
                 <Person2OutlinedIcon color="#ccc" />
                 <span style={{ paddingLeft: "20px" }}>Profile</span>
+              </Link>
+            </li>
+            <li className="flex flex-center emp-sidebar-link-list">
+              <Link
+                onClick={() => toggleEmpSideBar(false)}
+                to="/my-availability"
+                style={{ width: "100%" }}
+                className="flex flex-center emp-sidebar-link"
+              >
+                <UpdateOutlinedIcon color="#ccc" />
+                <span style={{ paddingLeft: "20px" }}>Availability</span>
               </Link>
             </li>
           </ul>
