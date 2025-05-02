@@ -10,6 +10,7 @@ export default function EmployeeLayouts() {
   const toggleEmpSideBar = (toggleState) => {
     setEmpSideBar(toggleState);
   };
+
   return (
     <Box>
       <EmployeeSidebar
@@ -22,7 +23,7 @@ export default function EmployeeLayouts() {
       >
         <Link to="/employee-dashboard">
           <Typography
-            variant="h5"
+    c        variant="h5"
             style={{
               color: "var(--primaryColor)",
               fontWSize: "24px",

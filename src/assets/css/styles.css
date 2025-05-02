@@ -12,6 +12,10 @@ Custom CSS
   color: #1e7e51;
 }
 
+.text-sm{
+  font-size: 12px !important;
+}
+
 .heading-3 {
   margin: 0;
   font-size: 16px;

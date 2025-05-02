@@ -12,6 +12,7 @@ import Onboard from "../pages/admin/employee/Onboard";
 import RosterListIndex from "../pages/admin/roster/RosterList";
 import RosterAdd from "../pages/admin/roster/RosterAdd";
 import LeavePage from "../pages/admin/leave/LeavePage";
+import LoginPage from "../components/LoginPage";
 
 
 export default function AdminRoutes() {
@@ -38,6 +39,7 @@ export default function AdminRoutes() {
       <Route path="/roster/add" element={<RosterAdd />}></Route>
       <Route path="/leaves" element={<LeavePage />} />
       <Route path="/leave-request/:id" element={<LeaveRequest />} />
+      <Route path="/login" element={<LoginPage />} />
     </Routes>
   );
 }

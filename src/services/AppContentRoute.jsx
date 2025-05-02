@@ -37,6 +37,10 @@ export const AppContentRoute = () => {
   }, []);
 
   const getRoleBasedLayout = () => {
+    // To access role , user must have valid login
+    if (!isValidLoggedIn()) {
+      localStorage.clear();
+    }
     switch (role.toLowerCase()) {
       case "superadmin":
         return <AdminLayouts />;
