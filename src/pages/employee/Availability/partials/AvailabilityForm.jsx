@@ -41,6 +41,11 @@ export default function AvailabilityForm() {
       return false;
     }
 
+    if (dayjs(from, "h:mm A").isAfter(dayjs(to, "h:mm A"))) {
+      ToastMessage("error", "From value is less than to time");
+      return false;
+    }
+
     return true;
   };
 
@@ -101,8 +106,9 @@ export default function AvailabilityForm() {
           }}
         >
           <p className="text-muted text-sm">
-            You can have maximum 3 availabilities for a single day. Please remove
-            existing record first if you wish to modify based on your need.
+            You can have maximum 3 availabilities for a single day. Please
+            remove existing record first if you wish to modify based on your
+            need.
           </p>
         </Box>
         <Grid2 container spacing={4} columns={12} alignItems="center">
@@ -146,26 +152,31 @@ export default function AvailabilityForm() {
               get more information about it.
             </p>
           </Grid2>
-          <Grid2 size={{ xs: 12, md: 6 }}>
-            <InputLabel className="base-input-label" id="available-from">
-              From
-            </InputLabel>
-            <TimePicker
-              onChange={(v) => setFrom(v)}
-              sx={{ width: "100%", height: "46px" }}
-              className="base-input"
-            />
-          </Grid2>
-          <Grid2 size={{ xs: 12, md: 6 }}>
-            <InputLabel className="base-input-label" id="available-to">
-              To
-            </InputLabel>
-            <TimePicker
-              onChange={(v) => setTo(v)}
-              sx={{ width: "100%", height: "46px" }}
-              className="base-input"
-            />
-          </Grid2>
+          {!forFullDay ? (
+            <>
+              {" "}
+              <Grid2 size={{ xs: 12, md: 6 }}>
+                <InputLabel className="base-input-label" id="available-from">
+                  From
+                </InputLabel>
+                <TimePicker
+                  onChange={(v) => setFrom(v)}
+                  sx={{ width: "100%", height: "46px" }}
+                  className="base-input"
+                />
+              </Grid2>
+              <Grid2 size={{ xs: 12, md: 6 }}>
+                <InputLabel className="base-input-label" id="available-to">
+                  To
+                </InputLabel>
+                <TimePicker
+                  onChange={(v) => setTo(v)}
+                  sx={{ width: "100%", height: "46px" }}
+                  className="base-input"
+                />
+              </Grid2>
+            </>
+          ) : undefined}
           <Grid2 size={{ xs: 12, md: 6 }}>
             <Button
               variant="contained"
