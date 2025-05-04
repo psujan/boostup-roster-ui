@@ -24,14 +24,12 @@ export default function Availability() {
   };
 
   const findForDay = (day) => {
-    console.log(availabilities);
     const data = availabilities.find((x) => x.day == day);
     return data ? data.records : undefined;
   };
 
   const AvailabilityBox = ({ day }) => {
     const records = findForDay(day);
-    console.log(day, records);
     return (
       <Box
         sx={{
