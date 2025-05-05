@@ -7,13 +7,12 @@ import EditJob from "../pages/admin/jobs/EditJob";
 import AllEmployee from "../pages/admin/employee/AllEmployee";
 import EmployeeDetail from "../pages/admin/employee/EmployeeDetail/EmployeeDetail";
 import UpdateEmployeeDetails from "../pages/admin/employee/EmployeeUpdate/UpdateEmployeeDetails";
-import LeaveRequest from "../components/Leavereq";
 import Onboard from "../pages/admin/employee/Onboard";
 import RosterListIndex from "../pages/admin/roster/RosterList";
 import RosterAdd from "../pages/admin/roster/RosterAdd";
 import LeavePage from "../pages/admin/leave/LeavePage";
 import LoginPage from "../components/LoginPage";
-
+import LeaveRequest from "../pages/admin/leave/LeaveRequest";
 
 export default function AdminRoutes() {
   return (
@@ -31,7 +30,6 @@ export default function AdminRoutes() {
         path="/update-employee-profile/:id"
         element={<UpdateEmployeeDetails />}
       />
-      <Route path="/leave-request" element={<LeaveRequest />} />
       <Route path="/onboard-staff" element={<Onboard />} />
 
       <Route path="/employee/:id" element={<EmployeeDetail />}></Route>
