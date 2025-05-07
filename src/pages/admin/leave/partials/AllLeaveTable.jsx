@@ -6,6 +6,7 @@ import { useLoader } from "../../../../utils/context/LoaderContext";
 import api from "../../../../services/api";
 import { useNavigate, useParams } from "react-router-dom";
 import { ToastMessage } from "../../../../components/common/ToastNotification";
+import BasicActions from "../../../../components/common/BasicActions";
 
 const AllLeaveTable = () => {
   const navigate = useNavigate();
@@ -37,7 +38,6 @@ const AllLeaveTable = () => {
         if (res?.data?.data) {
           setLeavedata(res?.data?.data?.data); // Update leaveData state
           setCount(res?.data?.data?.totalCount);
-          console.log("chjedk", leaveData);
           const resultCount = res?.data?.data?.resultCount || pageSize;
           setPageInfo(() => {
             return {
@@ -69,7 +69,6 @@ const AllLeaveTable = () => {
   const handleDeleteModal = (id) => {
     setDeleteId(id);
     setOpen(true);
-    console.log("Delhanlp", deleteId);
   };
   const confirmDelete = (del) => {
     setOpen(false);
@@ -77,7 +76,6 @@ const AllLeaveTable = () => {
       setDeleteId(undefined);
       return;
     }
-    console.log("first", del);
     handleDelete(deleteId);
   };
 
@@ -114,7 +112,7 @@ const AllLeaveTable = () => {
               <th>Leave Id</th>
               <th>Employee</th>
               <th>Leave Type</th>
-              <th>No. of Days</th>
+              <th>Date</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
@@ -126,21 +124,19 @@ const AllLeaveTable = () => {
                   <td>{leave?.id}</td>
                   <td>{leave?.employee?.employeeName}</td>
                   <td>{leave?.leaveType?.title}</td>
-                  <td>{leave?.leaveType?.days}</td>
+                  <td>
+                    {leave?.forSingleDay
+                      ?  leave?.from
+                      : leave.from + " to " + leave?.to}
+                  </td>
                   <td>{leave.status}</td>
                   <td>
-                    <Box display="flex" alignItems="center">
-                      <Button onClick={() => handleView(leave?.id)}>
-                        View
-                      </Button>
-                      <Divider orientation="vertical" flexItem sx={{ mx: 2 }} />
-                      <Button
-                        sx={{ color: "red" }}
-                        onClick={() => handleDeleteModal(leave?.id)}
-                      >
-                        Delete
-                      </Button>
-                    </Box>
+                    <BasicActions
+                      view={true}
+                      edit={false}
+                      onView={() => handleView(leave?.id)}
+                      onDelete={() => handleDeleteModal(leave?.id)}
+                    />
                   </td>
                 </tr>
               ))

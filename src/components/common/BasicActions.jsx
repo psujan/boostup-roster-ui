@@ -7,6 +7,10 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 export default function BasicActions({
   onEdit = () => {},
   onDelete = () => {},
+  onView = () => {},
+  view = false,
+  edit = true,
+  del = true,
 }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -17,7 +21,12 @@ export default function BasicActions({
     onEdit();
     setAnchorEl(null);
   };
-  
+
+  const handleShow = () => {
+    onView();
+    setAnchorEl(null);
+  };
+
   const handleDelete = () => {
     onDelete();
     setAnchorEl(null);
@@ -45,12 +54,27 @@ export default function BasicActions({
         onClose={handleClose}
         sx={{ boxShadow: "none" }}
       >
-        <MenuItem onClick={handleEdit}>
-          <span style={{ fontSize: "14px" }}>Edit</span>
-        </MenuItem>
-        <MenuItem onClick={handleDelete}>
-          <span style={{ fontSize: "14px", color: "red" }}>Delete</span>
-        </MenuItem>
+        {view ? (
+          <MenuItem onClick={handleShow}>
+            <span style={{ fontSize: "14px" }}>View</span>
+          </MenuItem>
+        ) : (
+          ""
+        )}
+        {edit ? (
+          <MenuItem onClick={handleEdit}>
+            <span style={{ fontSize: "14px" }}>Edit</span>
+          </MenuItem>
+        ) : (
+          ""
+        )}
+        {del ? (
+          <MenuItem onClick={handleDelete}>
+            <span style={{ fontSize: "14px", color: "red" }}>Delete</span>
+          </MenuItem>
+        ) : (
+          ""
+        )}
         {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
       </Menu>
     </div>

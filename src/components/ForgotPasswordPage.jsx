@@ -8,59 +8,53 @@ import {
   Box,
   Paper,
   InputLabel,
-  Modal,
 } from "@mui/material";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 import { ToastMessage } from "./common/ToastNotification";
 import Logo from "../assets/images/boostup-logo.png";
 import { useLoader } from "../utils/context/LoaderContext";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import ForgotPasswordModal from "./ForgotPasswordModal";
 
-const LoginPage = () => {
+const ForgotPasswordPage = () => {
+  console.log("showing this page");
   const navigate = useNavigate();
   const { showLoader, hideLoader } = useLoader();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleLogin = () => {
+  const validate = () => {
+    if (!password) {
+      ToastMessage("error", "Please provide new password");
+      return;
+    }
+
+    if (password != confirmPassword) {
+      ToastMessage("error", "Please match your new password");
+      return;
+    }
+
+    return true;
+  };
+  const handleSubmit = () => {
+    if (!validate()) {
+      return;
+    }
+    const payload = {
+      email: email,
+      resetToken: localStorage.getItem("resetToken"),
+      password: password,
+    };
     showLoader();
     api
-      .post("/api/v1/auth", { email, password })
+      .post("/api/v1/auth/reset-password", payload)
       .then((res) => {
-        console.log(res);
-        const token = res.data?.data?.token;
-        const role = res.data?.data?.roles?.[0];
-        const user = res?.data?.data?.user; // store whole user object
-        const tokenExpiry = res?.data?.data?.tokenExpiresIn;
-        const employee = res?.data?.data?.employee;
-        if (token && role) {
-          // Clear All Previously Stored Data
-          localStorage.clear();
-          localStorage.setItem("token", token);
-          localStorage.setItem("role", role);
-          localStorage.setItem("user", JSON.stringify(user));
-          localStorage.setItem("tokenExpiry", tokenExpiry);
-          localStorage.setItem("employee", JSON.stringify(employee));
-          switch (role) {
-            case "SuperAdmin":
-              navigate("/admin-dashboard");
-              ToastMessage("success", "Login Successful");
-              break;
-            case "Employee":
-              navigate("/employee-dashboard");
-              ToastMessage("success", "Login Successful");
-              break;
-            default:
-              navigate("/login");
-          }
+        if (res?.data?.success) {
+          ToastMessage("success", res?.data?.message || "Successful");
+          localStorage.clear()
+          navigate("/login");
         } else {
-          console.error("Invalid response structure");
-          ToastMessage("error", "Invalid Login");
+          ToastMessage("error", res?.data?.message || "Something Went Wrong");
         }
       })
       .catch((error) => {
@@ -104,7 +98,7 @@ const LoginPage = () => {
             color: "var(--primaryColor)",
           }}
         >
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
             <span>
               <img
                 src={Logo}
@@ -112,9 +106,7 @@ const LoginPage = () => {
                 style={{ width: "60px", height: "60px" }}
               />
             </span>
-            <span style={{ paddingLeft: "12px" }}>
-              Welcome To Boostup Cleaning Services
-            </span>
+            <span style={{ paddingLeft: "12px" }}>Change Your Password</span>
           </div>
         </Typography>
         <Box
@@ -133,48 +125,42 @@ const LoginPage = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div id="login-password-wrap">
-            <InputLabel className="base-input-label" htmlFor="login-pwd">
-              Password<span className="is-required">*</span>
+          <div>
+            <InputLabel className="base-input-label" htmlFor="new-pwd">
+              New Password<span className="is-required">*</span>
             </InputLabel>
             <TextField
-              type={showPassword ? "text" : "password"}
-              id="login-pwd"
+              type="password"
+              id="new-pwd"
               variant="outlined"
               className="base-input"
               onChange={(e) => setPassword(e.target.value)}
             />
-            {showPassword ? (
-              <VisibilityIcon
-                className="eye-position"
-                onClick={() => setShowPassword(false)}
-              />
-            ) : (
-              <VisibilityOff
-                className="eye-position"
-                onClick={() => setShowPassword(true)}
-              />
-            )}
+          </div>
+          <div>
+            <InputLabel className="base-input-label" htmlFor="new-pwd-confirm">
+              Confirm Password<span className="is-required">*</span>
+            </InputLabel>
+            <TextField
+              type="password"
+              id="new-pwd-confirm"
+              variant="outlined"
+              className="base-input"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
           </div>
           <Button
             variant="contained"
             fullWidth
-            onClick={handleLogin}
+            onClick={handleSubmit}
             sx={{ backgroundColor: "#1E7E51", height: 48 }}
           >
-            Login
+            Submit
           </Button>
-
-          <div style={{ textAlign: "left" }}>
-            <a href="#" className="clr-text" onClick={() => setOpen(true)}>
-              Forgot Password ?
-            </a>
-          </div>
         </Box>
       </Paper>
-      <ForgotPasswordModal open={open} handleOpen={(state) => setOpen(state)} />
     </Container>
   );
 };
 
-export default LoginPage;
+export default ForgotPasswordPage;
