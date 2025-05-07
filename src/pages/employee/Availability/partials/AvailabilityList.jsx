@@ -4,10 +4,14 @@ import { useLoader } from "../../../../utils/context/LoaderContext";
 import api from "../../../../services/api";
 import { useEffect, useState } from "react";
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+import DeleteModal from "../../../../components/common/Deletemodal";
+import { ToastMessage } from "../../../../components/common/ToastNotification";
 
 export default function Availability() {
   const { showLoader, hideLoader } = useLoader();
   const [availabilities, setAvailabilities] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [availabilityId, setAvailabilityId] = useState();
   const getAvailability = () => {
     showLoader();
     api
@@ -17,6 +21,32 @@ export default function Availability() {
       })
       .catch((err) => {
         console.error(err);
+      })
+      .finally(() => {
+        hideLoader();
+      });
+  };
+
+  const confirmDelete = (del) => {
+    setOpen(false);
+    console.log(del);
+    if (!del) {
+      return;
+    }
+    showLoader();
+    api
+      .delete("/api/v1/availability/" + availabilityId)
+      .then((res) => {
+        if (res?.data?.success) {
+          ToastMessage("success", res?.data?.message || "Successful");
+          getAvailability();
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        const errMessage =
+          err?.response?.data?.message || "Something Went Wrong";
+        ToastMessage("error", errMessage);
       })
       .finally(() => {
         hideLoader();
@@ -49,12 +79,21 @@ export default function Availability() {
                 return (
                   <Box
                     key={i}
+                    onClick={() => {
+                      setAvailabilityId(row.id);
+                      setOpen(true);
+                    }}
                     sx={{
                       borderRadius: "6px",
                       backgroundColor: "#f4f4f4",
                       minWidth: "150px",
                       padding: "4px",
                       textAlign: "center",
+                      cursor: "pointer",
+                      border: "1px solid var(--primaryColor)",
+                      "&:hover": {
+                        backgroundColor: "var(--primaryLight)",
+                      },
                     }}
                   >
                     <span className="text-muted" style={{ fontSize: "12px" }}>
@@ -82,6 +121,11 @@ export default function Availability() {
       {DAYS.map((day) => (
         <AvailabilityBox day={day} key={day} />
       ))}
+      <DeleteModal
+        open={open}
+        setOpen={setOpen}
+        confirmDelete={confirmDelete}
+      />
       {/* <Box
         sx={{
           margin: "30px 0",
