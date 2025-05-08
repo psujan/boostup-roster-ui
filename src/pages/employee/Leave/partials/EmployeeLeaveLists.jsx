@@ -15,7 +15,7 @@ export default function EmployeeLeaveLists({ status = "All" }) {
   const getLeaveList = () => {
     showLoader();
     const year = dayjs().year();
-    let filterQuery = `?pageNumber=${page}&pageSize=${PAGE_SIZE}&year=${year}&EmployeeIds[0]=${Helper.getCurrentEmployeeId()}`;
+    let filterQuery = `?pageNumber=${page}&pageSize=${PAGE_SIZE}&year=${year}&EmployeeIds[0]=${Helper.getCurrentEmployeeId()}&isAllEmployee=false`;
     if (status != "All") {
       filterQuery += `&status=${status}`;
     }
@@ -39,39 +39,48 @@ export default function EmployeeLeaveLists({ status = "All" }) {
 
   return (
     <>
-      {leaves.length
-        ? leaves.map((row, i) => (
-            <Box
-              key={i}
-              sx={{
-                margin: "30px 0",
-                padding: "16px 10px",
-                backgroundColor: "#fff",
-                borderRadius: "8px",
-                fontSize: "14px",
-              }}
-            >
-              <Box className="flex flex-between" mb={2}>
-                <span className="text-muted">Leave Id</span>
-                <span>#{row.id}</span>
-              </Box>
-              <Box className="flex flex-between" mb={2}>
-                <span className="text-muted">Leave Type</span>
-                <span>{row?.leaveType?.title}</span>
-              </Box>
-              <Box className="flex flex-between" mb={2}>
-                <span className="text-muted">Date</span>
-                <span>
-                  {row.forSingleDay ? row.from : row.form + " to " + row.to}
-                </span>
-              </Box>
-              <Box className="flex flex-between" mb={2}>
-                <span className="text-muted">Status</span>
-                <span>{row.status}</span>
-              </Box>
+      {leaves.length ? (
+        leaves.map((row, i) => (
+          <Box
+            key={i}
+            sx={{
+              margin: "30px 0",
+              padding: "16px 10px",
+              backgroundColor: "#fff",
+              borderRadius: "8px",
+              fontSize: "14px",
+            }}
+          >
+            <Box className="flex flex-between" mb={2}>
+              <span className="text-muted">Leave Id</span>
+              <span>#{row.id}</span>
             </Box>
-          ))
-        : <p className="text-muted">No record found</p>}
+            <Box className="flex flex-between" mb={2}>
+              <span className="text-muted">Leave Type</span>
+              <span>{row?.leaveType?.title}</span>
+            </Box>
+            <Box className="flex flex-between" mb={2}>
+              <span className="text-muted">Date</span>
+              <span>
+                {row.forSingleDay ? row.from : row.form + " to " + row.to}
+              </span>
+            </Box>
+            <Box className="flex flex-between" mb={2}>
+              <span className="text-muted">Status</span>
+              <span>{row.status}</span>
+            </Box>
+            {row.status == "Rejected" ? (
+              <Box>
+                <p className="text-sm">{row?.rejectReason || "N/A"}</p>
+              </Box>
+            ) : (
+              ""
+            )}
+          </Box>
+        ))
+      ) : (
+        <p className="text-muted">No record found</p>
+      )}
       {leaves.length ? (
         <Paginate count={count} page={page} onPageChange={(p) => setPage(p)} />
       ) : undefined}

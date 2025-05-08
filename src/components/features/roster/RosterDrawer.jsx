@@ -8,7 +8,7 @@ export default function RosterDrawer({
   drawer,
   toggleDrawer,
   roster = null,
-  handleDelete = ()=>{}
+  handleDelete = () => {},
 }) {
   const leave = roster?.leaves[0] || null;
   return (
@@ -94,11 +94,26 @@ export default function RosterDrawer({
                 </h5>
                 <div className="shift-detail flex flex-center flex-between">
                   <span className="text-muted">Leave Id</span>
-                  <span>#{leave.id}</span>
+                  <span>
+                    <a
+                      href={"/leave-request/" + leave.id}
+                      className="clr-primary"
+                    >
+                      #{leave.id}
+                    </a>
+                  </span>
                 </div>
                 <div className="shift-detail flex flex-center flex-between">
                   <span className="text-muted">Leave Type</span>
                   <span>{leave.leaveType.title}</span>
+                </div>
+                <div className="shift-detail flex flex-center flex-between">
+                  <span className="text-muted">Leave Date</span>
+                  <span>
+                    {leave.forSingleDay
+                      ? leave.from
+                      : leave.from + " to " + leave.to}
+                  </span>
                 </div>
                 <div className="shift-detail flex flex-center flex-between">
                   <span className="text-muted">Leave Status</span>

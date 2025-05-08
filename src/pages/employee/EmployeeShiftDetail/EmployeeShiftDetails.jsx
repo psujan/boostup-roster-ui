@@ -65,7 +65,12 @@ export default function EmployeeShiftDetails() {
             color="primary"
             sx={{ width: "100%" }}
             onClick={() =>
-              navigate("/employee-leave/add?roster_id=" + shift.id)
+              navigate(
+                "/employee-leave/add?date=" +
+                  shift?.date +
+                  "&roster_id=" +
+                  shift.id
+              )
             }
           >
             <span>I Can't Attend This Shift</span>

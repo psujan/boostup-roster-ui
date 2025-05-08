@@ -7,8 +7,7 @@ import {
   Typography,
   Box,
   Paper,
-  InputLabel,
-  Modal,
+  InputLabel
 } from "@mui/material";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
@@ -105,13 +104,15 @@ const LoginPage = () => {
           }}
         >
           <div style={{ display: "flex" }}>
-            <span>
-              <img
-                src={Logo}
-                alt="LOGO"
-                style={{ width: "60px", height: "60px" }}
-              />
-            </span>
+            <a href="/">
+              <span>
+                <img
+                  src={Logo}
+                  alt="LOGO"
+                  style={{ width: "60px", height: "60px" }}
+                />
+              </span>
+            </a>
             <span style={{ paddingLeft: "12px" }}>
               Welcome To Boostup Cleaning Services
             </span>
@@ -130,6 +131,7 @@ const LoginPage = () => {
               id="login-email"
               variant="outlined"
               className="base-input"
+              placeholder="john@hotmail.com"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -142,6 +144,7 @@ const LoginPage = () => {
               id="login-pwd"
               variant="outlined"
               className="base-input"
+              placeholder="******"
               onChange={(e) => setPassword(e.target.value)}
             />
             {showPassword ? (

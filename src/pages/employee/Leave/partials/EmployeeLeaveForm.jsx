@@ -27,7 +27,7 @@ export default function EmployeeLeaveForm() {
   const [to, setTo] = useState(null);
   const [leaveTypeId, setLeaveTypeId] = useState();
   const [notes, setNotes] = useState();
-  const [date, setDate] = useState(undefined);
+  const [date, setDate] = useState(dayjs(searchParams.get("date") || null));
   const [singleDay, setSingleDay] = useState(true);
 
   const getLeaveTypes = () => {
@@ -212,6 +212,7 @@ export default function EmployeeLeaveForm() {
             onChange={(v) => {
               setDate(v);
             }}
+            value={date}
             id="leave-from"
             className="base-input"
             placeholder="Leave Date"

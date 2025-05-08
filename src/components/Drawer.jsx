@@ -183,12 +183,17 @@ export default function ResponsiveDrawer({ open, setOpen }) {
               paddingRight: open ? "10px" : "0", // Reduce padding when closed
             }}
           >
-            <NotificationsNoneOutlinedIcon
+            {/* <NotificationsNoneOutlinedIcon
               sx={{ color: "var(--greyColor)", fontWeight: "600" }}
             />
-            &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; */}
             {isAuth && role == "SuperAdmin" ? (
               <ClickableTextMenu
+                sx={{
+                  backgroundColor: "#f5f5f5",
+                  padding: "4px",
+                  borderRadius: "30px",
+                }}
                 text={user?.fullName}
                 items={[{ label: "Logout", onClick: handleLogout }]}
               />

@@ -1,4 +1,4 @@
-import { Box, Select, MenuItem, Button } from "@mui/material";
+import { Box, Select, MenuItem, Button, Tooltip } from "@mui/material";
 import Heading from "../../common/Heading";
 import { useEffect, useState } from "react";
 import api from "../../../services/api";
@@ -197,14 +197,15 @@ export default function RosterList() {
             {shiftList.map((shift, i) => {
               return (
                 <div key={i} className="shift-wrap">
-                  <p
-                    onClick={() => handleRosterClick(shift.id)}
-                    key={i}
-                    className="roster-individual-shift"
-                    title={shift?.job?.title}
-                  >
-                    {shift.startTime + "-" + shift.endTime}
-                  </p>
+                  <Tooltip title={shift?.job?.title}>
+                    <p
+                      onClick={() => handleRosterClick(shift.id)}
+                      key={i}
+                      className="roster-individual-shift"
+                    >
+                      {shift.startTime + "-" + shift.endTime}
+                    </p>
+                  </Tooltip>
                 </div>
               );
             })}

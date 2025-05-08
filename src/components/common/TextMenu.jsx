@@ -13,11 +13,14 @@ const ClickableTextMenu = ({ text, items }) => {
       <Typography
         onClick={handleClick}
         sx={{
-          fontSize: "16px",
+          fontSize: "14px",
           fontWeight: 500,
           color: "#666666",
           cursor: "pointer",
-          "&:hover": { color: "#333" },
+          backgroundColor: "#f5f5f5",
+          padding: "5px 10px",
+          borderRadius: "30px",
+          "&:hover": { color: "var(--primaryColor)" },
         }}
       >
         {text}
