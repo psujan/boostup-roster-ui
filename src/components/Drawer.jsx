@@ -29,6 +29,11 @@ import { isAuthenticated } from "../utils/auth";
 import { MenuItem, Select } from "@mui/material";
 import { ToastMessage } from "./common/ToastNotification";
 import ClickableTextMenu from "./common/TextMenu";
+import { DatePicker } from "@mui/x-date-pickers";
+import CalendarModal from "./common/CalendarModal";
+import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
+import BrowseGalleryOutlinedIcon from '@mui/icons-material/BrowseGalleryOutlined';
+import { useState } from "react";
 
 const drawerWidth = 240;
 
@@ -90,11 +95,12 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 const adminIcons = [
-  <SpaceDashboardOutlinedIcon />,
-  <CalendarTodayOutlinedIcon />,
-  <UpdateOutlinedIcon />,
-  <EventBusyOutlinedIcon />,
-  <GroupOutlinedIcon />,
+  <SpaceDashboardOutlinedIcon key={0}/>,
+  <CalendarTodayOutlinedIcon key={1}/>,
+  <UpdateOutlinedIcon key={2}/>,
+  <EventBusyOutlinedIcon key={3}/>,
+  <GroupOutlinedIcon key={4}/>,
+  <BrowseGalleryOutlinedIcon key={5}/>,
 ];
 
 const employeeIcons = [
@@ -111,6 +117,8 @@ export default function ResponsiveDrawer({ open, setOpen }) {
   const theme = useTheme();
   const { isAuth, role, user } = isAuthenticated();
 
+  const [calendarModal, setCalendarModal] = useState(false);
+
   const employeePath = [
     { text: " Dashboard", path: "/employee-dashboard" },
     { text: " My Shifts", path: "/employee-jobs" },
@@ -124,6 +132,7 @@ export default function ResponsiveDrawer({ open, setOpen }) {
     { text: "Roster", path: "/roster" },
     { text: "Leave Requests", path: "/leaves" },
     { text: "Employee", path: "/all-employee" },
+    { text: "TimeSheet", path: "/timesheet" },
   ];
 
   const handleDrawerOpen = () => setOpen(true);
@@ -134,7 +143,7 @@ export default function ResponsiveDrawer({ open, setOpen }) {
   const handleLogout = () => {
     localStorage.clear();
     navigate("/");
-    ToastMesssage("success", "logout Successfully!");
+    ToastMessage("success", "Logout Successfully!");
   };
   return (
     <Box sx={{ display: "flex" }}>
@@ -183,17 +192,16 @@ export default function ResponsiveDrawer({ open, setOpen }) {
               paddingRight: open ? "10px" : "0", // Reduce padding when closed
             }}
           >
-            {/* <NotificationsNoneOutlinedIcon
-              sx={{ color: "var(--greyColor)", fontWeight: "600" }}
-            />
-            &nbsp; &nbsp; &nbsp; */}
+            <IconButton
+              color="primary"
+              sx={{ marginRight: "6px" }}
+              onClick={() => setCalendarModal(true)}
+            >
+              <CalendarMonthOutlinedIcon />
+            </IconButton>
+
             {isAuth && role == "SuperAdmin" ? (
               <ClickableTextMenu
-                sx={{
-                  backgroundColor: "#f5f5f5",
-                  padding: "4px",
-                  borderRadius: "30px",
-                }}
                 text={user?.fullName}
                 items={[{ label: "Logout", onClick: handleLogout }]}
               />
@@ -268,7 +276,7 @@ export default function ResponsiveDrawer({ open, setOpen }) {
                       marginRight: open ? theme.spacing(2) : 0, // Add gap between icon and text when open
                     }}
                   >
-                    {adminIcons[index % 5]}
+                    {adminIcons[index % adminIcons.length]}
                   </ListItemIcon>
                   <ListItemText
                     primary={item.text}
@@ -322,6 +330,11 @@ export default function ResponsiveDrawer({ open, setOpen }) {
           </List>
         ) : null}
       </Drawer>
+
+      <CalendarModal
+        open={calendarModal}
+        setOpen={(s) => setCalendarModal(s)}
+      />
     </Box>
   );
 }

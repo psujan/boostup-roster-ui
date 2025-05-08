@@ -13,6 +13,7 @@ import RosterAdd from "../pages/admin/roster/RosterAdd";
 import LeavePage from "../pages/admin/leave/LeavePage";
 import LoginPage from "../components/LoginPage";
 import LeaveRequest from "../pages/admin/leave/LeaveRequest";
+import TimeSheet from "../pages/admin/timesheet/TimeSheet";
 
 export default function AdminRoutes() {
   return (
@@ -38,6 +39,7 @@ export default function AdminRoutes() {
       <Route path="/leaves" element={<LeavePage />} />
       <Route path="/leave-request/:id" element={<LeaveRequest />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/timesheet" element={<TimeSheet />} />
     </Routes>
   );
 }
