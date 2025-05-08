@@ -118,7 +118,9 @@ const LeaveRequest = () => {
               Date:
             </Typography>
             <Typography sx={{ fontWeight: "500", fontSize: "14px" }}>
-              Dec 15, 2024
+              {leave?.forSingleDay
+                ? leave.from
+                : leave?.from + " to " + leave?.to}
             </Typography>
             <Typography sx={{ fontWeight: "500", fontSize: "14px" }}>
               Status:
