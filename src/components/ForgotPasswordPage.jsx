@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../assets/css/styles.css";
 import {
   Container,
@@ -16,16 +16,23 @@ import Logo from "../assets/images/boostup-logo.png";
 import { useLoader } from "../utils/context/LoaderContext";
 
 const ForgotPasswordPage = () => {
-  console.log("showing this page");
   const navigate = useNavigate();
   const { showLoader, hideLoader } = useLoader();
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(localStorage.getItem("resetEmail"));
+  const [token, setToken] = useState(localStorage.getItem("resetToken"));
+
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
+  const passwordRegex =
+    /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])(?=.{6,}).+$/;
   const validate = () => {
     if (!password) {
       ToastMessage("error", "Please provide new password");
+      return;
+    }
+
+    if (!passwordRegex.test(password)) {
+      ToastMessage("error", "Please match password requirements");
       return;
     }
 
@@ -42,7 +49,7 @@ const ForgotPasswordPage = () => {
     }
     const payload = {
       email: email,
-      resetToken: localStorage.getItem("resetToken"),
+      resetToken: token,
       password: password,
     };
     showLoader();
@@ -51,7 +58,7 @@ const ForgotPasswordPage = () => {
       .then((res) => {
         if (res?.data?.success) {
           ToastMessage("success", res?.data?.message || "Successful");
-          localStorage.clear()
+          localStorage.clear();
           navigate("/login");
         } else {
           ToastMessage("error", res?.data?.message || "Something Went Wrong");
@@ -69,6 +76,27 @@ const ForgotPasswordPage = () => {
         hideLoader();
       });
   };
+
+  const validatePageRequest = () => {
+    let valid = false;
+    const email = localStorage.getItem("resetEmail");
+    const token = localStorage.getItem("resetToken");
+
+    if (email && token) {
+      valid = true;
+    }
+
+    return valid;
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      const isValid = validatePageRequest();
+      if (!isValid) {
+        window.location.href = "/";
+      }
+    }, 1500);
+  }, []);
 
   return (
     <Container
@@ -99,13 +127,15 @@ const ForgotPasswordPage = () => {
           }}
         >
           <div style={{ display: "flex", alignItems: "center" }}>
-            <span>
-              <img
-                src={Logo}
-                alt="LOGO"
-                style={{ width: "60px", height: "60px" }}
-              />
-            </span>
+            <a href="/">
+              <span>
+                <img
+                  src={Logo}
+                  alt="LOGO"
+                  style={{ width: "60px", height: "60px" }}
+                />
+              </span>
+            </a>
             <span style={{ paddingLeft: "12px" }}>Change Your Password</span>
           </div>
         </Typography>
@@ -113,18 +143,6 @@ const ForgotPasswordPage = () => {
           component="form"
           sx={{ display: "flex", flexDirection: "column", gap: 2 }}
         >
-          <div>
-            <InputLabel className="base-input-label" htmlFor="login-email">
-              Email<span className="is-required">*</span>
-            </InputLabel>
-            <TextField
-              type="email"
-              id="login-email"
-              variant="outlined"
-              className="base-input"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
           <div>
             <InputLabel className="base-input-label" htmlFor="new-pwd">
               New Password<span className="is-required">*</span>
@@ -136,6 +154,29 @@ const ForgotPasswordPage = () => {
               className="base-input"
               onChange={(e) => setPassword(e.target.value)}
             />
+            <Box
+              sx={{
+                margin: "8px 0",
+                padding: "4px 8px",
+                backgroundColor: "#f4f4f4",
+                borderRadius: "6px",
+              }}
+            >
+              <p
+                className="text-sm is-required"
+                style={{ marginBottom: "6px" }}
+              >
+                Please set a strong password. The password must meet at least
+                following criterions
+              </p>
+              <p className="text-sm">
+                1 Uppercase <br />
+                1 Lowercase <br />
+                1 Number <br />
+                1 Special Character <br />
+                Minimum Six Characters <br />
+              </p>
+            </Box>
           </div>
           <div>
             <InputLabel className="base-input-label" htmlFor="new-pwd-confirm">

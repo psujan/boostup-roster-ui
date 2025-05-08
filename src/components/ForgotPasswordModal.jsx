@@ -37,7 +37,9 @@ export default function ForgotPasswordModal({ open, handleOpen }) {
       .post("/api/v1/auth/reset-password-token", { email: email })
       .then((res) => {
         const token = res?.data?.data?.resetToken;
-        if (token) {
+        const email = res?.data?.data?.resetEmail;
+        if (token && email) {
+          localStorage.setItem("resetEmail", email);
           localStorage.setItem("resetToken", token);
         }
         if (res?.data?.success) {
