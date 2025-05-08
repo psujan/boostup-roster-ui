@@ -103,19 +103,19 @@ const LeaveRequest = () => {
             }}
           >
             <Typography sx={{ fontWeight: "500", fontSize: "14px" }}>
-              Requested By:
+              Requested By
             </Typography>
             <Typography sx={{ fontWeight: "500", fontSize: "14px" }}>
               {leave?.employee?.employeeName}
             </Typography>
             <Typography sx={{ fontWeight: "500", fontSize: "14px" }}>
-              Leave Type:
+              Leave Type
             </Typography>
             <Typography sx={{ fontWeight: "500", fontSize: "14px" }}>
               {leave?.leaveType?.title}
             </Typography>
             <Typography sx={{ fontWeight: "500", fontSize: "14px" }}>
-              Date:
+              Date
             </Typography>
             <Typography sx={{ fontWeight: "500", fontSize: "14px" }}>
               {leave?.forSingleDay
@@ -123,7 +123,7 @@ const LeaveRequest = () => {
                 : leave?.from + " to " + leave?.to}
             </Typography>
             <Typography sx={{ fontWeight: "500", fontSize: "14px" }}>
-              Status:
+              Status
             </Typography>
             <Typography
               sx={{ color: "green", fontWeight: "500", fontSize: "14px" }}
@@ -131,14 +131,14 @@ const LeaveRequest = () => {
               {leave?.status}
             </Typography>
             <Typography sx={{ fontWeight: "500", fontSize: "14px" }}>
-              Notes:
+              Notes
             </Typography>
             <Typography sx={{ fontWeight: "500", fontSize: "14px" }}>
               {leave?.notes ? leave.notes : " N / A"}
             </Typography>{" "}
             {leave?.status !== "Approved" || reject ? (
               <Typography sx={{ fontWeight: "500", fontSize: "14px" }}>
-                Reject Reason:
+                Reject Reason
               </Typography>
             ) : (
               ""
