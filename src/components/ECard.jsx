@@ -11,11 +11,9 @@ import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import AvailabilityModal from "./features/AvailabilityModal";
 import EventAvailableOutlinedIcon from "@mui/icons-material/EventAvailableOutlined";
 
 const ECard = ({ emp }) => {
-  const [showAvailability, setShowAvailability] = useState(false);
   const navigate = useNavigate();
 
   const HtmlTooltip = styled(({ className, ...props }) => (
@@ -32,7 +30,7 @@ const ECard = ({ emp }) => {
   }));
 
   const transformAvailability = (rows) => {
-    if (!rows || !rows.length) return null;
+    if (!rows || !rows.length) return [];
 
     // Filter out null entries and create a map of days
     const dayMap = {};
@@ -82,17 +80,24 @@ const ECard = ({ emp }) => {
 
   const AvailabilityList = () => {
     const availabilities = transformAvailability(emp.availabilities);
-    return availabilities.map((row, i) => (
-      <Box key={i} sx={{ fontSize: "10px", marginBottom: "3px" }}>
-        {row.day}:{" "}
-        {row.fullDay
-          ? "Full Day ✅"
-          : row.data.map(
-              (x, i) =>
-                x.from + "-" + x.to + (row.data.length != i + 1 ? " | " : "")
-            )}
-      </Box>
-    ));
+    return availabilities.length
+      ? availabilities.map((row, i) => {
+          return (
+            <Box key={i} sx={{ fontSize: "10px", marginBottom: "3px" }}>
+              {row.day}:{" "}
+              {row.fullDay
+                ? "Full Day ✅"
+                : row.data.map(
+                    (x, i) =>
+                      x.from +
+                      "-" +
+                      x.to +
+                      (row.data.length != i + 1 ? " | " : "")
+                  )}
+            </Box>
+          );
+        })
+      : "No Availability Found";
   };
 
   useEffect(() => {
@@ -187,10 +192,6 @@ const ECard = ({ emp }) => {
           </Stack>
         </CardContent>
       </Box>
-      <AvailabilityModal
-        open={showAvailability}
-        setOpen={(s) => setShowAvailability(s)}
-      />
     </div>
   );
 };
