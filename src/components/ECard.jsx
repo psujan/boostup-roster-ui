@@ -3,13 +3,108 @@ import {
   Box,
   Button,
   CardContent,
+  IconButton,
   Stack,
   Typography,
 } from "@mui/material";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import EventAvailableOutlinedIcon from "@mui/icons-material/EventAvailableOutlined";
 
 const ECard = ({ emp }) => {
   const navigate = useNavigate();
+
+  const HtmlTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: "#000",
+      color: "#fff",
+      maxWidth: 270,
+      fontSize: theme.typography.pxToRem(12),
+      border: "1px solid transparent",
+      borderRadius: "6px",
+    },
+  }));
+
+  const transformAvailability = (rows) => {
+    if (!rows || !rows.length) return [];
+
+    // Filter out null entries and create a map of days
+    const dayMap = {};
+
+    // Sort days in week order
+    const dayOrder = {
+      Sun: 0,
+      Mon: 1,
+      Tue: 2,
+      Wed: 3,
+      Thu: 4,
+      Fri: 5,
+      Sat: 6,
+    };
+
+    // Process the availability data
+    rows.forEach((item) => {
+      if (!item) return; // Skip null entries
+
+      const { day, from, to, forFullDay } = item;
+
+      if (!dayMap[day]) {
+        dayMap[day] = {
+          day,
+          data: [],
+        };
+      }
+
+      // Handle full day availability differently if needed
+      if (forFullDay) {
+        dayMap[day].fullDay = true;
+      } else if (from.trim() && to.trim()) {
+        // Only add time slots that have valid from/to values
+        dayMap[day].data.push({
+          from,
+          to,
+          id: item.id, // Keep the id for reference
+        });
+      }
+    });
+
+    // Convert the map to array and sort by day of week
+    return Object.values(dayMap).sort((a, b) => {
+      return dayOrder[a.day] - dayOrder[b.day];
+    });
+  };
+
+  const AvailabilityList = () => {
+    const availabilities = transformAvailability(emp.availabilities);
+    return availabilities.length
+      ? availabilities.map((row, i) => {
+          return (
+            <Box key={i} sx={{ fontSize: "10px", marginBottom: "3px" }}>
+              {row.day}:{" "}
+              {row.fullDay
+                ? "Full Day ✅"
+                : row.data.map(
+                    (x, i) =>
+                      x.from +
+                      "-" +
+                      x.to +
+                      (row.data.length != i + 1 ? " | " : "")
+                  )}
+            </Box>
+          );
+        })
+      : "No Availability Found";
+  };
+
+  useEffect(() => {
+    const a = transformAvailability(emp.availabilities);
+    console.log(a);
+  }, [emp]);
+
   return (
     <div>
       <Box
@@ -23,8 +118,27 @@ const ECard = ({ emp }) => {
           // boxShadow: 3,
           backgroundColor: "#FCFBFB",
           border: "none",
+          position: "relative",
         }}
       >
+        <HtmlTooltip
+          title={
+            <React.Fragment>
+              <Box>
+                <AvailabilityList />
+              </Box>
+            </React.Fragment>
+          }
+        >
+          <IconButton
+            color="#666"
+            size="small"
+            className="emp-availability-btn"
+          >
+            <EventAvailableOutlinedIcon />
+          </IconButton>
+        </HtmlTooltip>
+
         <Avatar
           src="./src/assets/images/default_user.jpg"
           alt="James Wilson"

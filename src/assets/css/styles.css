@@ -12,6 +12,10 @@ Custom CSS
   color: #1e7e51;
 }
 
+.text-sm {
+  font-size: 12px !important;
+}
+
 .heading-3 {
   margin: 0;
   font-size: 16px;
@@ -424,4 +428,19 @@ Custom CSS
 
 .emp-sidebar-link:hover {
   background-color: #64ecac24;
+}
+
+.emp-logout-btn {
+  display: flex !important;
+  margin: 10px !important;
+  position: absolute !important;
+  bottom: 10px !important;
+  width: 90% !important;
+  align-items: center !important;
+}
+
+.emp-availability-btn {
+  position: absolute !important;
+  right: 10px !important;
+  top: 10px !important;
 }

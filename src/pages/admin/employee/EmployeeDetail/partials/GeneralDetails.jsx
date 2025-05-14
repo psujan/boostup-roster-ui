@@ -1,5 +1,6 @@
 import { Box, Typography, IconButton } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import dayjs from "dayjs";
 
 const GeneralDetails = ({ employee }) => {
   const DetailRow = ({ label, value, showIcon }) => (
@@ -42,7 +43,10 @@ const GeneralDetails = ({ employee }) => {
         label="Emergency Contact Name"
         value={employee?.emergencyContactName}
       />
-      <DetailRow label="Joined Date" value={employee?.joinedDate} />
+      <DetailRow
+        label="Joined Date"
+        value={dayjs(employee?.joinedDate).format("YYYY-MM-DD")}
+      />
       <DetailRow label="Birth Country" value={employee?.birthCountry} />
       <DetailRow label="Employment Type" value={employee?.employmentType} />
       <DetailRow label="Status" value={employee?.status} />

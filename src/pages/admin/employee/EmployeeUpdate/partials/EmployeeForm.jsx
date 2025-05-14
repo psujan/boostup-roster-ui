@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import {
   TextField,
   Grid2 as Grid,
@@ -9,6 +9,7 @@ import {
   Checkbox,
   Box,
   MenuItem,
+  Autocomplete,
 } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -45,6 +46,47 @@ const EmployeeForm = () => {
   const { id } = useParams();
   const [profileData, setProfileData] = useState(null);
   const { showLoader, hideLoader } = useLoader();
+  const countryList = [
+    "Afghanistan",
+    "Albania",
+    "Algeria",
+    "Andorra",
+    "Angola",
+    "Argentina",
+    "Australia",
+    "Austria",
+    "Bangladesh",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "China",
+    "Denmark",
+    "Egypt",
+    "Finland",
+    "France",
+    "Germany",
+    "India",
+    "Indonesia",
+    "Italy",
+    "Japan",
+    "Nepal",
+    "Netherlands",
+    "New Zealand",
+    "Norway",
+    "Pakistan",
+    "Russia",
+    "Singapore",
+    "South Africa",
+    "Spain",
+    "Sri Lanka",
+    "Sweden",
+    "Switzerland",
+    "Thailand",
+    "United Arab Emirates",
+    "United Kingdom",
+    "United States",
+    "Vietnam",
+  ];
 
   const {
     register,
@@ -98,6 +140,7 @@ const EmployeeForm = () => {
       .then((res) => {
         setProfileData(res?.data?.data);
         const data = res?.data?.data;
+        console.log("sachin", data);
         reset({
           address: data.address || "",
           contact: data.contact || "",
@@ -146,8 +189,6 @@ const EmployeeForm = () => {
             { label: "Contact", name: "contact" },
             { label: "Emergency Contact Name", name: "emergencyContactName" },
             { label: "Emergency Contact", name: "emergencyContact" },
-            { label: "Birth Country", name: "birthCountry" },
-            { label: "Gender", name: "gender" },
           ].map((field, idx) => (
             <Grid key={idx} size={{ sm: 12, md: 6 }}>
               <InputLabel className="base-input-label" htmlFor={field.name}>
@@ -164,6 +205,71 @@ const EmployeeForm = () => {
               />
             </Grid>
           ))}
+          <Grid size={{ md: 6 }}>
+            {/* <InputLabel className="base-input-label" htmlFor="country">
+              Birth Country<span className="is-required">*</span>
+            </InputLabel>
+            <TextField
+              id="country"
+              select
+              className="base-input"
+              variant="outlined"
+              fullWidth
+              {...register("birthCountry")}
+              error={!!errors.status}
+              helperText={errors.status?.message}
+            >
+              <MenuItem value="Active">Active</MenuItem>
+              <MenuItem value="Inactive">Inactive</MenuItem>
+            </TextField> */}
+
+            <InputLabel className="base-input-label" htmlFor="birthCountry">
+              Birth Country<span className="is-required">*</span>
+            </InputLabel>
+
+            <Controller
+              name="birthCountry"
+              control={control}
+              rules={{ required: "Birth country is required" }}
+              render={({ field }) => (
+                <Autocomplete
+                  {...field}
+                  options={countryList}
+                  autoHighlight
+                  fullWidth
+                  onChange={(_, value) => field.onChange(value)}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      variant="outlined"
+                      className="base-input"
+                      error={!!errors.birthCountry}
+                      helperText={errors.birthCountry?.message}
+                    />
+                  )}
+                />
+              )}
+            />
+          </Grid>
+          <Grid size={{ sm: 12, md: 6 }}>
+            <InputLabel className="base-input-label" htmlFor="gender">
+              Gender<span className="is-required">*</span>
+            </InputLabel>
+            <TextField
+              Select
+              id="gender"
+              type="date"
+              className="base-input"
+              {...register("gender")}
+              error={!!errors.gender}
+              helperText={errors.gender?.message}
+              fullWidth
+            >
+              <MenuItem value="Male">Male</MenuItem>
+              <MenuItem value="Female">Female</MenuItem>
+              <MenuItem value="Other">Other</MenuItem>
+            </TextField>
+          </Grid>
           <Grid size={{ sm: 12, md: 6 }}>
             <InputLabel className="base-input-label" htmlFor="DOB">
               Date of Birth<span className="is-required">*</span>
@@ -187,7 +293,6 @@ const EmployeeForm = () => {
             { label: "Account Number", name: "accountNumber" },
             { label: "TFN", name: "tfn" },
             { label: "ABN", name: "abn" },
-            { label: "Employment Type", name: "employmentType" },
           ].map((field, idx) => (
             <Grid key={idx} size={{ sm: 12, md: 6 }}>
               <InputLabel className="base-input-label" htmlFor={field.name}>
@@ -204,6 +309,25 @@ const EmployeeForm = () => {
               />
             </Grid>
           ))}
+          <Grid size={{ md: 6 }}>
+            <InputLabel className="base-input-label" htmlFor="employmentType">
+              Employment Type<span className="is-required">*</span>
+            </InputLabel>
+            <TextField
+              id="employmentType"
+              select
+              className="base-input"
+              variant="outlined"
+              fullWidth
+              {...register("status")}
+              error={!!errors.employmentType}
+              helperText={errors.employmentType?.message}
+            >
+              <MenuItem value="Active">Part Time</MenuItem>
+              <MenuItem value="Inactive">Full Time</MenuItem>
+              <MenuItem value="employmentType">Casual</MenuItem>
+            </TextField>
+          </Grid>
           <Grid size={{ md: 6 }}>
             <InputLabel className="base-input-label" htmlFor="status">
               Status<span className="is-required">*</span>

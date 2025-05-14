@@ -7,10 +7,13 @@ import EditJob from "../pages/admin/jobs/EditJob";
 import AllEmployee from "../pages/admin/employee/AllEmployee";
 import EmployeeDetail from "../pages/admin/employee/EmployeeDetail/EmployeeDetail";
 import UpdateEmployeeDetails from "../pages/admin/employee/EmployeeUpdate/UpdateEmployeeDetails";
-import LeaveRequest from "../components/Leavereq";
 import Onboard from "../pages/admin/employee/Onboard";
 import RosterListIndex from "../pages/admin/roster/RosterList";
 import RosterAdd from "../pages/admin/roster/RosterAdd";
+import LeavePage from "../pages/admin/leave/LeavePage";
+import LoginPage from "../components/LoginPage";
+import LeaveRequest from "../pages/admin/leave/LeaveRequest";
+import TimeSheet from "../pages/admin/timesheet/TimeSheet";
 
 export default function AdminRoutes() {
   return (
@@ -28,12 +31,15 @@ export default function AdminRoutes() {
         path="/update-employee-profile/:id"
         element={<UpdateEmployeeDetails />}
       />
-      <Route path="/leave-request" element={<LeaveRequest />} />
       <Route path="/onboard-staff" element={<Onboard />} />
 
       <Route path="/employee/:id" element={<EmployeeDetail />}></Route>
       <Route path="/roster" element={<RosterListIndex />}></Route>
       <Route path="/roster/add" element={<RosterAdd />}></Route>
+      <Route path="/leaves" element={<LeavePage />} />
+      <Route path="/leave-request/:id" element={<LeaveRequest />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/timesheet" element={<TimeSheet />} />
     </Routes>
   );
 }

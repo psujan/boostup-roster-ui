@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { useNavigate } from "react-router-dom";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -49,6 +50,7 @@ const StyledMenu = styled((props) => (
 }));
 
 export default function QuickActions() {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -82,15 +84,27 @@ export default function QuickActions() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple sx={{ fontSize: "13px" }}>
+        <MenuItem
+          onClick={() => navigate("/onboard-staff")}
+          disableRipple
+          sx={{ fontSize: "13px" }}
+        >
           Onboard Staff
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple sx={{ fontSize: "13px" }}>
+        <MenuItem
+          onClick={() => navigate("/jobs/add-jobs")}
+          disableRipple
+          sx={{ fontSize: "13px" }}
+        >
           Add Job
         </MenuItem>
         {/* <Divider sx={{ my: 0.5 }} /> */}
-        <MenuItem onClick={handleClose} disableRipple sx={{ fontSize: "13px" }}>
-          Plan Roster
+        <MenuItem
+          onClick={() => navigate("/roster/add")}
+          disableRipple
+          sx={{ fontSize: "13px" }}
+        >
+          Add Roster
         </MenuItem>
         {/* <MenuItem onClick={handleClose} disableRipple>
           <MoreHorizIcon />

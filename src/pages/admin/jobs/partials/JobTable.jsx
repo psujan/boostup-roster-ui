@@ -49,7 +49,7 @@ export const JobTable = () => {
       .then((res) => {
         const message = res?.data?.message;
         ToastMessage("success", message);
-        getJobList()
+        getJobList();
       })
       .catch((err) => {
         ToastMessage("error", err?.response?.data?.message);

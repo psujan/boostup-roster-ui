@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-export default function ShiftDetails() {
+export default function ShiftDetails({ shift }) {
   //const navigate = useNavigate();
   return (
     <>
@@ -13,39 +13,39 @@ export default function ShiftDetails() {
           border: "1px solid transparent",
           borderRadius: "8px",
           fontSize: "14px",
-          boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"
+          boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
         }}
       >
         <Box className="flex flex-between" sx={{ mb: 2 }}>
           <span className="text-muted">Job Title</span>
-          <span>Strata cleaning</span>
+          <span>{shift?.job?.title}</span>
         </Box>
         <Box className="flex flex-between" sx={{ mb: 2 }}>
           <span className="text-muted">Address</span>
-          <span>Unit 2-24, Mooney Street , South Strathfield</span>
+          <span>{shift?.job?.jobAddress || "N/A"}</span>
         </Box>
         <Box className="flex flex-between" sx={{ mb: 2 }}>
           <span className="text-muted">Date</span>
-          <span>2025-03-04</span>
+          <span>{shift?.date}</span>
         </Box>
         <Box className="flex flex-between" sx={{ mb: 2 }}>
           <span className="text-muted">Start Time</span>
-          <span>7: 00 AM</span>
+          <span>{shift?.startTime}</span>
         </Box>
         <Box className="flex flex-between" sx={{ mb: 2 }}>
           <span className="text-muted">End Time</span>
-          <span>2: 00 PM</span>
+          <span>{shift?.endTime}</span>
         </Box>
         <Box className="flex flex-between" sx={{ mb: 2 }}>
           <span className="text-muted">Work Hours</span>
-          <span>7 hrs</span>
+          <span>{shift?.workHours} hrs</span>
         </Box>
       </Box>
       <Box>
         <h5 className="heading-5" style={{ marginBottom: "10px" }}>
           Job Notes
         </h5>
-        <p>Cleaning Equipments on Site</p>
+        <p>{shift?.job?.notes || "N/A"}</p>
       </Box>
     </>
   );

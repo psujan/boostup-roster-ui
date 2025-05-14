@@ -1,120 +1,88 @@
-import { useState, useEffect } from "react";
-import { Routes, useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import {
+  Routes,
+  Route,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import { isAuthenticated } from "../utils/auth";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { Box, Button } from "@mui/material";
-import ResponsiveDrawer from "../components/Drawer";
 import { LoaderProvider } from "../utils/context/LoaderContext";
-import AdminRoutes from "../routes/AdminRoutes";
-import EmployeeRoutes from "../routes/EmployeeRoutes";
-import EmployeeSidebar from "../components/EmployeeSidebar";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOpenOutlined";
+import LoginPage from "../components/LoginPage";
+import AdminLayouts from "../components/layouts/AdminLayouts";
+import EmployeeLayouts from "../components/layouts/EmployeeLayouts";
+import ForgotPasswordPage from "../components/ForgotPasswordPage";
 
 export const AppContentRoute = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
-  const [empSideBar, setEmpSideBar] = useState(false);
-  const isLoginPage =
-    location.pathname === "/" || location.pathname === "/login";
-  const { isAuth, role } = isAuthenticated();
-  console.log("here", isAuth, navigate, isLoginPage);
+  const [searchParams, setSearchParams] = useSearchParams();
+  // const isLoginPage = location.pathname === "/login";
+  const { role } = isAuthenticated();
 
-  const toggleEmpSideBar = (toggleState) => {
-    setEmpSideBar(toggleState);
-  };
-
-  useEffect(() => {
-    if (role.toLocaleLowerCase() == "employee") {
-      setOpen(false);
+  const isValidLoggedIn = () => {
+    const token = localStorage.getItem("token");
+    const tokenExpiry = localStorage.getItem("tokenExpiry");
+    if (!token) {
+      return false;
     }
-    // if (!isAuth && !isLoginPage) {
-    //   navigate("/login");
-    // }
-  }, [isAuth, isLoginPage, navigate]);
 
-  // if (isLoginPage)
-  //   return (
-  //     <LoaderProvider>
-  //       <Routes>
-  //         <Route path="/" element={<LoginPage />} />
-  //         <Route path="/login" element={<LoginPage />} />
-  //       </Routes>
-  //     </LoaderProvider>
-  //   );
-  // if (!isAuth) return null;
+    if (!tokenExpiry) {
+      return false;
+    }
+    if (new Date(tokenExpiry) > Date.now()) {
+      return true;
+    }
+
+    return false;
+  };
+  useEffect(() => {
+    console.log(location.pathname);
+    if (location.pathname === "/change-password") {
+      console.log(searchParams.get("email"));
+      console.log(searchParams.get("token"));
+      const resetEmail = searchParams.get("email");
+      const resetToken = searchParams.get("token");
+      if (resetEmail && resetToken) {
+        localStorage.setItem("resetEmail", resetEmail);
+        localStorage.setItem("resetToken", resetToken);
+      }
+      navigate("/change-password");
+      return;
+    }
+    if (!isValidLoggedIn()) {
+      navigate("/login");
+    }
+  }, []);
+
+  const getRoleBasedLayout = () => {
+    // To access role , user must have valid login
+    if (!isValidLoggedIn() && location.pathname != "/change-password") {
+      localStorage.clear();
+    }
+    switch (role.toLowerCase()) {
+      case "superadmin":
+        return <AdminLayouts />;
+      case "employee":
+        return <EmployeeLayouts />;
+      default:
+        return location.pathname == "/change-password" ? (
+          <ForgotPasswordPage />
+        ) : (
+          <LoginPage />
+        );
+    }
+  };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <LoaderProvider>
-        {role.toLocaleLowerCase() == "employee" ? (
-          <Box>
-            <EmployeeSidebar
-              empSideBar={empSideBar}
-              toggleEmpSideBar={toggleEmpSideBar}
-            />
-            <div
-              className="flex flex-between flex-center"
-              style={{ padding: "16px 8px", borderBottom: "1px solid #d9d9d9" }}
-            >
-              <h1
-                style={{
-                  fontSize: "18px",
-                  fontWeight: 700,
-                  color: "var(--primaryColor)",
-                }}
-              >
-                Boostup
-              </h1>
-
-              <div
-                onClick={() => setEmpSideBar(true)}
-                className="flex flex-center"
-                style={{
-                  border: "1px solid #d9d9d9",
-                  borderRadius: "8px",
-                  justifyContent: "center",
-                  padding: "4px",
-                  cursor: "pointer",
-                }}
-              >
-                <MenuOutlinedIcon color="#666" />
-              </div>
-            </div>
-            <Box
-              component="main"
-              sx={{
-                flexGrow: 1,
-                bgcolor: "#fff",
-                p: 1,
-                minHeight: "100vh",
-                backgroundColor:"#f5f5f5"
-              }}
-            >
-              <EmployeeRoutes />
-            </Box>
-          </Box>
-        ) : (
-          <Box>
-            <ResponsiveDrawer open={open} setOpen={setOpen} />
-            <Box
-              component="main"
-              sx={{
-                flexGrow: 1,
-                bgcolor: "#f5f5f5",
-                p: 3,
-                transition: "margin-left 0.3s ease",
-                marginLeft: open ? "240px" : "60px",
-                marginTop: "44px",
-                paddingLeft: open ? "32px" : "30px",
-                minHeight: "100vh",
-              }}
-            >
-              <AdminRoutes />
-            </Box>
-          </Box>
-        )}
+        {getRoleBasedLayout()}
+        {/* <Routes>
+          <Route path="/login" element={<LoginPage />} />
+        </Routes> */}
       </LoaderProvider>
     </LocalizationProvider>
   );

@@ -7,7 +7,7 @@ import {
   Typography,
   Box,
   Paper,
-  InputLabel,
+  InputLabel
 } from "@mui/material";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +16,7 @@ import Logo from "../assets/images/boostup-logo.png";
 import { useLoader } from "../utils/context/LoaderContext";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import ForgotPasswordModal from "./ForgotPasswordModal";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleLogin = () => {
     showLoader();
@@ -32,16 +34,17 @@ const LoginPage = () => {
         console.log(res);
         const token = res.data?.data?.token;
         const role = res.data?.data?.roles?.[0];
-        const user = res?.data?.data?.user?.fullName;
-        console.log("dddd", user);
+        const user = res?.data?.data?.user; // store whole user object
+        const tokenExpiry = res?.data?.data?.tokenExpiresIn;
+        const employee = res?.data?.data?.employee;
         if (token && role) {
           // Clear All Previously Stored Data
           localStorage.clear();
-
           localStorage.setItem("token", token);
           localStorage.setItem("role", role);
-          localStorage.setItem("user", user);
-
+          localStorage.setItem("user", JSON.stringify(user));
+          localStorage.setItem("tokenExpiry", tokenExpiry);
+          localStorage.setItem("employee", JSON.stringify(employee));
           switch (role) {
             case "SuperAdmin":
               navigate("/admin-dashboard");
@@ -101,13 +104,15 @@ const LoginPage = () => {
           }}
         >
           <div style={{ display: "flex" }}>
-            <span>
-              <img
-                src={Logo}
-                alt="LOGO"
-                style={{ width: "60px", height: "60px" }}
-              />
-            </span>
+            <a href="/">
+              <span>
+                <img
+                  src={Logo}
+                  alt="LOGO"
+                  style={{ width: "60px", height: "60px" }}
+                />
+              </span>
+            </a>
             <span style={{ paddingLeft: "12px" }}>
               Welcome To Boostup Cleaning Services
             </span>
@@ -126,6 +131,7 @@ const LoginPage = () => {
               id="login-email"
               variant="outlined"
               className="base-input"
+              placeholder="john@hotmail.com"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -138,6 +144,7 @@ const LoginPage = () => {
               id="login-pwd"
               variant="outlined"
               className="base-input"
+              placeholder="******"
               onChange={(e) => setPassword(e.target.value)}
             />
             {showPassword ? (
@@ -162,12 +169,13 @@ const LoginPage = () => {
           </Button>
 
           <div style={{ textAlign: "left" }}>
-            <a href="" className="clr-text">
+            <a href="#" className="clr-text" onClick={() => setOpen(true)}>
               Forgot Password ?
             </a>
           </div>
         </Box>
       </Paper>
+      <ForgotPasswordModal open={open} handleOpen={(state) => setOpen(state)} />
     </Container>
   );
 };
