@@ -46,9 +46,9 @@ export default function TimeSheetList() {
   const onPageChange = (p) => setPage(p);
 
   useEffect(() => {
-    getTimeSheet()
+    getTimeSheet();
   }, [page]);
-  
+
   return (
     <Box className="content-box">
       {timeSheet.length ? (
@@ -80,7 +80,7 @@ export default function TimeSheetList() {
                   <td>{row?.job?.title}</td>
                   <td>{row?.date}</td>
                   <td>{row?.clockIn}</td>
-                  <td>{row?.clockIn}</td>
+                  <td>{row.clockOut != null ? row.clockOut : 'Not Recorded'}</td>
                   <td>{row.totalHours}</td>
                 </tr>
               ))
